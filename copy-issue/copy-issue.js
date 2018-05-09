@@ -10,7 +10,7 @@ var RES = lang == "ja" ? {
 	"refs": "Refs",
 };
 
-var injectScript = function(content) {
+var injectScript = (content) => {
 	var s = document.createElement('script');
 	s.setAttribute('type', 'text/javascript');
 	s.innerText = content;
@@ -18,12 +18,12 @@ var injectScript = function(content) {
 };
 
 if (location.pathname.startsWith("/view/")) {
-	$(function() {
-		var hideMenu = function() {
+	$(() => {
+		var hideMenu = () => {
 			injectScript('$(".title-group__edit-actions dropdown-menu a.icon-button").click();');
 		};
 	
-		var clickHandler = function() {
+		var clickHandler = () => {
 			hideMenu();
 			var projectKey = prompt(RES["prompt"]);
 			if (projectKey) {
@@ -39,7 +39,7 @@ sessionStorage.setItem("copy-issue", JSON.stringify(issue));`;
 			}
 		};
 	
-		setTimeout(function() {
+		setTimeout(() => {
 			var $menuItem = $('<li class="dropdown-menu__item" />').append(
 				$('<a class="dropdown-menu__link is_active" href="javascript:void(0)"></a>').text(RES["copyTo"]).click(clickHandler)
 			);
@@ -47,8 +47,8 @@ sessionStorage.setItem("copy-issue", JSON.stringify(issue));`;
 		}, 2000);
 	});
 } else if (location.pathname.startsWith("/add/")) {
-	$(function() {
-		var restoreIssue = function() {
+	$(() => {
+		var restoreIssue = () => {
 			var script = `
 var json = sessionStorage.getItem("copy-issue");
 if (json) {
@@ -59,7 +59,7 @@ if (json) {
 }`;
 			injectScript(script);
 		}
-		setTimeout(function() {
+		setTimeout(() => {
 			restoreIssue();
 		}, 1000);
 	});
