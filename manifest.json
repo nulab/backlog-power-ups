@@ -1,0 +1,24 @@
+{
+  "name": "Backlog Power Ups",
+  "version": "0.0.1",
+  "manifest_version": 2,
+  "permissions": [
+    "notifications",
+    "tabs",
+    "http://*/*",
+    "https://*/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "https://*.backlog.jp/view/*", 
+        "https://*.backlogtool.com/view/*", 
+        "https://*.backlog.com/view/*",
+        "https://*.backlog.jp/add/*", 
+        "https://*.backlogtool.com/add/*", 
+        "https://*.backlog.com/add/*"
+      ],
+      "js": ["libs/jquery.js", "copy-issue/copy-issue.js"]
+    }
+  ]
+}
