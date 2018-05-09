@@ -29,10 +29,10 @@ if (location.pathname.startsWith("/view/")) {
 			if (projectKey) {
 				var markdown = $(".markdown-body").length > 0;
 				var h2 = markdown ? "##" : "**";
-				var script = 'var issue = ko.contextFor($("#issuecard")[0]).$data.issueDetail.store.issue();'
-				+ 'issue.description = issue.description + "\\n\\n' + h2 + ' ' + RES["refs"] + '\\n- " + issue.issueKey + " " + issue.summary;'
-				+ 'sessionStorage.setItem("copy-issue", JSON.stringify(issue));';
-				
+				var script = `
+var issue = ko.contextFor($("#issuecard")[0]).$data.issueDetail.store.issue();
+issue.description = issue.description + "\\n\\n${h2} ${RES["refs"]}\\n-" + issue.issueKey + issue.summary;
+sessionStorage.setItem("copy-issue", JSON.stringify(issue));`;
 				injectScript(script);
 				var url = "https://nulab.backlog.jp/add/" + projectKey;
 				location.href = url;
@@ -49,13 +49,14 @@ if (location.pathname.startsWith("/view/")) {
 } else if (location.pathname.startsWith("/add/")) {
 	$(function() {
 		var restoreIssue = function() {
-			var script = 'var json = sessionStorage.getItem("copy-issue");'
-				+ 'if (json) {'
-				+ 'var issue = JSON.parse(json);'
-				+ '$("#summaryInput").val(issue.summary);'
-				+ '$("#descriptionTextArea").val(issue.description);'
-				+ 'sessionStorage.removeItem("copy-issue");'
-				+ '}'
+			var script = `
+var json = sessionStorage.getItem("copy-issue");
+if (json) {
+	var issue = JSON.parse(json);
+	$("#summaryInput").val(issue.summary);
+	$("#descriptionTextArea").val(issue.description);
+	sessionStorage.removeItem("copy-issue");
+}`;
 			injectScript(script);
 		}
 		setTimeout(function() {
