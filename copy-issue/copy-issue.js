@@ -1,6 +1,6 @@
-var lang = $("html").attr("lang") == "ja" ? "ja" : "en";
+const lang = $("html").attr("lang") == "ja" ? "ja" : "en";
 
-var RES = lang == "ja" ? {
+const RES = lang == "ja" ? {
 	"prompt": "複製先のプロジェクトキーを入力してください。",
 	"copyTo": "別のプロジェクトに複製",
 	"refs": "関連課題",
@@ -10,8 +10,8 @@ var RES = lang == "ja" ? {
 	"refs": "Refs",
 };
 
-var injectScript = (content) => {
-	var s = document.createElement('script');
+const injectScript = (content) => {
+	const s = document.createElement('script');
 	s.setAttribute('type', 'text/javascript');
 	s.innerText = content;
 	return document.body.appendChild(s);
@@ -19,28 +19,28 @@ var injectScript = (content) => {
 
 if (location.pathname.startsWith("/view/")) {
 	$(() => {
-		var hideMenu = () => {
+		const hideMenu = () => {
 			injectScript('$(".title-group__edit-actions dropdown-menu a.icon-button").click();');
 		};
 	
-		var clickHandler = () => {
+		const clickHandler = () => {
 			hideMenu();
 			var projectKey = prompt(RES["prompt"]);
 			if (projectKey) {
-				var markdown = $(".markdown-body").length > 0;
-				var h2 = markdown ? "##" : "**";
-				var script = `
+				const markdown = $(".markdown-body").length > 0;
+				const h2 = markdown ? "##" : "**";
+				const script = `
 var issue = ko.contextFor($("#issuecard")[0]).$data.issueDetail.store.issue();
 issue.description = issue.description + "\\n\\n${h2} ${RES["refs"]}\\n-" + issue.issueKey + issue.summary;
 sessionStorage.setItem("copy-issue", JSON.stringify(issue));`;
 				injectScript(script);
-				var url = "https://nulab.backlog.jp/add/" + projectKey;
+				const url = "https://nulab.backlog.jp/add/" + projectKey;
 				location.href = url;
 			}
 		};
 	
 		setTimeout(() => {
-			var $menuItem = $('<li class="dropdown-menu__item" />').append(
+			const $menuItem = $('<li class="dropdown-menu__item" />').append(
 				$('<a class="dropdown-menu__link is_active" href="javascript:void(0)"></a>').text(RES["copyTo"]).click(clickHandler)
 			);
 			$(".title-group__edit-actions ul.dropdown-menu").append($menuItem);
@@ -48,8 +48,8 @@ sessionStorage.setItem("copy-issue", JSON.stringify(issue));`;
 	});
 } else if (location.pathname.startsWith("/add/")) {
 	$(() => {
-		var restoreIssue = () => {
-			var script = `
+		const restoreIssue = () => {
+			const script = `
 var json = sessionStorage.getItem("copy-issue");
 if (json) {
 	var issue = JSON.parse(json);
