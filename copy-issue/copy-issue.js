@@ -17,7 +17,7 @@ const injectScript = (content) => {
 	return document.body.appendChild(s);
 };
 
-if (location.pathname.startsWith("/view/")) {
+const issueView = () => {
 	const hideMenu = () => {
 		injectScript('$(".title-group__edit-actions dropdown-menu a.icon-button").click();');
 	};
@@ -44,7 +44,9 @@ sessionStorage.setItem("copy-issue", JSON.stringify(issue));`;
 		);
 		$(".title-group__edit-actions ul.dropdown-menu").append($menuItem);
 	}, 2000);
-} else if (location.pathname.startsWith("/add/")) {
+}
+
+const addIssueView = () => {
 	const restoreIssue = () => {
 		const script = `
 var json = sessionStorage.getItem("copy-issue");
@@ -59,4 +61,10 @@ if (json) {
 	setTimeout(() => {
 		restoreIssue();
 	}, 1000);
+}
+
+if (location.pathname.startsWith("/view/")) {
+	issueView();
+} else if (location.pathname.startsWith("/add/")) {
+	addIssueView();
 }
