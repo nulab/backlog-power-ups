@@ -18,38 +18,35 @@ const injectScript = (content) => {
 };
 
 if (location.pathname.startsWith("/view/")) {
-	$(() => {
-		const hideMenu = () => {
-			injectScript('$(".title-group__edit-actions dropdown-menu a.icon-button").click();');
-		};
-	
-		const clickHandler = () => {
-			hideMenu();
-			var projectKey = prompt(RES["prompt"]);
-			if (projectKey) {
-				const markdown = $(".markdown-body").length > 0;
-				const h2 = markdown ? "##" : "**";
-				const script = `
+	const hideMenu = () => {
+		injectScript('$(".title-group__edit-actions dropdown-menu a.icon-button").click();');
+	};
+
+	const clickHandler = () => {
+		hideMenu();
+		var projectKey = prompt(RES["prompt"]);
+		if (projectKey) {
+			const markdown = $(".markdown-body").length > 0;
+			const h2 = markdown ? "##" : "**";
+			const script = `
 var issue = ko.contextFor($("#issuecard")[0]).$data.issueDetail.store.issue();
 issue.description = issue.description + "\\n\\n${h2} ${RES["refs"]}\\n-" + issue.issueKey + issue.summary;
 sessionStorage.setItem("copy-issue", JSON.stringify(issue));`;
-				injectScript(script);
-				const url = "https://nulab.backlog.jp/add/" + projectKey;
-				location.href = url;
-			}
-		};
-	
-		setTimeout(() => {
-			const $menuItem = $('<li class="dropdown-menu__item" />').append(
-				$('<a class="dropdown-menu__link is_active" href="javascript:void(0)"></a>').text(RES["copyTo"]).click(clickHandler)
-			);
-			$(".title-group__edit-actions ul.dropdown-menu").append($menuItem);
-		}, 2000);
-	});
+			injectScript(script);
+			const url = "https://nulab.backlog.jp/add/" + projectKey;
+			location.href = url;
+		}
+	};
+
+	setTimeout(() => {
+		const $menuItem = $('<li class="dropdown-menu__item" />').append(
+			$('<a class="dropdown-menu__link is_active" href="javascript:void(0)"></a>').text(RES["copyTo"]).click(clickHandler)
+		);
+		$(".title-group__edit-actions ul.dropdown-menu").append($menuItem);
+	}, 2000);
 } else if (location.pathname.startsWith("/add/")) {
-	$(() => {
-		const restoreIssue = () => {
-			const script = `
+	const restoreIssue = () => {
+		const script = `
 var json = sessionStorage.getItem("copy-issue");
 if (json) {
 	var issue = JSON.parse(json);
@@ -57,10 +54,9 @@ if (json) {
 	$("#descriptionTextArea").val(issue.description);
 	sessionStorage.removeItem("copy-issue");
 }`;
-			injectScript(script);
-		}
-		setTimeout(() => {
-			restoreIssue();
-		}, 1000);
-	});
+		injectScript(script);
+	}
+	setTimeout(() => {
+		restoreIssue();
+	}, 1000);
 }
