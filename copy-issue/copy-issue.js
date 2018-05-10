@@ -1,3 +1,5 @@
+(() => {
+
 const lang = $("html").attr("lang") == "ja" ? "ja" : "en";
 
 const RES = lang == "ja" ? {
@@ -68,3 +70,5 @@ if (location.pathname.startsWith("/view/")) {
 } else if (location.pathname.startsWith("/add/")) {
 	addIssueView();
 }
+
+})();
