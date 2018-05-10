@@ -20,6 +20,14 @@
         "https://*.backlog.com/add/*"
       ],
       "js": ["libs/jquery.js", "copy-issue/copy-issue.js"]
+    },
+    {
+      "matches": [
+        "https://*.backlog.jp/view/*", 
+        "https://*.backlogtool.com/view/*", 
+        "https://*.backlog.com/view/*"
+      ],
+      "js": ["libs/jquery.js", "auto-resolution/auto-resolution.js"]
     }
   ]
 }
