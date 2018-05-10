@@ -35,7 +35,7 @@ var issue = ko.contextFor($("#issuecard")[0]).$data.issueDetail.store.issue();
 issue.description = issue.description + "\\n\\n${h2} ${RES["refs"]}\\n-" + issue.issueKey + issue.summary;
 sessionStorage.setItem("copy-issue", JSON.stringify(issue));`;
 			injectScript(script);
-			const url = "https://nulab.backlog.jp/add/" + projectKey;
+			const url = "/add/" + projectKey;
 			location.href = url;
 		}
 	};
