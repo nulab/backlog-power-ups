@@ -6,6 +6,7 @@
     <title>popup</title>
     <link type="text/css" href="popup.css" rel="stylesheet"></link>
     <script type="text/javascript" src="../libs/jquery.js"></script>
+    <script type="text/javascript" src="../libs/vue.js"></script>
     <script type="text/javascript" src="popup.js"></script>
 </head>
 
@@ -13,12 +14,11 @@
   <header>
     <h1>Backlog Power Ups</h1>
   </header>
-  <section>
-      <input id="auto-resolution" type="checkbox" /><label for="auto-resolution">状態の完了時、自動的に完了理由を対応済みにする</label>
-  </section>
-  <section>
-      <input id="copy-issue" type="checkbox" /><label for="copy-issue">別のプロジェクトに課題を複製</label>
-  </section>
+  <div id="app">
+      <section v-for="item in items">
+          <label><input type="checkbox" @change="change(item)" v-model="item.enabled"/>{{ item.text }}</label>
+      </section>
+  </div>
 </body>
 
 </html>
