@@ -65,10 +65,13 @@ if (json) {
 	}, 1000);
 }
 
-if (location.pathname.startsWith("/view/")) {
-	issueView();
-} else if (location.pathname.startsWith("/add/")) {
-	addIssueView();
-}
-
+chrome.storage.local.get(["copy-issue"], function(settings) {
+	if (settings["copy-issue"]) {
+		if (location.pathname.startsWith("/view/")) {
+			issueView();
+		} else if (location.pathname.startsWith("/add/")) {
+			addIssueView();
+		}
+	}
+});
 })();

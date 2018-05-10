@@ -3,11 +3,24 @@
   "version": "0.0.1",
   "manifest_version": 2,
   "permissions": [
-    "http://*/*",
-    "https://*/*"
+    "tabs",
+    "cookies",
+    "webRequest",
+    "storage",
+    "https://*.backlogtool.com/*",
+    "https://*.backlog.com/*",
+    "https://*.backlog.jp/*"
   ],
   "icons": { 
    "128": "icon128.png" 
+  },
+  "page_action": {
+    "default_icon": "icon128.png",
+    "default_title": "Backlog Power Ups",
+    "default_popup" : "popup/popup.html"
+  },
+  "background":{
+    "scripts" : [ "background.js" ]
   },
   "content_scripts": [
     {

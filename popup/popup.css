@@ -1,0 +1,13 @@
+body {
+  font: 14px/22px 'Open Sans', Arial, sans-serif;
+  background-color:#fff;
+  width: 350px;
+}
+
+input[type=checkbox] {
+  cursor: pointer;
+}
+
+label {
+  cursor: pointer;
+}
