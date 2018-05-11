@@ -16,9 +16,15 @@
   </header>
   <div id="app">
       <section v-for="item in items">
-          <label><input type="checkbox" @change="change(item)" v-model="item.enabled"/>{{ item.text }}</label>
+          <label>
+            <input type="checkbox" @change="change(item)" v-model="item.enabled"/>
+            <span>{{ item.text }}</span>
+          </label>
       </section>
   </div>
+  <footer>
+    <small>© 2018 backlog (Backlog Power Ups）</small>
+  </footer>
 </body>
 
 </html>
