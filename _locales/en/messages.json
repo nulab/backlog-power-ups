@@ -1,0 +1,11 @@
+{
+    "popup_apply_button": {
+        "message": "Apply"
+    },
+    "popup_copy_issue": {
+        "message": " Copy issue to other project"
+    },
+    "popup_auto_resolution": {
+        "message": "When Changing status of issue to completed, automatically set the completion reason to fixed"
+    }
+}
