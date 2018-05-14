@@ -22,7 +22,7 @@
         </label>
     </section>
     <footer class="buttons">
-      <button type="submit" @click="apply()" v-bind:disabled="isChanged() == false">適用</button>
+      <button type="submit" @click="apply()" v-bind:disabled="isChanged() == false">{{ i18n.getMessage("popup_apply_button") }}</button>
     </footer>
   </div>
 </body>

@@ -10,12 +10,12 @@ $(() => {
         const items = [
             {
                 id: "copy-issue",
-                text: "別のプロジェクトに課題を複製",
+                text: chrome.i18n.getMessage("popup_copy_issue"),
                 enabled: settings["copy-issue"]
             },
             {
                 id: "auto-resolution",
-                text: "状態の完了時、自動的に完了理由を対応済みにする",
+                text: chrome.i18n.getMessage("popup_auto_resolution"),
                 enabled: settings["auto-resolution"]
             }
         ];
@@ -37,7 +37,8 @@ $(() => {
                 }
             },
             data: {
-              items: items
+              items: items,
+              i18n: chrome.i18n
             }
         });
     });
