@@ -1,13 +1,95 @@
+* {
+  padding: 0;
+  margin: 0;
+  outline:0;
+  box-sizing:border-box;
+}
+
 body {
   font: 14px/22px 'Open Sans', Arial, sans-serif;
-  background-color:#fff;
-  width: 350px;
+  width: 400px;
+  background-color: #f0f0f0;
+}
+
+#app {
+  padding: 15px;
+}
+
+header {
+  padding: 10px 15px;
+  background-color: #4caf93;
+  color: 4caf93;
+}
+
+header h1 {
+  font-size: 18px;
+  color: #fff;
+}
+
+section {
+  padding: 5px 15px 0;
 }
 
 input[type=checkbox] {
   cursor: pointer;
+  display: none;
 }
 
 label {
   cursor: pointer;
+}
+
+label span {
+  position: relative;
+  padding-left: 28px;
+}
+
+label span::before,
+label span::after {
+  transition: all .075s ease-in-out;
+}
+
+label span::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 16px;
+  height: 16px;
+  border: solid 2px #bbb;
+  background-color: #fff;
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+label span::after {
+  content: '';
+  position: absolute;
+  top: 3px;
+  left: 4px;
+  width: 10px;
+  height: 6px;
+  -ms-transform: rotate(-45deg) scale(0);
+  transform: rotate(-45deg) scale(0);
+  border-bottom: 3px solid #fff;
+  border-left: 3px solid #fff;
+}
+
+input[type=checkbox]:checked + span::before {
+  border-color: #00836b;
+  background-color: #00836b;
+}
+
+input[type=checkbox]:checked + span::after {
+  -ms-transform:rotate(-45deg) scale(1);
+  transform:rotate(-45deg) scale(1);
+}
+
+footer {
+  padding-bottom: 5px;
+  text-align: center;
+}
+
+footer small {
+  font-size: 10px;
 }
