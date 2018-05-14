@@ -15,16 +15,16 @@
     <h1>Backlog Power Ups</h1>
   </header>
   <div id="app">
-      <section v-for="item in items">
-          <label>
-            <input type="checkbox" @change="change(item)" v-model="item.enabled"/>
-            <span>{{ item.text }}</span>
-          </label>
-      </section>
+    <section v-for="item in items">
+        <label>
+          <input type="checkbox" @change="change(item)" v-model="item.enabled"/>
+          <span>{{ item.text }}</span>
+        </label>
+    </section>
+    <footer class="buttons">
+      <button type="submit" @click="apply()" v-bind:disabled="isChanged() == false">適用</button>
+    </footer>
   </div>
-  <footer>
-    <small>© 2018 backlog (Backlog Power Ups）</small>
-  </footer>
 </body>
 
 </html>
