@@ -85,7 +85,39 @@ input[type=checkbox]:checked + span::after {
   transform:rotate(-45deg) scale(1);
 }
 
+.buttons {
+  text-align: center;
+}
+
+button[type=submit] {
+  font-size: 15px;
+  padding: 3px 30px;
+  color: #fff;
+  background-color: #4caf93;
+  border: solid 2px #4caf93;
+  border-radius: 4px;
+  font-weight: 700;
+  transition-timing-function: ease-in-out;
+  transition-duration: .15s;
+  transition-property: background-color,border,fill,color,opacity;
+  cursor: pointer;
+}
+
+button[type=submit]:hover {
+  color: #4caf93;
+  background-color: #fff;
+  border: solid 2px #4caf93;
+}
+
+button[type=submit]:disabled {
+  border: solid 2px #aaa;
+  background-color: #aaa;
+  color: #eee;
+  cursor: default;
+}
+
 footer {
+  padding-top: 10px;
   padding-bottom: 5px;
   text-align: center;
 }
