@@ -1,8 +1,9 @@
 $(() => {
-    const keys = ["copy-issue", "auto-resolution"];
+    const keys = ["copy-issue", "auto-resolution", "extend-desc"];
     const defaultSettings = {
-        "copy-issue": true,
-         "auto-resolution": true
+        "copy-issue": false,
+        "auto-resolution": false,
+        "extend-desc": false
     }
     chrome.storage.local.get(keys, (storedSettings) => {
         const initialSettings = Object.assign(defaultSettings, storedSettings)
@@ -17,6 +18,11 @@ $(() => {
                 id: "auto-resolution",
                 text: chrome.i18n.getMessage("popup_auto_resolution"),
                 enabled: settings["auto-resolution"]
+            },
+            {
+                id: "extend-desc",
+                text: chrome.i18n.getMessage("popup_extend_desc"),
+                enabled: settings["extend-desc"]
             }
         ];
         const app = new Vue({
