@@ -2,6 +2,9 @@
     "popup_apply_button": {
         "message": "適用"
     },
+    "popup_issue": {
+        "message": "課題"
+    },
     "popup_copy_issue": {
         "message": " 別のプロジェクトに課題を複製"
     },
@@ -10,5 +13,11 @@
     },
     "popup_extend_desc": {
         "message": "課題追加/編集画面の詳細の入力欄を広げる"
+    },
+    "popup_wiki": {
+        "message": "Wiki"
+    },
+    "popup_child_page": {
+        "message": "ページの新規作成時に親フォルダ名を自動入力する"
     }
 }

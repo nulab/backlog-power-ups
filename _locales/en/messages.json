@@ -2,6 +2,9 @@
     "popup_apply_button": {
         "message": "Apply"
     },
+    "popup_issue": {
+        "message": "Issue"
+    },
     "popup_copy_issue": {
         "message": " Copy issue to other project"
     },
@@ -10,5 +13,11 @@
     },
     "popup_extend_desc": {
         "message": "Extend description of issue on Add/Edit Issue"
+    },
+    "popup_wiki": {
+        "message": "Wiki"
+    },
+    "popup_child_page": {
+        "message": "Input parent page name automatically when creating new page"
     }
 }

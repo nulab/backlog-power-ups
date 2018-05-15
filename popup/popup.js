@@ -1,28 +1,44 @@
 $(() => {
-    const keys = ["copy-issue", "auto-resolution", "extend-desc"];
+    const keys = ["copy-issue", "auto-resolution", "extend-desc", "child-page"];
     const defaultSettings = {
         "copy-issue": false,
         "auto-resolution": false,
-        "extend-desc": false
+        "extend-desc": false,
+        "child-page": false
     }
     chrome.storage.local.get(keys, (storedSettings) => {
         const initialSettings = Object.assign(defaultSettings, storedSettings)
         const settings = Object.assign({}, initialSettings);
-        const items = [
+        const groups = [
             {
-                id: "copy-issue",
-                text: chrome.i18n.getMessage("popup_copy_issue"),
-                enabled: settings["copy-issue"]
+                text:  chrome.i18n.getMessage("popup_issue"),
+                items: [
+                    {
+                        id: "copy-issue",
+                        text: chrome.i18n.getMessage("popup_copy_issue"),
+                        enabled: settings["copy-issue"]
+                    },
+                    {
+                        id: "auto-resolution",
+                        text: chrome.i18n.getMessage("popup_auto_resolution"),
+                        enabled: settings["auto-resolution"]
+                    },
+                    {
+                        id: "extend-desc",
+                        text: chrome.i18n.getMessage("popup_extend_desc"),
+                        enabled: settings["extend-desc"]
+                    }
+                ]
             },
             {
-                id: "auto-resolution",
-                text: chrome.i18n.getMessage("popup_auto_resolution"),
-                enabled: settings["auto-resolution"]
-            },
-            {
-                id: "extend-desc",
-                text: chrome.i18n.getMessage("popup_extend_desc"),
-                enabled: settings["extend-desc"]
+                text:  chrome.i18n.getMessage("popup_wiki"),
+                items: [
+                    {
+                        id: "child-page",
+                        text: chrome.i18n.getMessage("popup_child_page"),
+                        enabled: settings["child-page"]
+                    }
+                ]
             }
         ];
         const app = new Vue({
@@ -43,7 +59,7 @@ $(() => {
                 }
             },
             data: {
-              items: items,
+              groups: groups,
               i18n: chrome.i18n
             }
         });

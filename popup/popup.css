@@ -7,7 +7,7 @@
 
 body {
   font: 14px/22px 'Open Sans', Arial, sans-serif;
-  width: 400px;
+  width: 500px;
   background-color: #f0f0f0;
 }
 
@@ -27,7 +27,11 @@ header h1 {
 }
 
 section {
-  padding: 5px 15px 0;
+  padding: 5px 15px 10px 15px;
+}
+
+.items {
+  padding-left: 20px;
 }
 
 input[type=checkbox] {
