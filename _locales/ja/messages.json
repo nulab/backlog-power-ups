@@ -19,5 +19,8 @@
     },
     "popup_child_page": {
         "message": "ページの新規作成時に親フォルダ名を自動入力する"
+    },
+    "popup_plantuml": {
+        "message": "PlantUMLを表示(UMLデータをplantuml.comに送信します)"
     }
 }
