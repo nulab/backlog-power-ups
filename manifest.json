@@ -66,6 +66,15 @@
       ],
       "all_frames": true,
       "js": ["libs/jquery.js", "child-page/child-page.js"]
+    },
+    {
+      "matches": [
+        "https://*.backlog.jp/wiki/*/*", 
+        "https://*.backlogtool.com/wiki/*/*", 
+        "https://*.backlog.com/wiki/*/*"
+      ],
+      "all_frames": true,
+      "js": ["libs/jquery.js", "libs/rawdeflate.js", "plantuml/plantuml.js"]
     }
   ]
 }

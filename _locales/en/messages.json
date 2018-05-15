@@ -19,5 +19,8 @@
     },
     "popup_child_page": {
         "message": "Input parent page name automatically when creating new page"
+    },
+    "popup_plantuml": {
+        "message": "Show PlantUML(Send UML data to plantuml.com)"
     }
 }

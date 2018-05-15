@@ -1,10 +1,11 @@
 $(() => {
-    const keys = ["copy-issue", "auto-resolution", "extend-desc", "child-page"];
+    const keys = ["copy-issue", "auto-resolution", "extend-desc", "child-page", "plantuml"];
     const defaultSettings = {
         "copy-issue": false,
         "auto-resolution": false,
         "extend-desc": false,
-        "child-page": false
+        "child-page": false,
+        "plantuml": false
     }
     chrome.storage.local.get(keys, (storedSettings) => {
         const initialSettings = Object.assign(defaultSettings, storedSettings)
@@ -37,6 +38,11 @@ $(() => {
                         id: "child-page",
                         text: chrome.i18n.getMessage("popup_child_page"),
                         enabled: settings["child-page"]
+                    },
+                    {
+                        id: "plantuml",
+                        text: chrome.i18n.getMessage("popup_plantuml"),
+                        enabled: settings["plantuml"]
                     }
                 ]
             }
