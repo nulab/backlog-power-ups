@@ -34,6 +34,7 @@
         "https://*.backlogtool.com/add/*", 
         "https://*.backlog.com/add/*"
       ],
+      "all_frames": true,
       "js": ["libs/jquery.js", "copy-issue/copy-issue.js"]
     },
     {
@@ -42,6 +43,7 @@
         "https://*.backlogtool.com/view/*", 
         "https://*.backlog.com/view/*"
       ],
+      "all_frames": true,
       "js": ["libs/jquery.js", "auto-resolution/auto-resolution.js"]
     },
     {
@@ -53,6 +55,7 @@
         "https://*.backlogtool.com/view/*/edit", 
         "https://*.backlog.com/view/*/edit"
       ],
+      "all_frames": true,
       "js": ["libs/jquery.js", "extend-desc/extend-desc.js"]
     }
   ]
