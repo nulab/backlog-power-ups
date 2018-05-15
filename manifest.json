@@ -43,6 +43,17 @@
         "https://*.backlog.com/view/*"
       ],
       "js": ["libs/jquery.js", "auto-resolution/auto-resolution.js"]
+    },
+    {
+      "matches": [
+        "https://*.backlog.jp/add/*", 
+        "https://*.backlogtool.com/add/*", 
+        "https://*.backlog.com/add/*",
+        "https://*.backlog.jp/view/*/edit", 
+        "https://*.backlogtool.com/view/*/edit", 
+        "https://*.backlog.com/view/*/edit"
+      ],
+      "js": ["libs/jquery.js", "extend-desc/extend-desc.js"]
     }
   ]
 }

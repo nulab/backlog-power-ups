@@ -7,5 +7,8 @@
     },
     "popup_auto_resolution": {
         "message": "状態の完了時、自動的に完了理由を対応済みにする"
+    },
+    "popup_extend_desc": {
+        "message": "課題追加/編集画面の詳細の入力欄を広げる"
     }
 }

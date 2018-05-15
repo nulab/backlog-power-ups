@@ -7,5 +7,8 @@
     },
     "popup_auto_resolution": {
         "message": "When Changing status of issue to completed, automatically set the completion reason to fixed"
+    },
+    "popup_extend_desc": {
+        "message": "Extend description of issue on Add/Edit Issue"
     }
 }
