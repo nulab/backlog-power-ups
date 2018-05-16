@@ -25,5 +25,11 @@
     },
     "popup_plantuml": {
         "message": "Show PlantUML(Send UML data to plantuml.com)"
+    },
+    "popup_general": {
+        "message": "General"
+    },
+    "popup_filter_notification": {
+        "message": "Filter notificaion"
     }
 }
