@@ -14,6 +14,9 @@
     "popup_extend_desc": {
         "message": "Extend description of issue on Add/Edit Issue"
     },
+    "popup_clear_notified_users": {
+        "message": "Show button for clearing notified users"
+    },
     "popup_wiki": {
         "message": "Wiki"
     },

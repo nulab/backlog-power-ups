@@ -1,9 +1,10 @@
 $(() => {
-    const keys = ["copy-issue", "auto-resolution", "extend-desc", "child-page", "plantuml"];
+    const keys = ["copy-issue", "auto-resolution", "extend-desc", "clear-notified-users", "child-page", "plantuml"];
     const defaultSettings = {
         "copy-issue": false,
         "auto-resolution": false,
         "extend-desc": false,
+        "clear-notified-users": false,
         "child-page": false,
         "plantuml": false
     }
@@ -28,6 +29,11 @@ $(() => {
                         id: "extend-desc",
                         text: chrome.i18n.getMessage("popup_extend_desc"),
                         enabled: settings["extend-desc"]
+                    },
+                    {
+                        id: "clear-notified-users",
+                        text: chrome.i18n.getMessage("popup_clear_notified_users"),
+                        enabled: settings["clear-notified-users"]
                     }
                 ]
             },
