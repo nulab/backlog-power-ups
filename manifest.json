@@ -60,6 +60,21 @@
     },
     {
       "matches": [
+        "https://*.backlog.jp/view/*", 
+        "https://*.backlogtool.com/view/*", 
+        "https://*.backlog.com/view/*",
+        "https://*.backlog.jp/add/*", 
+        "https://*.backlogtool.com/add/*", 
+        "https://*.backlog.com/add/*",
+        "https://*.backlog.jp/view/*/edit", 
+        "https://*.backlogtool.com/view/*/edit", 
+        "https://*.backlog.com/view/*/edit"
+      ],
+      "all_frames": true,
+      "js": ["libs/jquery.js", "clear-notified-users/clear-notified-users.js"]
+    },
+    {
+      "matches": [
         "https://*.backlog.jp/wiki/*/*", 
         "https://*.backlogtool.com/wiki/*/*", 
         "https://*.backlog.com/wiki/*/*"
