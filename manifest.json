@@ -35,7 +35,7 @@
         "https://*.backlog.com/add/*"
       ],
       "all_frames": true,
-      "js": ["libs/jquery.js", "copy-issue/copy-issue.js"]
+      "js": ["libs/jquery.js", "libs/power-ups.js", "copy-issue/copy-issue.js"]
     },
     {
       "matches": [
@@ -44,7 +44,7 @@
         "https://*.backlog.com/view/*"
       ],
       "all_frames": true,
-      "js": ["libs/jquery.js", "auto-resolution/auto-resolution.js"]
+      "js": ["libs/jquery.js", "libs/power-ups.js", "auto-resolution/auto-resolution.js"]
     },
     {
       "matches": [
@@ -56,7 +56,7 @@
         "https://*.backlog.com/view/*/edit"
       ],
       "all_frames": true,
-      "js": ["libs/jquery.js", "extend-desc/extend-desc.js"]
+      "js": ["libs/jquery.js", "libs/power-ups.js", "extend-desc/extend-desc.js"]
     },
     {
       "matches": [
@@ -71,7 +71,7 @@
         "https://*.backlog.com/view/*/edit"
       ],
       "all_frames": true,
-      "js": ["libs/jquery.js", "clear-notified-users/clear-notified-users.js"]
+      "js": ["libs/jquery.js", "libs/power-ups.js", "clear-notified-users/clear-notified-users.js"]
     },
     {
       "matches": [
@@ -80,7 +80,7 @@
         "https://*.backlog.com/wiki/*/*"
       ],
       "all_frames": true,
-      "js": ["libs/jquery.js", "child-page/child-page.js"]
+      "js": ["libs/jquery.js", "libs/power-ups.js", "child-page/child-page.js"]
     },
     {
       "matches": [
@@ -89,7 +89,7 @@
         "https://*.backlog.com/wiki/*/*"
       ],
       "all_frames": true,
-      "js": ["libs/jquery.js", "libs/rawdeflate.js", "plantuml/plantuml.js"]
+      "js": ["libs/jquery.js", "libs/rawdeflate.js", "libs/power-ups.js", "plantuml/plantuml.js"]
     },
     {
       "matches": [
@@ -98,7 +98,7 @@
         "https://*.backlog.com/*"
       ],
       "all_frames": true,
-      "js": ["libs/jquery.js", "filter-notification/filter-notification.js"]
+      "js": ["libs/jquery.js", "libs/power-ups.js", "filter-notification/filter-notification.js"]
     }
   ]
 }

@@ -1,5 +1,5 @@
 (() => {
-	const lang = $("html").attr("lang") == "ja" ? "ja" : "en";
+	const lang = PowerUps.getLang();
 
 	const RES = lang == "ja" ? {
 		"unreadOnly": "未読のみ",
@@ -9,13 +9,6 @@
 		"placeholder": "Search notifications"
 	};
 
-	const injectScript = (content) => {
-		const s = document.createElement('script');
-		s.setAttribute('type', 'text/javascript');
-		s.innerText = content;
-		return document.body.appendChild(s);
-	};
-	
 	const filter = () => {
 		const hideReadItem = $("#hideReadNotifications").prop('checked');
 		const keyword = $("#filterNotifications").val().toUpperCase();
