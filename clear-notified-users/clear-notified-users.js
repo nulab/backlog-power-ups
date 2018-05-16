@@ -1,14 +1,7 @@
 (() => {
 
-	const injectScript = (content) => {
-		const s = document.createElement('script');
-		s.setAttribute('type', 'text/javascript');
-		s.innerText = content;
-		return document.body.appendChild(s);
-	};
-
 	const clearNotifiedUsers = (selector) => {
-		injectScript(`ko.contextFor($("${selector}")[0]).$data.chosen.multiValue([])`);
+		PowerUps.injectScript(`ko.contextFor($("${selector}")[0]).$data.chosen.multiValue([])`);
 	}
 
 	const setupClearButton = (containerSelector, notifiedUsersSelector) => {
