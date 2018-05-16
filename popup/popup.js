@@ -1,12 +1,13 @@
 $(() => {
-    const keys = ["copy-issue", "auto-resolution", "extend-desc", "clear-notified-users", "child-page", "plantuml"];
+    const keys = ["copy-issue", "auto-resolution", "extend-desc", "clear-notified-users", "child-page", "plantuml", "filter-notification"];
     const defaultSettings = {
         "copy-issue": false,
         "auto-resolution": false,
         "extend-desc": false,
         "clear-notified-users": false,
         "child-page": false,
-        "plantuml": false
+        "plantuml": false,
+        "filter-notification": false,
     }
     chrome.storage.local.get(keys, (storedSettings) => {
         const initialSettings = Object.assign(defaultSettings, storedSettings)
@@ -49,6 +50,16 @@ $(() => {
                         id: "plantuml",
                         text: chrome.i18n.getMessage("popup_plantuml"),
                         enabled: settings["plantuml"]
+                    }
+                ]
+            },
+            {
+                text:  chrome.i18n.getMessage("popup_general"),
+                items: [
+                    {
+                        id: "filter-notification",
+                        text: chrome.i18n.getMessage("popup_filter_notification"),
+                        enabled: settings["filter-notification"]
                     }
                 ]
             }

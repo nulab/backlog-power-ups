@@ -90,6 +90,15 @@
       ],
       "all_frames": true,
       "js": ["libs/jquery.js", "libs/rawdeflate.js", "plantuml/plantuml.js"]
+    },
+    {
+      "matches": [
+        "https://*.backlog.jp/*", 
+        "https://*.backlogtool.com/*", 
+        "https://*.backlog.com/*"
+      ],
+      "all_frames": true,
+      "js": ["libs/jquery.js", "filter-notification/filter-notification.js"]
     }
   ]
 }

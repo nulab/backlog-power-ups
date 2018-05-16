@@ -25,5 +25,11 @@
     },
     "popup_plantuml": {
         "message": "PlantUMLを表示(UMLデータをplantuml.comに送信します)"
+    },
+    "popup_general": {
+        "message": "一般"
+    },
+    "popup_filter_notification": {
+        "message": "お知らせの絞り込み"
     }
 }
