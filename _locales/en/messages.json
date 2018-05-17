@@ -20,6 +20,9 @@
     "popup_wiki": {
         "message": "Wiki"
     },
+    "popup_copy_wiki": {
+        "message": " Copy wiki page to other project"
+    },
     "popup_child_page": {
         "message": "Input parent page name automatically when creating new page"
     },

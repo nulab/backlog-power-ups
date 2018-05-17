@@ -42,6 +42,11 @@ $(() => {
                 text:  chrome.i18n.getMessage("popup_wiki"),
                 items: [
                     {
+                        id: "copy-wiki",
+                        text: chrome.i18n.getMessage("popup_copy_wiki"),
+                        enabled: settings["copy-wiki"]
+                    },
+                    {
                         id: "child-page",
                         text: chrome.i18n.getMessage("popup_child_page"),
                         enabled: settings["child-page"]
