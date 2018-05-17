@@ -37,5 +37,8 @@
     },
     "popup_filter_notification": {
         "message": "お知らせの絞り込み"
+    },
+    "popup_paset_file_from_clipboard": {
+        "message": "課題詳細のコメントエディタにClipboardからファイルをペースト"
     }
 }

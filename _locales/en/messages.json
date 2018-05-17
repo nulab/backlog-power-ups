@@ -37,5 +37,8 @@
     },
     "popup_filter_notification": {
         "message": "Filter notificaion"
+    },
+    "popup_paset_file_from_clipboard": {
+        "message": "Paste file from clipboard at Comment Editor of View Issue"
     }
 }
