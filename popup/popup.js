@@ -1,13 +1,8 @@
 $(() => {
-    const keys = ["copy-issue", "auto-resolution", "extend-desc", "clear-notified-users", "child-page", "plantuml", "filter-notification"];
-    const defaultSettings = {
-        "copy-issue": false,
-        "auto-resolution": false,
-        "extend-desc": false,
-        "clear-notified-users": false,
-        "child-page": false,
-        "plantuml": false,
-        "filter-notification": false,
+    const keys = ["copy-issue", "auto-resolution", "extend-desc", "clear-notified-users", "copy-wiki", "child-page", "plantuml", "filter-notification"];
+    const defaultSettings = {};
+    for(const key of keys) {
+        defaultSettings[key] = false;
     }
     chrome.storage.local.get(keys, (storedSettings) => {
         const initialSettings = Object.assign(defaultSettings, storedSettings)
