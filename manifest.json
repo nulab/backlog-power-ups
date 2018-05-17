@@ -117,6 +117,15 @@
       ],
       "all_frames": true,
       "js": ["libs/jquery.js", "libs/power-ups.js", "filter-notification/filter-notification.js"]
+    },
+    {
+      "matches": [
+        "https://*.backlog.jp/view/*",
+        "https://*.backlogtool.com/view/*",
+        "https://*.backlog.com/view/*"
+      ],
+      "all_frames": true,
+      "js": ["libs/jquery.js", "libs/power-ups.js", "paset-file-from-clipboard/paset-file-from-clipboard.js"]
     }
   ]
 }
