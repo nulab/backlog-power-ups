@@ -5,11 +5,13 @@ const setup = () => {
         const script = `(() => {
         	var seq = 1000;
         	function UploadFile(file){
+            const now = new Date().getTime()
+
         		this.file = file;
         		this.size = file.size;
-        		this.name = file.name;
+        		this.name = "pasted-" + now + file.name;
         		this.status = 0;
-        		this.id = "upload_file_" + new Date().getTime() + "_" + seq;
+        		this.id = "upload_file_" + now + "_" + seq;
         		seq++;
         	}
 
