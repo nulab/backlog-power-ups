@@ -29,6 +29,9 @@
     "popup_plantuml": {
         "message": "PlantUMLを表示(UMLデータをplantuml.comに送信します)"
     },
+    "popup_hr": {
+        "message": "Backlog記法で水平線を表示(\"---\" もしくは \"___\")"
+    },
     "popup_general": {
         "message": "一般"
     },

@@ -1,5 +1,5 @@
 $(() => {
-    const keys = ["copy-issue", "auto-resolution", "extend-desc", "clear-notified-users", "copy-wiki", "child-page", "plantuml", "filter-notification"];
+    const keys = ["copy-issue", "auto-resolution", "extend-desc", "clear-notified-users", "copy-wiki", "child-page", "plantuml", "hr", "filter-notification"];
     const defaultSettings = {};
     for(const key of keys) {
         defaultSettings[key] = false;
@@ -50,6 +50,11 @@ $(() => {
                         id: "plantuml",
                         text: chrome.i18n.getMessage("popup_plantuml"),
                         enabled: settings["plantuml"]
+                    },
+                    {
+                        id: "hr",
+                        text: chrome.i18n.getMessage("popup_hr"),
+                        enabled: settings["hr"]
                     }
                 ]
             },

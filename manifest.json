@@ -102,6 +102,15 @@
     },
     {
       "matches": [
+        "https://*.backlog.jp/wiki/*/*", 
+        "https://*.backlogtool.com/wiki/*/*", 
+        "https://*.backlog.com/wiki/*/*"
+      ],
+      "all_frames": true,
+      "js": ["libs/jquery.js", "libs/power-ups.js", "hr/hr.js"]
+    },
+    {
+      "matches": [
         "https://*.backlog.jp/*", 
         "https://*.backlogtool.com/*", 
         "https://*.backlog.com/*"

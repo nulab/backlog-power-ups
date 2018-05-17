@@ -29,6 +29,9 @@
     "popup_plantuml": {
         "message": "Show PlantUML(Send UML data to plantuml.com)"
     },
+    "popup_hr": {
+        "message": "Show horizontal rule with Backlog syntax(\"---\" or \"___\")"
+    },
     "popup_general": {
         "message": "General"
     },
