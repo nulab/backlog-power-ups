@@ -80,6 +80,15 @@
         "https://*.backlog.com/wiki/*/*"
       ],
       "all_frames": true,
+      "js": ["libs/jquery.js", "libs/power-ups.js", "copy-wiki/copy-wiki.js"]
+    },
+    {
+      "matches": [
+        "https://*.backlog.jp/wiki/*/*", 
+        "https://*.backlogtool.com/wiki/*/*", 
+        "https://*.backlog.com/wiki/*/*"
+      ],
+      "all_frames": true,
       "js": ["libs/jquery.js", "libs/power-ups.js", "child-page/child-page.js"]
     },
     {
