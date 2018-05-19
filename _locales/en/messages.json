@@ -37,5 +37,8 @@
     },
     "popup_filter_notification": {
         "message": "Filter notificaion"
+    },
+    "popup_user_switcher": {
+        "message": "Show user switcher on personal Gantt"
     }
 }

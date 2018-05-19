@@ -111,6 +111,15 @@
     },
     {
       "matches": [
+        "https://*.backlog.jp/user/*", 
+        "https://*.backlogtool.com/user/*", 
+        "https://*.backlog.com/user/*"
+      ],
+      "all_frames": true,
+      "js": ["libs/jquery.js", "libs/power-ups.js", "user-switcher/user-switcher.js"]
+    },
+    {
+      "matches": [
         "https://*.backlog.jp/*", 
         "https://*.backlogtool.com/*", 
         "https://*.backlog.com/*"

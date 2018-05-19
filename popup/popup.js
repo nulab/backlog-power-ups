@@ -1,5 +1,5 @@
 $(() => {
-    const keys = ["copy-issue", "auto-resolution", "extend-desc", "clear-notified-users", "copy-wiki", "child-page", "plantuml", "hr", "filter-notification"];
+    const keys = ["copy-issue", "auto-resolution", "extend-desc", "clear-notified-users", "copy-wiki", "child-page", "plantuml", "hr", "user-switcher", "filter-notification"];
     const defaultSettings = {};
     for(const key of keys) {
         defaultSettings[key] = false;
@@ -65,6 +65,11 @@ $(() => {
                         id: "filter-notification",
                         text: chrome.i18n.getMessage("popup_filter_notification"),
                         enabled: settings["filter-notification"]
+                    },
+                    {
+                        id: "user-switcher",
+                        text: chrome.i18n.getMessage("popup_user_switcher"),
+                        enabled: settings["user-switcher"]
                     }
                 ]
             }
