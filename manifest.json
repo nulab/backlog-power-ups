@@ -134,7 +134,7 @@
         "https://*.backlog.com/view/*"
       ],
       "all_frames": true,
-      "js": ["libs/jquery.js", "libs/power-ups.js", "paset-file-from-clipboard/paset-file-from-clipboard.js"]
+      "js": ["libs/jquery.js", "libs/power-ups.js", "paste-file-from-clipboard/paste-file-from-clipboard.js"]
     }
   ]
 }

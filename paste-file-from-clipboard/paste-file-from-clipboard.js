@@ -39,8 +39,8 @@ const setup = () => {
     }, 1000);
 }
 
-chrome.storage.local.get(["paset-file-from-clipboard"], function(settings) {
-	if (settings["paset-file-from-clipboard"]) {
+chrome.storage.local.get(["paste-file-from-clipboard"], function(settings) {
+	if (settings["paste-file-from-clipboard"]) {
         setup();
 	}
 });

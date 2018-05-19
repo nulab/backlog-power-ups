@@ -17,8 +17,8 @@
     "popup_clear_notified_users": {
         "message": "Show button for clearing notified users"
     },
-    "popup_paset_file_from_clipboard": {
-        "message": "Paste file from clipboard at Comment Editor of View Issue"
+    "popup_paste_file_from_clipboard": {
+        "message": "Paste image from clipboard at Comment Editor of View Issue"
     },
     "popup_wiki": {
         "message": "Wiki"

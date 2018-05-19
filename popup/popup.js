@@ -1,5 +1,5 @@
 $(() => {
-    const keys = ["copy-issue", "auto-resolution", "extend-desc", "clear-notified-users", "paset-file-from-clipboard", "copy-wiki", "child-page", "plantuml", "hr", "filter-notification", "user-switcher"];
+    const keys = ["copy-issue", "auto-resolution", "extend-desc", "clear-notified-users", "paste-file-from-clipboard", "copy-wiki", "child-page", "plantuml", "hr", "filter-notification", "user-switcher"];
     const defaultSettings = {};
     for(const key of keys) {
         defaultSettings[key] = false;
@@ -32,9 +32,9 @@ $(() => {
                         enabled: settings["clear-notified-users"]
                     },
                     {
-                        id: "paset-file-from-clipboard",
-                        text: chrome.i18n.getMessage("popup_paset_file_from_clipboard"),
-                        enabled: settings["paset-file-from-clipboard"]
+                        id: "paste-file-from-clipboard",
+                        text: chrome.i18n.getMessage("popup_paste_file_from_clipboard"),
+                        enabled: settings["paste-file-from-clipboard"]
                     }
                 ]
             },
