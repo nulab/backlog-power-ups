@@ -2,7 +2,7 @@ class PowerUps {
     static injectScript(content) {
 		const s = document.createElement('script');
 		s.setAttribute('type', 'text/javascript');
-		s.innerText = content;
+		s.textContent = content;
 		return document.body.appendChild(s);
     }
     

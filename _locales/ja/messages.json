@@ -17,6 +17,9 @@
     "popup_clear_notified_users": {
         "message": "お知らせしたいユーザーの全クリアボタンを表示する"
     },
+    "popup_paset_file_from_clipboard": {
+        "message": "課題詳細のコメントエディタにClipboardからファイルをペースト"
+    },
     "popup_wiki": {
         "message": "Wiki"
     },
