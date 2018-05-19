@@ -40,14 +40,28 @@
         return encode64(deflate(s));
     }
 
-    const showPageView = () => {        
-        $(".lang-plantuml > code").each((index, event) => {
-            const $elem = $(event);
-            const text = $elem.text();
-            const data = compress(text);
-            const url = `https://www.plantuml.com/plantuml/png/${data}`;
-            $elem.replaceWith($("<img>").attr("src", url));
-        });
+    const convertToImage = (elem) => {
+        const $elem = $(elem);
+        const text = $elem.text();
+        const data = compress(text);
+        const url = `https://www.plantuml.com/plantuml/png/${data}`;
+        $elem.replaceWith($("<img>").attr("src", url));
+    }
+
+    const showPageView = () => {
+		const isMarkdown = $("#loom > div").hasClass("markdown-body");
+		if (isMarkdown) {
+            $(".lang-plantuml > code").each((index, elem) => {
+                convertToImage(elem);
+            });
+        } else {
+            $("pre.loom_code").each((index, elem) => {
+                const text = $(elem).find("span:first").eq(0).text();
+                if (text == "@startuml") {
+                    convertToImage(elem);
+                }
+            });
+        }
     }
 
     const main = () => {
