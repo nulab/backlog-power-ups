@@ -31,7 +31,7 @@
         "https://*.backlog.com/add/*"
       ],
       "all_frames": true,
-      "js": ["libs/jquery.js", "libs/power-ups.js", "copy-issue/copy-issue.js"]
+      "js": ["libs/jquery.js", "libs/power-ups.js", "plugins/copy-issue/copy-issue.js"]
     },
     {
       "matches": [
@@ -40,7 +40,7 @@
         "https://*.backlog.com/view/*"
       ],
       "all_frames": true,
-      "js": ["libs/jquery.js", "libs/power-ups.js", "auto-resolution/auto-resolution.js"]
+      "js": ["libs/jquery.js", "libs/power-ups.js", "plugins/auto-resolution/auto-resolution.js"]
     },
     {
       "matches": [
@@ -52,7 +52,7 @@
         "https://*.backlog.com/view/*/edit"
       ],
       "all_frames": true,
-      "js": ["libs/jquery.js", "libs/power-ups.js", "extend-desc/extend-desc.js"]
+      "js": ["libs/jquery.js", "libs/power-ups.js", "plugins/extend-desc/extend-desc.js"]
     },
     {
       "matches": [
@@ -67,7 +67,7 @@
         "https://*.backlog.com/view/*/edit"
       ],
       "all_frames": true,
-      "js": ["libs/jquery.js", "libs/power-ups.js", "clear-notified-users/clear-notified-users.js"]
+      "js": ["libs/jquery.js", "libs/power-ups.js", "plugins/clear-notified-users/clear-notified-users.js"]
     },
     {
       "matches": [
@@ -76,7 +76,7 @@
         "https://*.backlog.com/wiki/*/*"
       ],
       "all_frames": true,
-      "js": ["libs/jquery.js", "libs/power-ups.js", "copy-wiki/copy-wiki.js"]
+      "js": ["libs/jquery.js", "libs/power-ups.js", "plugins/copy-wiki/copy-wiki.js"]
     },
     {
       "matches": [
@@ -85,7 +85,7 @@
         "https://*.backlog.com/wiki/*/*"
       ],
       "all_frames": true,
-      "js": ["libs/jquery.js", "libs/power-ups.js", "child-page/child-page.js"]
+      "js": ["libs/jquery.js", "libs/power-ups.js", "plugins/child-page/child-page.js"]
     },
     {
       "matches": [
@@ -94,7 +94,7 @@
         "https://*.backlog.com/wiki/*/*"
       ],
       "all_frames": true,
-      "js": ["libs/jquery.js", "libs/rawdeflate.js", "libs/power-ups.js", "plantuml/plantuml.js"]
+      "js": ["libs/jquery.js", "libs/rawdeflate.js", "libs/power-ups.js", "plugins/plantuml/plantuml.js"]
     },
     {
       "matches": [
@@ -103,7 +103,7 @@
         "https://*.backlog.com/wiki/*/*"
       ],
       "all_frames": true,
-      "js": ["libs/jquery.js", "libs/power-ups.js", "hr/hr.js"]
+      "js": ["libs/jquery.js", "libs/power-ups.js", "plugins/hr/hr.js"]
     },
     {
       "matches": [
@@ -112,7 +112,7 @@
         "https://*.backlog.com/user/*"
       ],
       "all_frames": true,
-      "js": ["libs/jquery.js", "libs/power-ups.js", "user-switcher/user-switcher.js"]
+      "js": ["libs/jquery.js", "libs/power-ups.js", "plugins/user-switcher/user-switcher.js"]
     },
     {
       "matches": [
@@ -121,7 +121,7 @@
         "https://*.backlog.com/*"
       ],
       "all_frames": true,
-      "js": ["libs/jquery.js", "libs/power-ups.js", "filter-notification/filter-notification.js"]
+      "js": ["libs/jquery.js", "libs/power-ups.js", "plugins/filter-notification/filter-notification.js"]
     },
     {
       "matches": [
@@ -130,7 +130,7 @@
         "https://*.backlog.com/view/*"
       ],
       "all_frames": true,
-      "js": ["libs/jquery.js", "libs/power-ups.js", "paste-file-from-clipboard/paste-file-from-clipboard.js"]
+      "js": ["libs/jquery.js", "libs/power-ups.js", "plugins/paste-file-from-clipboard/paste-file-from-clipboard.js"]
     }
   ]
 }
