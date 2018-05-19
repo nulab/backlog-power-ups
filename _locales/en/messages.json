@@ -1,4 +1,10 @@
 {
+    "app_name": {
+        "message": "Backlog Power Ups"
+    },
+    "app_description": {
+        "message": "Power up tools for Backlog"
+    },
     "popup_apply_button": {
         "message": "Apply"
     },
