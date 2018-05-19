@@ -82,8 +82,8 @@
         });
     }
 
-    chrome.storage.local.get(["user-switcher"], (settings) => {
-        if (settings["user-switcher"]) {
+    PowerUps.isEnabled("user-switcher", (enabled) => {
+        if (enabled) {
             main();
         }
     });

@@ -36,8 +36,8 @@
 		setupClearButton("#NotifiedUsers .chosen-wrapper", "select[name=notifiedUserIds");
 	}
 
-	chrome.storage.local.get(["clear-notified-users"], (settings) => {
-		if (settings["clear-notified-users"]) {
+    PowerUps.isEnabled("clear-notified-users", (enabled) => {
+		if (enabled) {
 			setTimeout(() => {
 				if (location.pathname.match(/[/]view[/][A-Z]+[-][0-9]+[/]edit/)) {
 					editIssueView();
@@ -48,5 +48,5 @@
 				}
 			}, 2000)
 		}
-	});
+    });
 })();

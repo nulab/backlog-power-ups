@@ -58,8 +58,8 @@
 		}, 1000);
 	}
 
-	chrome.storage.local.get(["copy-issue"], function(settings) {
-		if (settings["copy-issue"]) {
+    PowerUps.isEnabled("copy-issue", (enabled) => {
+		if (enabled) {
 			if (location.pathname.startsWith("/view/")) {
 				issueView();
 			} else if (location.pathname.startsWith("/add/")) {

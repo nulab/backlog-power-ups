@@ -7,6 +7,7 @@
     <link type="text/css" href="popup.css" rel="stylesheet"></link>
     <script type="text/javascript" src="../libs/jquery.js"></script>
     <script type="text/javascript" src="../libs/vue.js"></script>
+    <script type="text/javascript" src="../libs/power-ups.js"></script>
     <script type="text/javascript" src="popup.js"></script>
 </head>
 
@@ -17,10 +18,10 @@
   <div id="app">
     <section v-for="group in groups">
         <h3>{{ group.text }}</h3>
-        <div class="items" v-for="item in group.items">
+        <div class="plugins" v-for="plugin in group.plugins">
           <label>
-            <input type="checkbox" @change="change(item)" v-model="item.enabled"/>
-            <span>{{ item.text }}</span>
+            <input type="checkbox" @change="change(plugin)" v-model="plugin.enabled"/>
+            <span>{{ plugin.text }}</span>
           </label>
         </div>
     </section>

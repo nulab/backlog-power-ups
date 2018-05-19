@@ -58,8 +58,8 @@
         }
     }
 
-    chrome.storage.local.get(["plantuml"], function(settings) {
-        if (settings["plantuml"]) {
+    PowerUps.isEnabled("plantuml", (enabled) => {
+        if (enabled) {
             main();
         }
     });

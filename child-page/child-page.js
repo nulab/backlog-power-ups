@@ -25,8 +25,8 @@
         }
     }
 
-    chrome.storage.local.get(["child-page"], function(settings) {
-        if (settings["child-page"]) {
+    PowerUps.isEnabled("child-page", (enabled) => {
+        if (enabled) {
             main();
         }
     });

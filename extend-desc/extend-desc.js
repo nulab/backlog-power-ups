@@ -21,8 +21,8 @@
         }, 0);
     }
 
-    chrome.storage.local.get(["extend-desc"], function(settings) {
-        if (settings["extend-desc"]) {
+    PowerUps.isEnabled("extend-desc", (enabled) => {
+        if (enabled) {
             main();
         }
     });

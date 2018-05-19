@@ -70,8 +70,8 @@ location.href = "/wiki/${destProjectKey}/${encodeURIComponent(pageName)}/create"
         }
 	}
 
-	chrome.storage.local.get(["copy-wiki"], function(settings) {
-		if (settings["copy-wiki"]) {
+    PowerUps.isEnabled("copy-wiki", (enabled) => {
+		if (enabled) {
 			main();
 		}
 	});

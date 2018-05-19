@@ -54,8 +54,8 @@
 		});		  
 	}
 
-	chrome.storage.local.get(["filter-notification"], (settings) => {
-		if (settings["filter-notification"]) {
+    PowerUps.isEnabled("filter-notification", (enabled) => {
+		if (enabled) {
 			main();
 		}
 	});

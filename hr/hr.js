@@ -17,8 +17,8 @@
 		});
 	}
 
-	chrome.storage.local.get(["hr"], function(settings) {
-		if (settings["hr"]) {
+    PowerUps.isEnabled("hr", (enabled) => {
+		if (enabled) {
 			main();
 		}
 	});
