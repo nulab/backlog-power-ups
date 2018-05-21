@@ -22,7 +22,8 @@ const POWER_UP_PLUGINS = [
         groupId: "general",
         pluginIds: [
             "filter-notification", 
-            "user-switcher"
+            "user-switcher",
+            "relative-date"
         ]
     }
 ];
@@ -75,7 +76,8 @@ class PowerUpPluginGroup {
     constructor(groupId, plugins) {
         this.groupId = groupId;
         this.plugins = plugins;
-        this.text = chrome.i18n.getMessage(`popup_${PowerUps.toResouceKey(groupId)}`);
+        const messageKey = `popup_${PowerUps.toResouceKey(groupId)}`;
+        this.text = chrome.i18n.getMessage(messageKey);
     }
 
     static getPlugins(groups) {
