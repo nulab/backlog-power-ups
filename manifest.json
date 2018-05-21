@@ -131,6 +131,13 @@
       ],
       "all_frames": true,
       "js": ["libs/jquery.js", "libs/power-ups.js", "plugins/filter-notification/filter-notification.js"]
+    },
+    {
+      "matches": [
+        "https://nulab.backlog.jp/dashboard*",
+        "https://nulab.backlog.jp/projects/*"
+      ],
+      "js": ["libs/jquery.js", "libs/power-ups.js", "plugins/relative-date/relative-date.js"]
     }
   ]
 }
