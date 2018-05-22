@@ -52,5 +52,8 @@
     },
     "popup_relative_date": {
         "message": "絶対時間で時間を表示する"
+    },
+    "popup_dashboard_gantt_link": {
+        "message": "ガントチャートへのリンクをダッシュボードに表示する"
     }
 }

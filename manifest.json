@@ -138,6 +138,12 @@
         "https://nulab.backlog.jp/projects/*"
       ],
       "js": ["libs/jquery.js", "libs/power-ups.js", "plugins/relative-date/relative-date.js"]
+    },
+    {
+      "matches": [
+        "https://nulab.backlog.jp/dashboard*"
+      ],
+      "js": ["libs/jquery.js", "libs/power-ups.js", "plugins/dashboard-gantt-link/dashboard-gantt-link.js"]
     }
   ]
 }

@@ -23,7 +23,8 @@ const POWER_UP_PLUGINS = [
         pluginIds: [
             "filter-notification", 
             "user-switcher",
-            "relative-date"
+            "relative-date",
+            "dashboard-gantt-link"
         ]
     }
 ];
