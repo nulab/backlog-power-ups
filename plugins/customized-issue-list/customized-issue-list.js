@@ -1,11 +1,11 @@
 (() => {
-	const RES = PowerUps.getLang() == "ja" ? {
-		"rearrangeColumns": "列の並び替え",
-		"reset": "並び順をリセット"
-	} : {
-		"rearrangeColumns": "Rearrange columns",
-		"reset": "Reset rearranged columns"
-	};
+    const RES = PowerUps.getLang() == "ja" ? {
+        "rearrangeColumns": "列の並び替え",
+        "reset": "並び順をリセット"
+    } : {
+        "rearrangeColumns": "Rearrange columns",
+        "reset": "Reset rearranged columns"
+    };
     const PATTERN_URL = /^[/]find[/]([A-Z_0-9]+)$/;
     const projectKey = PATTERN_URL.exec(location.pathname)[1];
     const storeKey = `customized-issue-list:columnNames:${projectKey}`;
