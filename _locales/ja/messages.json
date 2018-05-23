@@ -29,6 +29,9 @@
     "popup_customized_issue_list": {
         "message": "課題の検索結果の列を並び替える"
     },
+    "popup_total_time": {
+        "message": "検索結果の予定時間計と実績時間計を表示する"
+    },
     "popup_wiki": {
         "message": "Wiki"
     },
