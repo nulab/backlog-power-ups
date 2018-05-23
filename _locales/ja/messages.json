@@ -26,6 +26,9 @@
     "popup_paste_file_from_clipboard": {
         "message": "課題詳細のコメントでクリップボードから画像をペースト"
     },
+    "popup_customized_issue_list": {
+        "message": "課題の検索結果の列を並び替える"
+    },
     "popup_wiki": {
         "message": "Wiki"
     },
