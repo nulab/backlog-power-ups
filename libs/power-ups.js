@@ -7,6 +7,7 @@ const POWER_UP_PLUGINS = [
             "extend-desc",
             "clear-notified-users",
             "paste-file-from-clipboard", 
+            "customized-issue-list"
         ]
     },
     {
