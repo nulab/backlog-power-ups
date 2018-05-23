@@ -29,6 +29,9 @@
     "popup_customized_issue_list": {
         "message": "Rearrange columns in search result of issues"
     },
+    "popup_total_time": {
+        "message": "Show total estimated and actual hours on search result of issues"
+    },
     "popup_wiki": {
         "message": "Wiki"
     },
