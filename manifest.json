@@ -153,14 +153,20 @@
     },
     {
       "matches": [
-        "https://nulab.backlog.jp/dashboard*",
-        "https://nulab.backlog.jp/projects/*"
+        "https://*.backlog.jp/dashboard*",
+        "https://*.backlog.jp/projects/*",
+        "https://*.backlogtool.com/dashboard*",
+        "https://*.backlogtool.com/projects/*",
+        "https://*.backlog.com/dashboard*",
+        "https://*.backlog.com/projects/*"
       ],
       "js": ["libs/jquery.js", "libs/power-ups.js", "plugins/relative-date/relative-date.js"]
     },
     {
       "matches": [
-        "https://nulab.backlog.jp/dashboard*"
+        "https://*.backlog.jp/dashboard*",
+        "https://*.backlogtool.com/dashboard*",
+        "https://*.backlog.com/dashboard*"
       ],
       "js": ["libs/jquery.js", "libs/power-ups.js", "plugins/dashboard-gantt-link/dashboard-gantt-link.js"]
     }
