@@ -169,6 +169,14 @@
         "https://*.backlog.com/dashboard*"
       ],
       "js": ["libs/jquery.js", "libs/power-ups.js", "plugins/dashboard-gantt-link/dashboard-gantt-link.js"]
+    },
+    {
+      "matches": [
+        "https://*.backlog.jp/*",
+        "https://*.backlogtool.com/*",
+        "https://*.backlog.com/*"
+      ],
+      "js": ["libs/jquery.js", "libs/power-ups.js", "plugins/backlog-card/backlog-card.js"]
     }
   ]
 }
