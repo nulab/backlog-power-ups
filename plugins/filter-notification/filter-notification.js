@@ -46,12 +46,15 @@
 				$(`<label for="hideReadNotifications" style="white-space: nowrap; color: #fff; vertical-align: middle; cursor: pointer;">`).text(RES["unreadOnly"])
 			)
 		);
-		const observer = new MutationObserver((records, observer) => {
-			filter();
-		});
-		observer.observe($('#globalNotificationsContainer .notification-list').get(0), {
-			childList: true,
-		});		  
+		const $notificationList = $('#globalNotificationsContainer .notification-list');
+		if ($notificationList.length > 0) {
+			const observer = new MutationObserver((records, observer) => {
+				filter();
+			});
+			observer.observe($notificationList.get(0), {
+				childList: true,
+			});		  
+		}
 	}
 
     PowerUps.isEnabled("filter-notification", (enabled) => {
