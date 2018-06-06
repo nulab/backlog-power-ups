@@ -32,6 +32,9 @@
     "popup_total_time": {
         "message": "検索結果の予定時間計と実績時間計を表示する"
     },
+    "popup_backlog_card": {
+        "message": "課題キーで課題カードを表示"
+    },
     "popup_wiki": {
         "message": "Wiki"
     },
