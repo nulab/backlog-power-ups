@@ -8,7 +8,8 @@ const POWER_UP_PLUGINS = [
             "clear-notified-users",
             "paste-file-from-clipboard", 
             "customized-issue-list",
-            "total-time"
+            "total-time",
+            "backlog-card"
         ]
     },
     {

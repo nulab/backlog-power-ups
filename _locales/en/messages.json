@@ -32,6 +32,9 @@
     "popup_total_time": {
         "message": "Show total estimated and actual hours on search result of issues"
     },
+    "popup_backlog_card": {
+        "message": "Show issue card from issue key"
+    },
     "popup_wiki": {
         "message": "Wiki"
     },

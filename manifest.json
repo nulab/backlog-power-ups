@@ -172,10 +172,14 @@
     },
     {
       "matches": [
-        "https://*.backlog.jp/*",
-        "https://*.backlogtool.com/*",
-        "https://*.backlog.com/*"
+        "https://*.backlog.jp/view/*", 
+        "https://*.backlogtool.com/view/*", 
+        "https://*.backlog.com/view/*",
+        "https://*.backlog.jp/wiki/*/*", 
+        "https://*.backlogtool.com/wiki/*/*", 
+        "https://*.backlog.com/wiki/*/*"
       ],
+      "css": ["plugins/backlog-card/backlog-card.css"],
       "js": ["libs/jquery.js", "libs/power-ups.js", "plugins/backlog-card/backlog-card.js"]
     }
   ]

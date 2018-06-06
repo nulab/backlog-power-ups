@@ -1,0 +1,17 @@
+.tooltipster-backlog {
+    border: 1px solid transparent;
+    filter: drop-shadow(0 0 5px rgba(0,0,0,.5));
+	background: #fff;
+}
+
+.tooltipster-backlog iframe {
+    border: 0px solid #000;
+    width: 500px; 
+    height: 350px;
+	background: #fff;
+}
+
+a.backlog-card-anchor {
+    background-color: #edf4f0;
+    border-radius: 2px;
+}
