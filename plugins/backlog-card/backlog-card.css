@@ -4,11 +4,25 @@
 	background: #fff;
 }
 
+.tooltipster-backlog .tooltipster-content {
+    position: relative;
+}
+
+.tooltipster-backlog .loading--circle {
+    top: calc(50% - 30px);
+    bottom: 0;
+    right: 0;
+    left: 0;
+    position: absolute;
+    margin: auto;
+}
+
 .tooltipster-backlog iframe {
     border: 0px solid #000;
     width: 500px; 
-    height: 350px;
-	background: #fff;
+    height: 200px;
+    max-height: 350px;
+    background: #fff;
 }
 
 a.backlog-card-anchor {
