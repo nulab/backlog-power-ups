@@ -11,7 +11,7 @@
 				"font-size": "18px",
 				"position": "absolute",
 				"top": "8px",
-				"right": "10px",
+				"right": "20px",
 				"z-index": "1",
 				"cursor": "pointer",
 				"text-decoration": "none"
