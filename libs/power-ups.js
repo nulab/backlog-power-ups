@@ -33,7 +33,10 @@ const POWER_UP_PLUGINS = [
 ];
 
 const DEFAULT_DISABLED_PLUGINS = [
-    "dashboard-gantt-link"
+    "extend-desc",
+    "total-time",
+    "plantuml",
+    "relative-date"
 ];
 
 class PowerUps {
