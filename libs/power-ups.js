@@ -32,6 +32,12 @@ const POWER_UP_PLUGINS = [
     }
 ];
 
+const DEFAULT_DISABLED_PLUGINS = [
+    "extend-desc",
+    "total-time",
+    "plantuml",
+    "relative-date"
+];
 
 class PowerUps {
     static reloadCurrentTab() {
@@ -69,9 +75,9 @@ class PowerUps {
 }
 
 class PowerUpPlugin {
-    constructor(pluginId, enabled = true) {
+    constructor(pluginId, enabled) {
         this.pluginId = pluginId;
-        this.enabled = enabled;
+        this.enabled = enabled ? enabled : DEFAULT_DISABLED_PLUGINS.includes(pluginId) == false;
         this.text = chrome.i18n.getMessage(`popup_${PowerUps.toResouceKey(pluginId)}`);
     }
 }
