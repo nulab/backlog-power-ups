@@ -258,23 +258,36 @@
             //console.log(`${state} -> ${newState}`);
             state = newState;
         }
-        $("body").on({
-            'mousedown': (event) => {
-                state.mouseDown(event);
-            },
-            'mouseup': (event) => {
-                state.mouseUp(event);
-            },
-            'mousemove': (event) => {
-                state.mouseMove(event);
-            },
-            'mouseenter': (event) => {
-                state.mouseEnter(event);
-            },
-            'mouseleave': (event) => {
-                state.mouseLeave(event);
-            }
-        }, ".gantt-table");
+
+        // setup special UIs for this plugin
+        const setupSpecialUIs = () => {
+            $(`<div id="saving-circle" class="loading--circle -small" style="display:none; position: absolute">`).appendTo("body");
+            $(`<div id="saved-text" style="display:none; position: absolute; background-color: #4caf93; color: #fff; font-size: 11px; border-radius: 5px; padding: 0px 5px">Saved!</div>`).appendTo("body");
+        }
+
+        const setup = () => {
+            setupSpecialUIs();
+
+            $("body").on({
+                'mousedown': (event) => {
+                    state.mouseDown(event);
+                },
+                'mouseup': (event) => {
+                    state.mouseUp(event);
+                },
+                'mousemove': (event) => {
+                    state.mouseMove(event);
+                },
+                'mouseenter': (event) => {
+                    state.mouseEnter(event);
+                },
+                'mouseleave': (event) => {
+                    state.mouseLeave(event);
+                }
+            }, ".gantt-table");
+        }
+
+        setup();
     };
 
     const stopOriginalEventHandlers = () => {
@@ -300,8 +313,6 @@
             stopOriginalEventHandlers();
         }, 1000);
         setupDraggable(isUserGantt);
-        $(`<div id="saving-circle" class="loading--circle -small" style="display:none; position: absolute">`).appendTo("body");
-        $(`<div id="saved-text" style="display:none; position: absolute; background-color: #4caf93; color: #fff; font-size: 11px; border-radius: 5px; padding: 0px 5px">Saved!</div>`).appendTo("body");
     }
 
     PowerUps.isEnabled("draggable-gantt", (enabled) => {
