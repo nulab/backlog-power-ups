@@ -36,7 +36,7 @@
         "message": "Show issue card from issue key"
     },
     "popup_draggable_gantt": {
-        "message": "Support drag & drop for Gantt chart"
+        "message": "Support drag & drop for gantt chart on project"
     },
     "popup_wiki": {
         "message": "Wiki"

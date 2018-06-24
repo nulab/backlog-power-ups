@@ -1,11 +1,5 @@
 (() => {
-    // TODO
-    // - 開始時のsetTimeoutを除去
-    // - パフォーマンス改善
-    //   - 日付の変更がない場合、処理をしない(移動時、変更確定時)
-    // - 保存時のリアクションとアニメーション改善
-    // - 個人のガントに対応
-    const setupDraggable = () => {
+    const setupDraggable = (isUserGantt) => {
         const format = (date) => {
             return `${date.getFullYear()}/${date.getMonth() + 1}/${date.getDate()}`;
         }
@@ -132,12 +126,19 @@
             }
             save() {
                 const params = {};
-                params["projectKey"] = $("input[name=projectKey]").val();
+                const projectKey = this.$row.find("a.summary-link").attr("href").match(/[/]view[/]([A-Z_]+)[-][0-9]+/)[1];
+                params["projectKey"] = projectKey;
                 params[this.$assignee.attr("name")] = this.$assignee.val();
                 params[this.$limitDate.attr("name")] = this.$limitDate.val();
                 params[this.$startDate.attr("name")] = this.$startDate.val();
+                const offset = this.$chart.offset();
+                $("#saving-circle").css({"top": `${offset.top + 5 }px`, "left": `${offset.left + 5}px`}).show();
                 $.post("/UpdateProjectGantt.action", params, () => {
-                    // console.log("saved!");
+                    $("#saving-circle").hide();
+                    $("#saved-text").css({"top": `${offset.top + 10 }px`, "left": `${offset.left - 50}px`}).show();
+                    setTimeout(() => {
+                        $("#saved-text").hide();
+                    }, 500);
                 });
             }
         }
@@ -232,6 +233,10 @@
             }
             mouseMove(event) {
                 const dx = Math.floor((event.screenX - this.startX) / 20);
+                if (this.lastDx === dx) {
+                    return;
+                }
+                this.lastDx = dx;
                 if (this.mode === "start") {
                     this.ganttIssue.moveStartDate(dx);
                 } else if (this.mode === "limit") {
@@ -286,12 +291,17 @@
     }
 
     const main = () => {
-        setTimeout(() => {
+        // NOTE: don't support personal gantt
+        const isUserGantt = location.pathname.startsWith("/user/");
+        if (isUserGantt && location.hash !== "#usergantt") {
+            return;
+        }
+        setInterval(() => {
             stopOriginalEventHandlers();
-            setTimeout(() => {
-                setupDraggable();
-            }, 2000);
-        }, 2000);
+        }, 1000);
+        setupDraggable(isUserGantt);
+        $(`<div id="saving-circle" class="loading--circle -small" style="display:none; position: absolute">`).appendTo("body");
+        $(`<div id="saved-text" style="display:none; position: absolute; background-color: #4caf93; color: #fff; font-size: 11px; border-radius: 5px; padding: 0px 5px">Saved!</div>`).appendTo("body");
     }
 
     PowerUps.isEnabled("draggable-gantt", (enabled) => {

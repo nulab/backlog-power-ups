@@ -36,7 +36,7 @@
         "message": "課題キーで課題カードを表示"
     },
     "popup_draggable_gantt": {
-        "message": "ドラッグ＆ドロップでガントチャートを操作"
+        "message": "ドラッグ＆ドロップでプロジェクトガントチャートを操作"
     },
     "popup_wiki": {
         "message": "Wiki"
