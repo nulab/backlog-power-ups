@@ -135,6 +135,18 @@
     },
     {
       "matches": [
+        "https://*.backlog.jp/gantt/*",
+        "https://*.backlogtool.com/gantt/*",
+        "https://*.backlog.com/gantt/*",
+        "https://*.backlog.jp/ViewProjectGantt.action*",
+        "https://*.backlogtool.com/ViewProjectGantt.action*",
+        "https://*.backlog.com/ViewProjectGantt.action*"
+      ],
+      "all_frames": true,
+      "js": ["libs/jquery.js", "libs/power-ups.js", "plugins/draggable-gantt/draggable-gantt.js"]
+    },
+    {
+      "matches": [
         "https://*.backlog.jp/user/*", 
         "https://*.backlogtool.com/user/*", 
         "https://*.backlog.com/user/*"

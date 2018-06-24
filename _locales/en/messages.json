@@ -35,6 +35,9 @@
     "popup_backlog_card": {
         "message": "Show issue card from issue key"
     },
+    "popup_draggable_gantt": {
+        "message": "Support drag & drop for Gantt chart"
+    },
     "popup_wiki": {
         "message": "Wiki"
     },

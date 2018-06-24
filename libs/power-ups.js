@@ -9,7 +9,8 @@ const POWER_UP_PLUGINS = [
             "paste-file-from-clipboard", 
             "customized-issue-list",
             "total-time",
-            "backlog-card"
+            "backlog-card",
+            "draggable-gantt"
         ]
     },
     {
