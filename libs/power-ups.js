@@ -30,6 +30,12 @@ const POWER_UP_PLUGINS = [
             "relative-date",
             "dashboard-gantt-link"
         ]
+    },
+    {
+        groupId: "git",
+        pluginIds: [
+            "pr-diff-jump"
+        ]
     }
 ];
 

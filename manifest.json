@@ -193,6 +193,12 @@
       ],
       "css": ["plugins/backlog-card/backlog-card.css"],
       "js": ["libs/jquery.js", "libs/power-ups.js", "plugins/backlog-card/backlog-card.js"]
+    },
+    {
+      "matches": [
+        "https://*.backlog.jp/git/*"
+      ],
+      "js": ["libs/power-ups.js", "plugins/pr-diff-jump/pr-diff-jump.js"]
     }
   ]
 }

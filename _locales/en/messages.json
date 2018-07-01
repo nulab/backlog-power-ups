@@ -67,5 +67,11 @@
     },
     "popup_dashboard_gantt_link": {
         "message": "Show link for gantt on my issues"
+    },
+    "popup_git": {
+        "message": "Git"
+    },
+    "popup_pr_diff_jump": {
+        "message": "Add button of jump to the selected line in PR"
     }
 }
