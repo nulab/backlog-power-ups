@@ -67,5 +67,11 @@
     },
     "popup_dashboard_gantt_link": {
         "message": "ガントチャートへのリンクをダッシュボードに表示する"
+    },
+    "popup_git": {
+        "message": "Git"
+    },
+    "popup_pr_diff_jump": {
+        "message": "PRの各ファイルの行を指定して開けるボタンを追加する"
     }
 }
