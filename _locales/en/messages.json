@@ -20,12 +20,6 @@
     "popup_extend_desc": {
         "message": "Extend description of issue on Add/Edit Issue"
     },
-    "popup_clear_notified_users": {
-        "message": "Show button for clearing notified users"
-    },
-    "popup_paste_file_from_clipboard": {
-        "message": "Paste image from clipboard at Comment Editor of View Issue"
-    },
     "popup_customized_issue_list": {
         "message": "Rearrange columns in search result of issues"
     },
@@ -64,8 +58,5 @@
     },
     "popup_relative_date": {
         "message": "Show relative date"
-    },
-    "popup_dashboard_gantt_link": {
-        "message": "Show link for gantt on my issues"
     }
 }

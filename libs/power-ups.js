@@ -5,8 +5,6 @@ const POWER_UP_PLUGINS = [
             "copy-issue", 
             "auto-resolution",
             "extend-desc",
-            "clear-notified-users",
-            "paste-file-from-clipboard", 
             "customized-issue-list",
             "total-time",
             "backlog-card",
@@ -27,8 +25,7 @@ const POWER_UP_PLUGINS = [
         pluginIds: [
             "filter-notification", 
             "user-switcher",
-            "relative-date",
-            "dashboard-gantt-link"
+            "relative-date"
         ]
     }
 ];
