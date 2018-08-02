@@ -1,6 +1,6 @@
 (() => {
-    const PATTERN_SHOW_WIKI = /^[/]wiki[/]([A-Z]+)[/]([^\\/]+)$/;
-    const PATTERN_CREATE_WIKI = /^[/]wiki[/]([A-Z]+)[/]([^\\/]+)[/]create$/;
+    const PATTERN_SHOW_WIKI = /^[/]wiki[/]([A-Z_0-9]+)[/]([^\\/]+)$/;
+    const PATTERN_CREATE_WIKI = /^[/]wiki[/]([A-Z_0-9]+)[/]([^\\/]+)[/]create$/;
 
 	const RES = PowerUps.getLang() == "ja" ? {
 		"prompt": "複製先のプロジェクトキーを入力してください。",

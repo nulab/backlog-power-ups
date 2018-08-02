@@ -1,5 +1,5 @@
 (() => {
-	const PATTERN_SHOW_WIKI = /^[/]wiki[/]([A-Z]+)[/]([^\\/]+)$/;
+	const PATTERN_SHOW_WIKI = /^[/]wiki[/]([A-Z_0-9]+)[/]([^\\/]+)$/;
 	const PATTERN_HR = /([-]{3,}|[_]{3,})([<]br[>])?$/gm;
 
 	const main = () => {

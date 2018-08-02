@@ -1,5 +1,5 @@
 (() => {
-    const PATTERN = /^[/]wiki[/]([A-Z]+)[/]([^\\/]+)$/;
+    const PATTERN = /^[/]wiki[/]([A-Z_0-9]+)[/]([^\\/]+)$/;
 
     const showPageView = () => {
         $(".title-group .icon-button").on("click", () => {

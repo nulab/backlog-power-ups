@@ -1,5 +1,5 @@
 (() => {
-    const PATTERN = /^[/]wiki[/]([A-Z]+)[/]([^\\/]+)$/;
+    const PATTERN = /^[/]wiki[/]([A-Z_0-9]+)[/]([^\\/]+)$/;
 
     // from https://github.com/dai0304/pegmatite
     const encode64 = (data) => {
