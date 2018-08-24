@@ -5,10 +5,7 @@ const POWER_UP_PLUGINS = [
             "copy-issue", 
             "auto-resolution",
             "extend-desc",
-            "customized-issue-list",
-            "total-time",
-            "backlog-card",
-            "draggable-gantt"
+            "total-time"
         ]
     },
     {
@@ -23,7 +20,6 @@ const POWER_UP_PLUGINS = [
     {
         groupId: "general",
         pluginIds: [
-            "filter-notification", 
             "user-switcher",
             "relative-date"
         ]

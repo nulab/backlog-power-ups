@@ -61,15 +61,6 @@
         "https://*.backlog.com/find/*"
       ],
       "all_frames": true,
-      "js": ["libs/jquery.js", "libs/power-ups.js", "plugins/customized-issue-list/customized-issue-list.js"]
-    },
-    {
-      "matches": [
-        "https://*.backlog.jp/find/*",
-        "https://*.backlogtool.com/find/*",
-        "https://*.backlog.com/find/*"
-      ],
-      "all_frames": true,
       "css": ["plugins/total-time/total-time.css"],
       "js": ["libs/jquery.js", "libs/power-ups.js", "plugins/total-time/total-time.js"]
     },
@@ -111,33 +102,12 @@
     },
     {
       "matches": [
-        "https://*.backlog.jp/gantt/*",
-        "https://*.backlogtool.com/gantt/*",
-        "https://*.backlog.com/gantt/*",
-        "https://*.backlog.jp/ViewProjectGantt.action*",
-        "https://*.backlogtool.com/ViewProjectGantt.action*",
-        "https://*.backlog.com/ViewProjectGantt.action*"
-      ],
-      "all_frames": true,
-      "js": ["libs/jquery.js", "libs/power-ups.js", "plugins/draggable-gantt/draggable-gantt.js"]
-    },
-    {
-      "matches": [
         "https://*.backlog.jp/user/*", 
         "https://*.backlogtool.com/user/*", 
         "https://*.backlog.com/user/*"
       ],
       "all_frames": true,
       "js": ["libs/jquery.js", "libs/power-ups.js", "plugins/user-switcher/user-switcher.js"]
-    },
-    {
-      "matches": [
-        "https://*.backlog.jp/*", 
-        "https://*.backlogtool.com/*", 
-        "https://*.backlog.com/*"
-      ],
-      "all_frames": true,
-      "js": ["libs/jquery.js", "libs/power-ups.js", "plugins/filter-notification/filter-notification.js"]
     },
     {
       "matches": [
@@ -149,18 +119,6 @@
         "https://*.backlog.com/projects/*"
       ],
       "js": ["libs/jquery.js", "libs/power-ups.js", "plugins/relative-date/relative-date.js"]
-    },
-    {
-      "matches": [
-        "https://*.backlog.jp/view/*", 
-        "https://*.backlogtool.com/view/*", 
-        "https://*.backlog.com/view/*",
-        "https://*.backlog.jp/wiki/*/*", 
-        "https://*.backlogtool.com/wiki/*/*", 
-        "https://*.backlog.com/wiki/*/*"
-      ],
-      "css": ["plugins/backlog-card/backlog-card.css"],
-      "js": ["libs/jquery.js", "libs/power-ups.js", "plugins/backlog-card/backlog-card.js"]
     }
   ]
 }

@@ -20,17 +20,8 @@
     "popup_extend_desc": {
         "message": "Extend description of issue on Add/Edit Issue"
     },
-    "popup_customized_issue_list": {
-        "message": "Rearrange columns in search result of issues"
-    },
     "popup_total_time": {
         "message": "Show total estimated and actual hours on search result of issues"
-    },
-    "popup_backlog_card": {
-        "message": "Show issue card from issue key"
-    },
-    "popup_draggable_gantt": {
-        "message": "Support drag & drop for gantt chart on project"
     },
     "popup_wiki": {
         "message": "Wiki"
@@ -49,9 +40,6 @@
     },
     "popup_general": {
         "message": "General"
-    },
-    "popup_filter_notification": {
-        "message": "Filter notificaion"
     },
     "popup_user_switcher": {
         "message": "Show user switcher on personal Gantt"

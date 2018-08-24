@@ -3,7 +3,7 @@
         "message": "Backlog Power Ups - Backlogを便利に"
     },
     "app_description": {
-        "message": "Backlogの機能をパワーアップします。「お知らせのフィルタリング」や「クリップボードから画像貼り付け」など14個の機能追加があります。"
+        "message": "Backlogの機能をパワーアップします。10個の機能追加があります。"
     },
     "popup_apply_button": {
         "message": "適用"
@@ -20,17 +20,8 @@
     "popup_extend_desc": {
         "message": "課題追加/編集画面の詳細の入力欄を広げる"
     },
-    "popup_customized_issue_list": {
-        "message": "課題の検索結果の列を並び替える"
-    },
     "popup_total_time": {
         "message": "検索結果の予定時間計と実績時間計を表示する"
-    },
-    "popup_backlog_card": {
-        "message": "課題キーで課題カードを表示"
-    },
-    "popup_draggable_gantt": {
-        "message": "ドラッグ＆ドロップでプロジェクトガントチャートを操作"
     },
     "popup_wiki": {
         "message": "Wiki"
@@ -49,9 +40,6 @@
     },
     "popup_general": {
         "message": "一般"
-    },
-    "popup_filter_notification": {
-        "message": "お知らせの絞り込み"
     },
     "popup_user_switcher": {
         "message": "個人のガントチャートにユーザー切り替えを表示する"
