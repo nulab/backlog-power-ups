@@ -3,7 +3,7 @@
         "message": "Backlog Power Ups - Backlogを便利に"
     },
     "app_description": {
-        "message": "Backlogの機能をパワーアップします。10個の機能追加があります。"
+        "message": "Backlogの機能をパワーアップします。11個の機能追加があります。"
     },
     "popup_apply_button": {
         "message": "適用"
@@ -37,6 +37,9 @@
     },
     "popup_hr": {
         "message": "Backlog記法で水平線を表示(\"---\" もしくは \"___\")"
+    },
+    "popup_old_post": {
+        "message": "最終更新日から1年以上経過した記事にお知らせを表示する"
     },
     "popup_general": {
         "message": "一般"

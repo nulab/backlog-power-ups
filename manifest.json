@@ -7,7 +7,8 @@
   "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
   "permissions": [
     "tabs",
-    "storage"
+    "storage",
+    "webRequest"
   ],
   "icons": { 
    "128": "icon128.png" 
@@ -99,6 +100,15 @@
       ],
       "all_frames": true,
       "js": ["libs/jquery.js", "libs/power-ups.js", "plugins/hr/hr.js"]
+    },
+    {
+      "matches": [
+        "https://*.backlog.jp/wiki/*/*",
+        "https://*.backlogtool.com/wiki/*/*",
+        "https://*.backlog.com/wiki/*/*"
+      ],
+      "all_frames": true,
+      "js": ["libs/power-ups.js", "plugins/old-post/old-post.js"]
     },
     {
       "matches": [
