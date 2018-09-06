@@ -38,6 +38,9 @@
     "popup_hr": {
         "message": "Show horizontal rule with Backlog syntax(\"---\" or \"___\")"
     },
+    "popup_old_post": {
+        "message": "Show notification in old Wiki"
+    },
     "popup_general": {
         "message": "General"
     },

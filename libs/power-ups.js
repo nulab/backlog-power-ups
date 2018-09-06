@@ -14,7 +14,8 @@ const POWER_UP_PLUGINS = [
             "copy-wiki", 
             "child-page",
             "plantuml",
-            "hr"
+            "hr",
+            "old-post"
         ]
     },
     {
@@ -30,7 +31,8 @@ const DEFAULT_DISABLED_PLUGINS = [
     "extend-desc",
     "total-time",
     "plantuml",
-    "relative-date"
+    "relative-date",
+    "old-post"
 ];
 
 class PowerUps {
