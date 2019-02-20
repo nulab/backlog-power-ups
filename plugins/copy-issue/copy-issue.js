@@ -50,6 +50,9 @@
 		$("#summaryInput").val(issue.summary);
 		$("#descriptionTextArea").val(issue.description);
 		sessionStorage.removeItem("copy-issue");
+		var kodata = ko.contextFor($("#AddIssueForm")[0]).$data;
+		kodata.summary.set(issue.summary);
+		kodata.description.set(issue.description);
 	}`;
 			PowerUps.injectScript(script);
 		}
