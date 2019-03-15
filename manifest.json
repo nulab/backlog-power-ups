@@ -41,7 +41,7 @@
         "https://*.backlog.com/view/*"
       ],
       "all_frames": true,
-      "js": ["libs/jquery.js", "libs/power-ups.js", "plugins/auto-resolution/auto-resolution.js"]
+      "js": ["libs/power-ups.js", "plugins/auto-resolution/auto-resolution.js"]
     },
     {
       "matches": [
