@@ -99,7 +99,7 @@
         "https://*.backlog.com/wiki/*/*"
       ],
       "all_frames": true,
-      "js": ["libs/jquery.js", "libs/power-ups.js", "plugins/hr/hr.js"]
+      "js": ["libs/power-ups.js", "plugins/hr/hr.js"]
     },
     {
       "matches": [
