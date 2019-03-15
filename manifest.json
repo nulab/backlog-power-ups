@@ -53,7 +53,7 @@
         "https://*.backlog.com/view/*/edit"
       ],
       "all_frames": true,
-      "js": ["libs/jquery.js", "libs/power-ups.js", "plugins/extend-desc/extend-desc.js"]
+      "js": ["libs/power-ups.js", "plugins/extend-desc/extend-desc.js"]
     },
     {
       "matches": [
