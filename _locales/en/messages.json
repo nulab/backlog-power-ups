@@ -49,5 +49,8 @@
     },
     "popup_relative_date": {
         "message": "Show relative date"
+    },
+    "popup_copy_issue_keys_and_subjects": {
+        "message": "Copy issue keys and subjects"
     }
 }
