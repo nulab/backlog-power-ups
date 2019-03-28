@@ -41,7 +41,7 @@
         "https://*.backlog.com/view/*"
       ],
       "all_frames": true,
-      "js": ["libs/jquery.js", "libs/power-ups.js", "plugins/auto-resolution/auto-resolution.js"]
+      "js": ["libs/power-ups.js", "plugins/auto-resolution/auto-resolution.js"]
     },
     {
       "matches": [
@@ -53,7 +53,7 @@
         "https://*.backlog.com/view/*/edit"
       ],
       "all_frames": true,
-      "js": ["libs/jquery.js", "libs/power-ups.js", "plugins/extend-desc/extend-desc.js"]
+      "js": ["libs/power-ups.js", "plugins/extend-desc/extend-desc.js"]
     },
     {
       "matches": [
@@ -99,7 +99,7 @@
         "https://*.backlog.com/wiki/*/*"
       ],
       "all_frames": true,
-      "js": ["libs/jquery.js", "libs/power-ups.js", "plugins/hr/hr.js"]
+      "js": ["libs/power-ups.js", "plugins/hr/hr.js"]
     },
     {
       "matches": [
@@ -128,7 +128,7 @@
         "https://*.backlog.com/dashboard*",
         "https://*.backlog.com/projects/*"
       ],
-      "js": ["libs/jquery.js", "libs/power-ups.js", "plugins/relative-date/relative-date.js"]
+      "js": ["libs/jquery.js", "libs/power-ups.js", "plugins/absolute-date/absolute-date.js"]
     },
     {
       "matches": [

@@ -47,8 +47,8 @@
     "popup_user_switcher": {
         "message": "Show user switcher on personal Gantt"
     },
-    "popup_relative_date": {
-        "message": "Show relative date"
+    "popup_absolute_date": {
+        "message": "Show absolute date"
     },
     "popup_copy_issue_keys_and_subjects": {
         "message": "Copy issue keys and subjects"

@@ -23,7 +23,7 @@ const POWER_UP_PLUGINS = [
         groupId: "general",
         pluginIds: [
             "user-switcher",
-            "relative-date"
+            "absolute-date"
         ]
     }
 ];
@@ -32,7 +32,7 @@ const DEFAULT_DISABLED_PLUGINS = [
     "extend-desc",
     "total-time",
     "plantuml",
-    "relative-date",
+    "absolute-date",
     "old-post"
 ];
 
