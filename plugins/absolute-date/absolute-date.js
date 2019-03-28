@@ -27,7 +27,7 @@
         convert();
     }
 
-    PowerUps.isEnabled("relative-date", (enabled) => {
+    PowerUps.isEnabled("absolute-date", (enabled) => {
 		if (enabled) {
             main();
 		}
