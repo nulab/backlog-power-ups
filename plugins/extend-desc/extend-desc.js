@@ -1,6 +1,6 @@
 (() => {
     const extend = () => {
-        $("#descriptionTextArea").css("height", "480px");
+        document.querySelector("#descriptionTextArea").style.height = "480px"
     }
 
     const addIssueView = () => {

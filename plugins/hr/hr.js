@@ -3,18 +3,16 @@
 	const PATTERN_HR = /([-]{3,}|[_]{3,})([<]br[>])?$/gm;
 
 	const main = () => {
-		const isMarkdown = $("#loom > div").hasClass("markdown-body");
-		if (location.pathname.match(PATTERN_SHOW_WIKI) == false 
-		|| isMarkdown) {
+		const isMarkdown = document.querySelector(".markdown-body") ? true : false;
+		if (location.pathname.match(PATTERN_SHOW_WIKI) === false || isMarkdown) {
 			return;
 		}
-		$("#loom p").each((index, elm) => {
-			const $p = $(elm);
-			const html = $p.html();
-			if (html.match(PATTERN_HR)) {
-				$p.html(html.replace(PATTERN_HR, "<hr>"));
+		document.querySelectorAll("#loom p").forEach(elem => {
+			const innerHTML = elem.innerHTML;
+			if (innerHTML.match(PATTERN_HR)) {
+				elem.innerHTML = "<hr>";
 			}
-		});
+		})
 	}
 
     PowerUps.isEnabled("hr", (enabled) => {

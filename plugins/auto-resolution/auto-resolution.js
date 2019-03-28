@@ -1,9 +1,11 @@
 (() => {
     const setup = () => {
         setTimeout(() => {
-            $(".comment-editor__radio-input").on("change", () => {
-                const value = $(".comment-editor__radio-input:checked").val();
-                if (value == "4") {
+            const nodes = document.querySelectorAll(".comment-editor__radio-input");
+            const last = nodes[nodes.length - 1];
+            last.addEventListener("change", () => {
+                const value = document.querySelector(".comment-editor__radio-input:checked").value;
+                if (value === "4") {
                     PowerUps.injectScript(`ko.contextFor($("#resolutionLeft")[0]).$data.resolutionChosen.value(0)`);
                 }
             });
