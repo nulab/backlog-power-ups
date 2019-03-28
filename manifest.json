@@ -129,6 +129,17 @@
         "https://*.backlog.com/projects/*"
       ],
       "js": ["libs/jquery.js", "libs/power-ups.js", "plugins/absolute-date/absolute-date.js"]
+    },
+    {
+      "matches": [
+        "https://*.backlog.jp/find/*",
+        "https://*.backlog.jp/dashboard*",
+        "https://*.backlogtool.com/find/*",
+        "https://*.backlogtool.com/dashboard*",
+        "https://*.backlog.com/find/*",
+        "https://*.backlog.com/dashboard*"
+      ],
+      "js": ["libs/clipboard.min.js", "libs/power-ups.js", "plugins/copy-issue-keys-and-subjects/copy-issue-keys-and-subjects.js"]
     }
   ]
 }

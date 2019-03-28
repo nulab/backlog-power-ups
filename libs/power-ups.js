@@ -5,7 +5,8 @@ const POWER_UP_PLUGINS = [
             "copy-issue", 
             "auto-resolution",
             "extend-desc",
-            "total-time"
+            "total-time",
+            "copy-issue-keys-and-subjects"
         ]
     },
     {
