@@ -23,6 +23,12 @@
     "popup_total_time": {
         "message": "検索結果の予定時間計と実績時間計を表示する"
     },
+    "popup_board": {
+        "message": "ボード"
+    },
+    "popup_board_oneline": {
+        "message": "ボードの状態を1行表示するボタンを追加する"
+    },
     "popup_wiki": {
         "message": "Wiki"
     },
