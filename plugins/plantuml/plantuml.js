@@ -1,5 +1,6 @@
 (() => {
     const PATTERN = /^[/]wiki[/]([A-Z_0-9]+)[/]([^\\/]+)$/;
+    const PATTERN_EDIT_PAGE = /^[/]wiki[/]([A-Z_0-9]+)[/]([^\\/]+[^\\/])[/](edit|create)$/;
 
     // from https://github.com/dai0304/pegmatite
     const encode64 = (data) => {
@@ -48,9 +49,8 @@
         $elem.replaceWith($("<img>").attr("src", url));
     }
 
-    const showPageView = () => {
-		const isMarkdown = $("#loom > div").hasClass("markdown-body");
-		if (isMarkdown) {
+    const convertFromPlantUML = (isMarkdown) => {
+        if (isMarkdown) {
             $(".lang-plantuml > code").each((index, elem) => {
                 convertToImage(elem);
             });
@@ -64,11 +64,37 @@
         }
     }
 
+    const showPreviewPageView = () => {
+        const isMarkdown = $("#preview_content > div").hasClass("markdown-body");
+        convertFromPlantUML(isMarkdown);
+    }
+
+    const showPageView = () => {
+        const isMarkdown = $("#loom > div").hasClass("markdown-body");
+        convertFromPlantUML(isMarkdown);
+    }
+
     const main = () => {
         if (location.pathname.match(PATTERN)) {
             setTimeout(() => {
                 showPageView();
             }, 0);
+        }
+
+        if (location.pathname.match(PATTERN_EDIT_PAGE)) {
+            const previewModal = document.getElementById("preview_modal");
+            const observer = new MutationObserver((mutations) => {
+                mutations.forEach((m) => {
+                    const isOpenPreviewModal = m.target.classList.contains("is_visible");
+                    if (isOpenPreviewModal) {
+                        showPreviewPageView();
+                    }
+                });
+            });
+
+            observer.observe(previewModal, {
+                attributes: true,
+            });
         }
     }
 
