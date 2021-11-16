@@ -139,7 +139,7 @@
         "https://*.backlog.com/find/*",
         "https://*.backlog.com/dashboard*"
       ],
-      "js": ["libs/clipboard.min.js", "libs/power-ups.js", "plugins/copy-issue-keys-and-subjects/copy-issue-keys-and-subjects.js"]
+      "js": ["libs/clipboard.min.js", "libs/power-ups.js"]
     }
   ]
 }

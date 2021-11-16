@@ -11,16 +11,29 @@
 	};
 	const createPageView = () => {
 		const insertWikiContent = () => {
-			const script = `
-var json = sessionStorage.getItem("copy-wiki");
-if (json) {
-	var data = JSON.parse(json);
-	var jsonrpc = Backlog.getJsonrpc();
-	jsonrpc.rpcService.getPage(callbackGetPage, data.sourceProjectId, data.sourcePageName);
-	sessionStorage.removeItem("copy-wiki");
-}
-			`;
-			PowerUps.injectScript(script);
+
+			var json = sessionStorage.getItem("copy-wiki");
+			if (json) {
+				var data = JSON.parse(json);
+				$.ajax({
+					url: '/ViewWikiJson.action',
+					type: "GET",
+					data: {
+						projectKey: data.sourceProjectKey,
+						wikiId: data.sourcePageId
+					},
+					cache: false,
+					timeout: 10000,
+					statusCode: {
+						"200": function (data) {
+							$('.comment-editor__textarea').val(data.content);
+						},
+					},
+					beforeSend: function (xhr) {
+						xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+					}
+				});
+			}
 		}
 		setTimeout(() => {
 			insertWikiContent();
@@ -37,10 +50,11 @@ if (json) {
 
 			const parts = PATTERN_SHOW_WIKI.exec(location.pathname);
 			const pageName = decodeURIComponent(parts[2]).replace("+", " "); // decode x-www-form-urlencoded
+			const pageId = $('input[name="pageId"]').val();
 			const destProjectKey = prompt(RES["prompt"]);
 			if (destProjectKey) {
 				const script = `
-var json = {sourceProjectId: Backlog.resource['project.id'], sourcePageName: "${pageName}"};
+var json = {sourceProjectKey: Backlog.resource['project.key'], sourcePageName: "${pageName}", sourcePageId: "${pageId}"};
 sessionStorage.setItem("copy-wiki", JSON.stringify(json));
 location.href = "/wiki/${destProjectKey}/${encodeURIComponent(pageName)}/create";
 				`;
