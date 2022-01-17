@@ -140,6 +140,12 @@
         "https://*.backlog.com/dashboard*"
       ],
       "js": ["libs/clipboard.min.js", "libs/power-ups.js"]
+    },
+    {
+      "matches": [
+        "https://*.backlog.jp/*"
+      ],
+      "js": ["libs/jquery.js", "libs/power-ups.js", "plugins/watch-list/watch-list.js"]
     }
   ]
 }
