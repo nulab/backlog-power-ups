@@ -23,6 +23,12 @@
     "popup_total_time": {
         "message": "Show total estimated and actual hours on search result of issues"
     },
+    "popup_board": {
+        "message": "Board"
+    },
+    "popup_board_oneline": {
+        "message": "Add button to show task as oneline view in Board"
+    },
     "popup_wiki": {
         "message": "Wiki"
     },

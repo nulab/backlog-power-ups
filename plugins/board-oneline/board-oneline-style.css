@@ -1,0 +1,67 @@
+#kanban section {
+    transition: all 200ms 0s ease;
+}
+
+.board-oneline {
+    width: calc(100% - 25px) !important;
+}
+
+.board-oneline .card {
+    max-width: 100%  !important;
+    flex-direction: row;
+    display: flex;
+    margin-bottom: -1px !important;
+    padding: 5px !important;
+}
+
+.board-oneline .card-label {
+    margin-right: 20px !important;
+    margin-top: 5px !important;
+    margin-bottom: 0 !important;
+}
+
+.board-oneline-compact {
+}
+
+.board-oneline-compact .card {
+    max-width: 100%  !important;
+    flex-direction: row;
+    display: flex;
+    margin-bottom: -1px !important;
+    padding: 5px !important;
+}
+
+.board-oneline-compact .card-summary {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.board-oneline-compact .card-label {
+    display: none;
+}
+
+.board-oneline-compact .card-status {
+    display: none;
+}
+
+.board-oneline-button {
+    font-size: x-large;
+    height: 20px;
+    padding: 0 8px;
+    margin-bottom: 4px;
+    color: gray;
+}
+
+.board-oneline-button:hover {
+    text-decoration: none;
+    color: red;
+}
+
+.board-oneline .board-oneline-button {
+    color: red;
+}
+
+.board-oneline .board-oneline-button:hover {
+    color: gray;
+}

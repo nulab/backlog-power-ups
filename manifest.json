@@ -21,6 +21,9 @@
   "background":{
     "scripts" : [ "background.js" ]
   },
+  "web_accessible_resources": [
+    "plugins/board-oneline/board-oneline-style.css"
+  ],
   "content_scripts": [
     {
       "matches": [
@@ -139,7 +142,16 @@
         "https://*.backlog.com/find/*",
         "https://*.backlog.com/dashboard*"
       ],
-      "js": ["libs/clipboard.min.js", "libs/power-ups.js"]
+      "js": ["libs/clipboard.min.js", "libs/power-ups.js", "plugins/copy-issue-keys-and-subjects/copy-issue-keys-and-subjects.js"]
+    },
+    {
+      "matches": [
+        "https://*.backlog.jp/board/*",
+        "https://*.backlogtool.com/board/*",
+        "https://*.backlog.com/board/*"
+      ],
+      "js": ["libs/power-ups.js", "plugins/board-oneline/board-oneline.js"],
+      "css": ["plugins/board-oneline/board-oneline-style.css"]
     },
     {
       "matches": [

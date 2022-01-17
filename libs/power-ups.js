@@ -10,6 +10,12 @@ const POWER_UP_PLUGINS = [
         ]
     },
     {
+        groupId: "board",
+        pluginIds: [
+            "board-oneline"
+        ]
+    },
+    {
         groupId: "wiki",
         pluginIds: [
             "copy-wiki", 
