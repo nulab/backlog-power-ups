@@ -1,7 +1,7 @@
 {
   "name": "__MSG_app_name__",
   "description": "__MSG_app_description__",
-  "version": "0.0.18",
+  "version": "0.0.19",
   "manifest_version": 2,
   "default_locale": "en",
   "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
@@ -152,6 +152,14 @@
       ],
       "js": ["libs/power-ups.js", "plugins/board-oneline/board-oneline.js"],
       "css": ["plugins/board-oneline/board-oneline-style.css"]
+    },
+    {
+      "matches": [
+        "https://*.backlog.jp/*",
+        "https://*.backlogtool.com/*",
+        "https://*.backlog.com/*"
+      ],
+      "js": ["libs/jquery.js", "libs/power-ups.js", "plugins/watch-list/watch-list.js"]
     }
   ]
 }

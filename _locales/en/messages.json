@@ -57,6 +57,9 @@
         "message": "Show absolute date"
     },
     "popup_copy_issue_keys_and_subjects": {
-        "message": "Copy issue keys and subjects"
+        "message": "Copy issue keys and subjects on issue list"
+    },
+    "popup_watch_list": {
+        "message": "Show assignee and due date on watch list"
     }
 }

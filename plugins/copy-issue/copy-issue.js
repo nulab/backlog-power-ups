@@ -24,7 +24,7 @@
 				const markdown = $(".markdown-body").length > 0;
 				const h2 = markdown ? "##" : "**";
 				const script = `
-	var issue = ko.contextFor($("#issuecard")[0]).$data.issueDetail.store.issue();
+	var issue = ko.contextFor($("#issuecard")[0]).$data.store.issue();
 	issue.description = issue.description + "\\n\\n${h2} ${RES["refs"]}\\n-" + issue.issueKey + issue.summary;
 	sessionStorage.setItem("copy-issue", JSON.stringify(issue));`;
 				PowerUps.injectScript(script);

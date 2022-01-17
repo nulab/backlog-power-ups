@@ -29,7 +29,8 @@ const POWER_UP_PLUGINS = [
         groupId: "general",
         pluginIds: [
             "user-switcher",
-            "absolute-date"
+            "absolute-date",
+            "watch-list"
         ]
     }
 ];
@@ -39,7 +40,8 @@ const DEFAULT_DISABLED_PLUGINS = [
     "total-time",
     "plantuml",
     "absolute-date",
-    "old-post"
+    "old-post",
+    "watch-list"
 ];
 
 class PowerUps {
