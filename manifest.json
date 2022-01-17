@@ -143,7 +143,9 @@
     },
     {
       "matches": [
-        "https://*.backlog.jp/*"
+        "https://*.backlog.jp/*",
+        "https://*.backlogtool.com/*",
+        "https://*.backlog.com/*"
       ],
       "js": ["libs/jquery.js", "libs/power-ups.js", "plugins/watch-list/watch-list.js"]
     }
