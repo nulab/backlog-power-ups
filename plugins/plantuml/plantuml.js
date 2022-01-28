@@ -1,6 +1,7 @@
 (() => {
     const PATTERN = /^[/]wiki[/]([A-Z_0-9]+)[/]([^\\/]+)$/;
     const PATTERN_EDIT_PAGE = /^[/]wiki[/]([A-Z_0-9]+)[/]([^\\/]+[^\\/])[/](edit|create)$/;
+    const PATTERN_PRINT_PAGE = /^[/]wiki[/]([A-Z_0-9]+)[/]([^\\/]+[^\\/])[/](print)$/;
 
     // from https://github.com/dai0304/pegmatite
     const encode64 = (data) => {
@@ -74,10 +75,21 @@
         convertFromPlantUML(isMarkdown);
     }
 
+    const showPrintPageView = () => {
+        const isMarkdown = $(".loom > div").hasClass("markdown-body");
+        convertFromPlantUML(isMarkdown);
+    }
+
     const main = () => {
         if (location.pathname.match(PATTERN)) {
             setTimeout(() => {
                 showPageView();
+            }, 0);
+        }
+
+        if (location.pathname.match(PATTERN_PRINT_PAGE)) {
+            setTimeout(() => {
+                showPrintPageView();
             }, 0);
         }
 
