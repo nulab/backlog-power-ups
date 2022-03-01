@@ -1,5 +1,5 @@
 (() => {
-    const PATTERN = /^[/]wiki[/]([A-Z_0-9]+)[/]([^\\/]+)$/;
+    const PATTERN = /^[/]alias[/]wiki[/](\d+)$/;
     const PATTERN_EDIT_PAGE = /^[/]wiki[/]([A-Z_0-9]+)[/]([^\\/]+[^\\/])[/](edit|create)$/;
 
     // from https://github.com/dai0304/pegmatite
