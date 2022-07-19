@@ -102,6 +102,8 @@ class PowerUpPluginGroup {
 
 class PowerUpSettings {
     constructor(groups) {
+        console.log('constructor');
+        console.log(groups);
         this.groups = groups;
         this.initialPluginSettingsJson = JSON.stringify(PowerUpSettings.getSettingsFromStorage(this.groups));
     }
@@ -143,6 +145,7 @@ class PowerUpSettings {
     }
 
     static load(callback) {
+        console.log('load');
         PowerUpSettings.getPlugins(PowerUpSettings.getPluginIds(), (plugins) => {
             const pluginGroups = [];
             for (const groupInfo of POWER_UP_PLUGINS) {
