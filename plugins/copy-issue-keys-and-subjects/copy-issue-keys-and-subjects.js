@@ -7,7 +7,7 @@
       issuesTableSelector = '#myIssueContent>#issueList';
       actionsContainersSelector = '#my-issues-content';
     } else {
-      issuesTableSelector = '#issues-table';
+      issuesTableSelector = '.result-set';
       actionsContainersSelector = '.result-set__controller-actions';
     }
     let actionsContainers = document.querySelectorAll(actionsContainersSelector);
@@ -25,8 +25,8 @@
 
   function buildCopyTargetText(table) {
     return [].slice.call(
-      table.querySelectorAll(`.copyData`)
-    ).map(element => element.innerHTML).join("\n");
+      table.querySelectorAll(`.cell-summary`)
+    ).map(element => (element.previousElementSibling.innerText + ' '+ element.innerText.split("\n")[0])).join("\n");
   }
 
   function buildButton(issuesTableSelector) {
