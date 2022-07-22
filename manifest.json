@@ -100,9 +100,12 @@
     },
     {
       "matches": [
-        "https://*.backlog.jp/wiki/*/*", 
-        "https://*.backlogtool.com/wiki/*/*", 
-        "https://*.backlog.com/wiki/*/*"
+        "https://*.backlog.jp/wiki/*/*",
+        "https://*.backlog.jp/alias/wiki/*",
+        "https://*.backlogtool.com/wiki/*/*",
+        "https://*.backlogtool.com/alias/wiki/*",
+        "https://*.backlog.com/wiki/*/*",
+        "https://*.backlog.com/alias/wiki/*"
       ],
       "all_frames": true,
       "js": ["libs/power-ups.js", "plugins/hr/hr.js"]
@@ -110,8 +113,11 @@
     {
       "matches": [
         "https://*.backlog.jp/wiki/*/*",
+        "https://*.backlog.jp/alias/wiki/*",
         "https://*.backlogtool.com/wiki/*/*",
-        "https://*.backlog.com/wiki/*/*"
+        "https://*.backlogtool.com/alias/wiki/*",
+        "https://*.backlog.com/wiki/*/*",
+        "https://*.backlog.com/alias/wiki/*"
       ],
       "all_frames": true,
       "js": ["libs/power-ups.js", "plugins/old-post/old-post.js"]
