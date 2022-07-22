@@ -15,7 +15,7 @@
         setTimeout(() => {
             if (location.pathname.startsWith("/add/")) {
                 addIssueView();
-            } else if (location.pathname.match(/[/]view[/][A-Z_]+[-][0-9]+[/]edit/)) {
+            } else if (location.pathname.match(/[/]view[/][A-Z_0-9]+[-][0-9]+[/]edit/)) {
                 editIssueView();
             }
         }, 0);
