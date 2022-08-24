@@ -9,7 +9,10 @@
 
     const totalByColumnName = (columnName) => {
         let total = 0;
-        $(`#issues-table tbody tr td[data-column-name='${columnName}']`).each((index, elem) => {
+        const targetTable = $('.result-set table.find-issue-table')
+        const targetColumn = targetTable.find(`thead tr th[data-column-key='${columnName}']`)
+        const targetIndex = targetTable.find('thead tr th').index(targetColumn)
+        targetTable.find(`tbody tr td:nth-child(${targetIndex + 1})`).each((index, elem) => {
             const text = $(elem).text();
             if (text) {
                 total = total + parseFloat(text);
@@ -32,7 +35,7 @@
     });
 
     const observeIssueTable = () => {
-        observer.observe($('#issues-table').get(0), {
+        observer.observe($('.result-set').get(0), {
             childList: true,
             subtree: true
         });

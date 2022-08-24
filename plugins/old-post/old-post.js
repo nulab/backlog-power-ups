@@ -23,10 +23,10 @@
         const lastElText = userIconSet[userIconSet.length - 1].querySelector(
           ".user-icon-set__text"
         ).innerHTML;
-        const lastUpDate = lastElText.match(
-          /(\d{4})(\/)(\d{2})(\/)(\d{2})(\s)(\d{2})(\:)(\d{2})(\:)(\d{2})/
-        )[0];
-
+        const lastUpDate =
+          PowerUps.getLang() == "ja"
+            ? lastElText.match(/(\d{4})(\/)(\d{2})(\/)(\d{2})(\s)(\d{2})(\:)(\d{2})(\:)(\d{2})/)[0]
+            : lastElText.match(/(\w{3})(.)(\s)(\d{1,2})(\,)(\s)(\d{4})(\s)(\d{2})(\:)(\d{2})(\:)(\d{2})/)[0]
         // calc diff
         const msDiff =
           new Date(nowDate).getTime() - new Date(lastUpDate).getTime();

@@ -1,5 +1,6 @@
 (() => {
     const PATTERN_SHOW_WIKI = /^[/]wiki[/]([A-Z_0-9]+)[/]([^\\/]+)$/;
+    const PATTERN_ALIAS = /^[/]alias[/]wiki[/](\d+)$/;
     const PATTERN_CREATE_WIKI = /^[/]wiki[/]([A-Z_0-9]+)[/]([^\\/]+)[/]create$/;
 
 	const RES = PowerUps.getLang() == "ja" ? {
@@ -40,6 +41,10 @@
 		}, 1000);
 	}
 
+	const getWikiPageNameFromTitle = () => {
+		return document.title.match(/^(\[.*?])(.*)(\| Wiki \| Backlog)/)[2].trim();
+	}
+
     const showPageView = () => {
 		const hideMenu = () => {
 			PowerUps.injectScript('jQuery(".wiki-page-tag-group--icon dropdown-menu a.icon-button").click();');
@@ -48,8 +53,7 @@
 		const clickMenuItemHandler = () => {
 			hideMenu();
 
-			const parts = PATTERN_SHOW_WIKI.exec(location.pathname);
-			const pageName = decodeURIComponent(parts[2]).replace("+", " "); // decode x-www-form-urlencoded
+			const pageName = getWikiPageNameFromTitle();
 			const pageId = $('input[name="pageId"]').val();
 			const destProjectKey = prompt(RES["prompt"]);
 			if (destProjectKey) {
@@ -77,7 +81,7 @@ location.href = "/wiki/${destProjectKey}/${encodeURIComponent(pageName)}/create"
             setTimeout(() => {
                 createPageView();
             }, 0);
-		} else if (location.pathname.match(PATTERN_SHOW_WIKI)) {
+		} else if (location.pathname.match(PATTERN_SHOW_WIKI) || location.pathname.match(PATTERN_ALIAS)) {
             setTimeout(() => {
                 showPageView();
             }, 0);
