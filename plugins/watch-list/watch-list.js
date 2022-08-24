@@ -43,7 +43,7 @@
             return;
         }
 
-        $(".watch-list__item.js-list__item").map(async (index, parent) => {
+        $(".watch-list__item.js-list__item").map(async (index, parent) => { 
             try {
                 const issueId = $($(parent).find("span[data-issue-id]")).attr('data-issue-id')
                 const response = await getIssue(issueId);
