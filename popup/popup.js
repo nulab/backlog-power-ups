@@ -12,17 +12,17 @@ $(() => {
                                 return [h('h3', group.text),
                                         h('div',
                                             {
-                                                attrs: {
-                                                    class: 'plugins'
-                                                }
+                                                attrs: {class: 'plugins'}
                                             },
                                             group.plugins.map((plugin)=>{
                                                 return h('div', [
                                                         h('label', [
-                                                            h('input',{
-                                                            attrs: {
-                                                                type: 'checkbox'
-                                                            }}),
+                                                            h('input',
+                                                                {
+                                                                    attrs: {type: 'checkbox'},
+                                                                    modelValue: plugin.enabled
+                                                                }
+                                                            ),
                                                             h('span', plugin.text)
                                                         ])
                                                     ])
@@ -32,15 +32,12 @@ $(() => {
                         ),
                         h('footer',
                             {
-                                attrs: {
-                                    class: 'buttons'
-                                }
+                                attrs: {class: 'buttons'}
                             },
                             [h('button',
                                 {
-                                    attrs: {
-                                        type: 'submit'
-                                    }
+                                    attrs: { type: 'submit' },
+                                    on: {click: this.apply}
                                 },
                                 this.i18n.getMessage("popup_apply_button") )]
                         )
@@ -55,7 +52,6 @@ $(() => {
                 },
                 apply: () => {
                     console.log('apply');
-                    console.log(settings);
                     settings.store();
                     PowerUps.reloadCurrentTab();
                     close()
