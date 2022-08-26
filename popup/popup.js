@@ -1,7 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
   const app = document.querySelector('#app')
   let popupSettings = {}
-  let hasChanged = false
 
   PowerUpSettings.load((settings) => {
     popupSettings = settings.settingsJson()
@@ -30,7 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const div = document.createElement('div')
       div.classList.add('plugins')
       for (const plugin of group.plugins) {
-        const _div = document.createElement('div')
+        const divPlugin = document.createElement('div')
         const label = document.createElement('label')
         const input = document.createElement('input')
         input.setAttribute('type', 'checkbox')
@@ -43,8 +42,8 @@ document.addEventListener('DOMContentLoaded', () => {
         divPluginText.innerText = plugin.text
         label.appendChild(input)
         label.appendChild(divPluginText)
-        _div.appendChild(label)
-        div.appendChild(_div)
+        divPlugin.appendChild(label)
+        div.appendChild(divPlugin)
       }
       section.appendChild(h3)
       section.appendChild(div)
