@@ -39,10 +39,10 @@ document.addEventListener('DOMContentLoaded', () => {
           input.setAttribute('checked', true)
         }
         input.addEventListener('change', handleChange)
-        const span = document.createElement('span')
-        span.innerText = plugin.text
+        const divPluginText = document.createElement('div')
+        divPluginText.innerText = plugin.text
         label.appendChild(input)
-        label.appendChild(span)
+        label.appendChild(divPluginText)
         _div.appendChild(label)
         div.appendChild(_div)
       }
