@@ -116,6 +116,18 @@ class PowerUpSettings {
         chrome.storage.local.set(PowerUpSettings.getSettingsFromStorage(this.groups));
     }
 
+    settingsJson() {
+        return PowerUpSettings.getSettingsFromStorage(this.groups)
+    }
+
+    update(popupSettings) {
+        chrome.storage.local.set(popupSettings)
+    }
+
+    hasChanged(popupSettings) {
+        return this.initialPluginSettingsJson !== JSON.stringify(popupSettings)
+    }
+
     static getSettingsFromStorage(groups) {
         const settings = {};
         for (const p of PowerUpPluginGroup.getPlugins(groups)) {

@@ -1,66 +1,63 @@
-$(() => {
-    PowerUpSettings.load((settings) => {
-        console.log('load callback');
-        console.log(settings);
+document.addEventListener('DOMContentLoaded', () => {
+  const app = document.querySelector('#app')
+  let popupSettings = {}
 
-        const app = new Vue({
-            el: '#app',
-            render: function(h) {
-                return h('div', [
-                        h('section',
-                            this.groups.map( (group) =>{
-                                return [h('h3', group.text),
-                                        h('div',
-                                            {
-                                                attrs: {class: 'plugins'}
-                                            },
-                                            group.plugins.map((plugin)=>{
-                                                return h('div', [
-                                                        h('label', [
-                                                            h('input',
-                                                                {
-                                                                    attrs: {type: 'checkbox'},
-                                                                    modelValue: plugin.enabled
-                                                                }
-                                                            ),
-                                                            h('span', plugin.text)
-                                                        ])
-                                                    ])
+  PowerUpSettings.load((settings) => {
+    popupSettings = settings.settingsJson()
 
-                                    }))]
-                            })
-                        ),
-                        h('footer',
-                            {
-                                attrs: {class: 'buttons'}
-                            },
-                            [h('button',
-                                {
-                                    attrs: { type: 'submit' },
-                                    on: {click: this.apply}
-                                },
-                                this.i18n.getMessage("popup_apply_button") )]
-                        )
-                    ])
-            },
-            methods: {
-                change: (plugin) => {
-                    // nothing
-                },
-                isChanged: (plugin) => {
-                    return settings.isChanged();
-                },
-                apply: () => {
-                    console.log('apply');
-                    settings.store();
-                    PowerUps.reloadCurrentTab();
-                    close()
-                }
-            },
-            data: {
-              groups: settings.groups,
-              i18n: chrome.i18n
-            }
-        });
-    });
-});
+    const handleChange = (event) => {
+      popupSettings[event.target.dataset.pluginId] = event.target.checked
+      updateApplyButton()
+    }
+    const handleClickApply = (event) => {
+      settings.update(popupSettings)
+      PowerUps.reloadCurrentTab()
+      window.close()
+    }
+    const updateApplyButton = () => {
+      const button = document.querySelector('#button-apply')
+      if (settings.hasChanged(popupSettings)) {
+        button.disabled = false
+      } else {
+        button.disabled = true
+      }
+    }
+    for (const group of settings.groups) {
+      const section = document.createElement('section')
+      const h3 = document.createElement('h3')
+      h3.innerText = group.text
+      const div = document.createElement('div')
+      div.classList.add('plugins')
+      for (const plugin of group.plugins) {
+        const divPlugin = document.createElement('div')
+        const label = document.createElement('label')
+        const input = document.createElement('input')
+        input.setAttribute('type', 'checkbox')
+        input.dataset.pluginId = plugin.pluginId
+        if (plugin.enabled) {
+          input.setAttribute('checked', true)
+        }
+        input.addEventListener('change', handleChange)
+        const divPluginText = document.createElement('div')
+        divPluginText.innerText = plugin.text
+        label.appendChild(input)
+        label.appendChild(divPluginText)
+        divPlugin.appendChild(label)
+        div.appendChild(divPlugin)
+      }
+      section.appendChild(h3)
+      section.appendChild(div)
+      app.appendChild(section)
+    }
+    const footer = document.createElement('footer')
+    footer.classList.add('buttons')
+    const button = document.createElement('button')
+    button.setAttribute('type', 'submit')
+    button.setAttribute('id', 'button-apply')
+    button.disabled = true
+    button.innerText = chrome.i18n.getMessage("popup_apply_button")
+    button.addEventListener('click', handleClickApply)
+    footer.appendChild(button)
+    app.appendChild(footer)
+  })
+})
