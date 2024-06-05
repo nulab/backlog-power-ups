@@ -61,5 +61,8 @@
     },
     "popup_watch_list": {
         "message": "Show assignee and due date on watch list"
+    },
+    "popup_jump_issue": {
+        "message": "Press Ctrl(Cmd)+K to enter the issue key and open to it"
     }
 }

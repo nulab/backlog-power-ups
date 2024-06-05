@@ -171,7 +171,7 @@
         "https://*.backlogtool.com/*",
         "https://*.backlog.com/*"
       ],
-      "js": ["libs/jquery.js", "libs/power-ups.js", "plugins/watch-list/watch-list.js"]
+      "js": ["libs/jquery.js", "libs/power-ups.js", "plugins/watch-list/watch-list.js", "plugins/jump-issue/jump-issue.js"]
     }
   ]
 }
