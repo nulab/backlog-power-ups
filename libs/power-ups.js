@@ -6,7 +6,8 @@ const POWER_UP_PLUGINS = [
             "auto-resolution",
             "extend-desc",
             "total-time",
-            "copy-issue-keys-and-subjects"
+            "copy-issue-keys-and-subjects",
+            "jump-issue"
         ]
     },
     {
@@ -41,7 +42,8 @@ const DEFAULT_DISABLED_PLUGINS = [
     "plantuml",
     "absolute-date",
     "old-post",
-    "watch-list"
+    "watch-list",
+    "jump-issue"
 ];
 
 class PowerUps {

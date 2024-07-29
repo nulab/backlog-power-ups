@@ -61,5 +61,8 @@
     },
     "popup_watch_list": {
         "message": "ウォッチリストに担当者と期限日を表示する"
+    },
+    "popup_jump_issue": {
+        "message": "Ctrl(Cmd)+Kで課題キーを入力して、その課題を開く"
     }
 }
