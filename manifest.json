@@ -53,7 +53,10 @@
         "https://*.backlog.com/add/*",
         "https://*.backlog.jp/view/*/edit", 
         "https://*.backlogtool.com/view/*/edit", 
-        "https://*.backlog.com/view/*/edit"
+        "https://*.backlog.com/view/*/edit",
+        "https://*.backlog.jp/find/*",
+        "https://*.backlogtool.com/find/*",
+        "https://*.backlog.com/find/*"
       ],
       "all_frames": true,
       "js": ["libs/power-ups.js", "plugins/extend-desc/extend-desc.js"]

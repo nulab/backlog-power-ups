@@ -3,7 +3,7 @@
     const heightExtended = "480px";
     const limit = 10;
 
-    const extend = (elem) => {
+    const updateHeight = (elem) => {
         elem.style.height = heightExtended;
     }
 
@@ -14,16 +14,24 @@
         return document.querySelector(selector);
     }
 
-    const main = () => {
-        checkElement(selector).then((elem) => {
-            if (elem) {
-                if (location.pathname.startsWith("/add/") || location.pathname.match(/[/]view[/][A-Z_0-9]+[-][0-9]+[/]edit/)) {
-                    extend(elem);
+    const extend = () => {
+        if (location.pathname.startsWith("/add/") || location.pathname.match(/[/]view[/][A-Z_0-9]+[-][0-9]+[/]edit/)) {
+            checkElement(selector).then((elem) => {
+                if (elem) {
+                    updateHeight(elem);
+                } else {
+                    console.log('failed to extend textarea');
                 }
-            } else {
-                console.log('failed to extend textarea');
-            }
+            });
+        }
+    }
+
+    const main = () => {
+        extend();
+        const observer = new MutationObserver(() => {
+            extend();
         });
+        observer.observe(document.getElementsByTagName("title")[0], { childList: true });
     };
 
     PowerUps.isEnabled("extend-desc", (enabled) => {
