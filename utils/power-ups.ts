@@ -1,162 +1,170 @@
 // @ts-nocheck
-import $ from 'jquery'
+import $ from "jquery";
 
 const POWER_UP_PLUGINS = [
-    {
-        groupId: "issue",
-        pluginIds: [
-            "copy-issue",
-            "auto-resolution",
-            "extend-desc",
-            "total-time",
-            "copy-issue-keys-and-subjects",
-            "jump-issue"
-        ]
-    },
-    {
-        groupId: "board",
-        pluginIds: [
-            "board-oneline"
-        ]
-    },
-    {
-        groupId: "wiki",
-        pluginIds: [
-            "copy-wiki",
-            "child-page",
-            "plantuml",
-            "hr",
-            "old-post"
-        ]
-    },
-    {
-        groupId: "general",
-        pluginIds: [
-            "user-switcher",
-            "absolute-date",
-            "watch-list"
-        ]
-    }
+	{
+		groupId: "issue",
+		pluginIds: [
+			"copy-issue",
+			"auto-resolution",
+			"extend-desc",
+			"total-time",
+			"copy-issue-keys-and-subjects",
+			"jump-issue",
+		],
+	},
+	{
+		groupId: "board",
+		pluginIds: ["board-oneline"],
+	},
+	{
+		groupId: "wiki",
+		pluginIds: ["copy-wiki", "child-page", "plantuml", "hr", "old-post"],
+	},
+	{
+		groupId: "general",
+		pluginIds: ["user-switcher", "absolute-date", "watch-list"],
+	},
 ];
 
 const DEFAULT_DISABLED_PLUGINS = [
-    "extend-desc",
-    "total-time",
-    "plantuml",
-    "absolute-date",
-    "old-post",
-    "watch-list",
-    "jump-issue"
+	"extend-desc",
+	"total-time",
+	"plantuml",
+	"absolute-date",
+	"old-post",
+	"watch-list",
+	"jump-issue",
 ];
 
 class PowerUps {
-    static reloadCurrentTab() {
-        chrome.tabs.query({active: true, currentWindow: true}, (tabs) => {
-            chrome.tabs.update(tabs[0].id, {url: tabs[0].url});
-        });
-    }
+	static reloadCurrentTab() {
+		chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+			chrome.tabs.update(tabs[0].id, { url: tabs[0].url });
+		});
+	}
 
-    static injectScript(content) {
-        const s = document.createElement('script');
-        s.setAttribute('type', 'text/javascript');
-        s.textContent = content;
-        return document.body.appendChild(s);
-    }
+	static injectScript(content) {
+		const s = document.createElement("script");
+		s.setAttribute("type", "text/javascript");
+		s.textContent = content;
+		return document.body.appendChild(s);
+	}
 
-    static getLang() {
-        return $("html").attr("lang") == "ja" ? "ja" : "en"
-    }
+	static getLang() {
+		return $("html").attr("lang") == "ja" ? "ja" : "en";
+	}
 
-    static toResouceKey(str) {
-        return str.split("-").join("_");
-    }
+	static toResouceKey(str) {
+		return str.split("-").join("_");
+	}
 
-    static flatten(array) {
-        return array.reduce((a, c) => {
-            return Array.isArray(c) ? a.concat(PowerUps.flatten(c)) : a.concat(c);
-        }, []);
-    };
+	static flatten(array) {
+		return array.reduce((a, c) => {
+			return Array.isArray(c) ? a.concat(PowerUps.flatten(c)) : a.concat(c);
+		}, []);
+	}
 
-    static isEnabled(pluginId, callback) {
-        PowerUpSettings.getPlugin(pluginId, (plugin) => {
-            callback(plugin.enabled);
-        });
-    }
+	static isEnabled(pluginId, callback) {
+		PowerUpSettings.getPlugin(pluginId, (plugin) => {
+			callback(plugin.enabled);
+		});
+	}
 }
 
 class PowerUpPlugin {
-    constructor(pluginId, enabled) {
-        this.pluginId = pluginId;
-        this.enabled = enabled !== undefined ? enabled : DEFAULT_DISABLED_PLUGINS.includes(pluginId) == false;
-        this.text = chrome.i18n.getMessage(`popup_${PowerUps.toResouceKey(pluginId)}`);
-    }
+	constructor(pluginId, enabled) {
+		this.pluginId = pluginId;
+		this.enabled =
+			enabled !== undefined
+				? enabled
+				: DEFAULT_DISABLED_PLUGINS.includes(pluginId) == false;
+		this.text = chrome.i18n.getMessage(
+			`popup_${PowerUps.toResouceKey(pluginId)}`,
+		);
+	}
 }
 
 class PowerUpPluginGroup {
-    constructor(groupId, plugins) {
-        this.groupId = groupId;
-        this.plugins = plugins;
-        const messageKey = `popup_${PowerUps.toResouceKey(groupId)}`;
-        this.text = chrome.i18n.getMessage(messageKey);
-    }
+	constructor(groupId, plugins) {
+		this.groupId = groupId;
+		this.plugins = plugins;
+		const messageKey = `popup_${PowerUps.toResouceKey(groupId)}`;
+		this.text = chrome.i18n.getMessage(messageKey);
+	}
 
-    static getPlugins(groups) {
-        return PowerUps.flatten(groups.map((group) => group.plugins));
-    }
+	static getPlugins(groups) {
+		return PowerUps.flatten(groups.map((group) => group.plugins));
+	}
 }
 
 class PowerUpSettings {
-    constructor(groups) {
-        this.groups = groups;
-        this.initialPluginSettingsJson = JSON.stringify(PowerUpSettings.getSettingsFromStorage(this.groups));
-    }
+	constructor(groups) {
+		this.groups = groups;
+		this.initialPluginSettingsJson = JSON.stringify(
+			PowerUpSettings.getSettingsFromStorage(this.groups),
+		);
+	}
 
-    isChanged() {
-        return this.initialPluginSettingsJson !== JSON.stringify(PowerUpSettings.getSettingsFromStorage(this.groups));
-    }
+	isChanged() {
+		return (
+			this.initialPluginSettingsJson !==
+			JSON.stringify(PowerUpSettings.getSettingsFromStorage(this.groups))
+		);
+	}
 
-    store() {
-        chrome.storage.local.set(PowerUpSettings.getSettingsFromStorage(this.groups));
-    }
+	store() {
+		chrome.storage.local.set(
+			PowerUpSettings.getSettingsFromStorage(this.groups),
+		);
+	}
 
-    static getSettingsFromStorage(groups) {
-        const settings = {};
-        for (const p of PowerUpPluginGroup.getPlugins(groups)) {
-            settings[p.pluginId] = p.enabled;
-        }
-        return settings;
-    }
+	static getSettingsFromStorage(groups) {
+		const settings = {};
+		for (const p of PowerUpPluginGroup.getPlugins(groups)) {
+			settings[p.pluginId] = p.enabled;
+		}
+		return settings;
+	}
 
-    static getPluginIds() {
-        return PowerUps.flatten(POWER_UP_PLUGINS.map((groupInfo) => { return groupInfo.pluginIds; }));
-    }
+	static getPluginIds() {
+		return PowerUps.flatten(
+			POWER_UP_PLUGINS.map((groupInfo) => {
+				return groupInfo.pluginIds;
+			}),
+		);
+	}
 
-    static getPlugins(pluginIds, callback) {
-        chrome.storage.local.get(pluginIds, (settings) => {
-            const plugins = [];
-            for (const pluginId of pluginIds) {
-                plugins[pluginId] = new PowerUpPlugin(pluginId, settings[pluginId]);
-            }
-            callback(plugins);
-        });
-    }
+	static getPlugins(pluginIds, callback) {
+		chrome.storage.local.get(pluginIds, (settings) => {
+			const plugins = [];
+			for (const pluginId of pluginIds) {
+				plugins[pluginId] = new PowerUpPlugin(pluginId, settings[pluginId]);
+			}
+			callback(plugins);
+		});
+	}
 
-    static getPlugin(pluginId, callback) {
-        PowerUpSettings.getPlugins([pluginId], (plugins) => {
-            callback(plugins[pluginId]);
-        });
-    }
+	static getPlugin(pluginId, callback) {
+		PowerUpSettings.getPlugins([pluginId], (plugins) => {
+			callback(plugins[pluginId]);
+		});
+	}
 
-    static load(callback) {
-        PowerUpSettings.getPlugins(PowerUpSettings.getPluginIds(), (plugins) => {
-            const pluginGroups = [];
-            for (const groupInfo of POWER_UP_PLUGINS) {
-                const groupPlugins = groupInfo.pluginIds.map((pluginId) => plugins[pluginId]);
-                pluginGroups.push(new PowerUpPluginGroup(groupInfo.groupId, groupPlugins));
-            }
-            callback(new PowerUpSettings(pluginGroups));
-        });
-    }
+	static load(callback) {
+		PowerUpSettings.getPlugins(PowerUpSettings.getPluginIds(), (plugins) => {
+			const pluginGroups = [];
+			for (const groupInfo of POWER_UP_PLUGINS) {
+				const groupPlugins = groupInfo.pluginIds.map(
+					(pluginId) => plugins[pluginId],
+				);
+				pluginGroups.push(
+					new PowerUpPluginGroup(groupInfo.groupId, groupPlugins),
+				);
+			}
+			callback(new PowerUpSettings(pluginGroups));
+		});
+	}
 }
 
 export { PowerUps, PowerUpPlugin, PowerUpSettings };
