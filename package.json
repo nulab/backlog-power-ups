@@ -6,7 +6,7 @@
 	"scripts": {
 		"build": "wxt build",
 		"dev": "wxt",
-        "zip": "wxt zip",
+		"zip": "wxt zip",
 		"postinstall": "wxt prepare"
 	},
 	"packageManager": "npm@11.5.2+sha512.aac1241cfc3f41dc38780d64295c6c6b917a41e24288b33519a7b11adfc5a54a5f881c642d7557215b6c70e01e55655ed7ba666300fd0238bc75fb17478afaf3",
@@ -19,8 +19,8 @@
 		"wxt": "^0.20.7"
 	},
 	"dependencies": {
-		"clipboard": "^2.0.4",
-		"jquery": "^3.3.1",
+		"clipboard": "2.0.4",
+		"jquery": "3.3.1",
 		"pako": "^2.1.0",
 		"vue": "^3.5.18"
 	}
