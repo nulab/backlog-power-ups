@@ -1,0 +1,95 @@
+// @ts-nocheck
+
+export default defineContentScript({
+	matches: [
+		"https://*.backlog.jp/find/*",
+		"https://*.backlog.jp/dashboard*",
+		"https://*.backlogtool.com/find/*",
+		"https://*.backlogtool.com/dashboard*",
+		"https://*.backlog.com/find/*",
+		"https://*.backlog.com/dashboard*",
+	],
+	async main() {
+		const { PowerUps } = await import("@/utils/power-ups");
+		// @ts-expect-error
+		const { default: ClipboardJS } = await import("clipboard");
+		const main = () => {
+			let pathname = window.location.pathname;
+			let issuesTableSelector;
+			let actionsContainersSelector;
+			if (pathname === "/dashboard") {
+				issuesTableSelector = "#myIssueContent>#issueList";
+				actionsContainersSelector = "#my-issues-content";
+			} else {
+				issuesTableSelector = ".result-set";
+				actionsContainersSelector = ".result-set__controller-actions";
+			}
+			let actionsContainers = document.querySelectorAll(
+				actionsContainersSelector,
+			);
+			actionsContainers.forEach((actionsContainer) => {
+				let button = buildButton(issuesTableSelector);
+				actionsContainer.insertBefore(button, actionsContainer.firstChild);
+			});
+			new ClipboardJS("#copy-issue-keys-and-subjects", {
+				text: (trigger) => {
+					let issuesTable = document.querySelector(
+						trigger.getAttribute("issues-table-selector"),
+					);
+					return buildCopyTargetText(issuesTable);
+				},
+			});
+		};
+
+		function buildCopyTargetText(table) {
+			return [].slice
+				.call(table.querySelectorAll(`.cell-summary`))
+				.map(
+					(element) =>
+						element.previousElementSibling.innerText +
+						" " +
+						element.innerText.split("\n")[0],
+				)
+				.join("\n");
+		}
+
+		function buildButton(issuesTableSelector) {
+			let button = document.createElement("button");
+			button.setAttribute("id", "copy-issue-keys-and-subjects");
+			button.setAttribute(
+				"class",
+				"icon-button icon-button--default js-prop-popup-dialog-trigger | simptip-position-top simptip-movable simptip-smooth -with-text",
+			);
+			button.setAttribute("issues-table-selector", issuesTableSelector);
+			button.appendChild(buildButtonImage());
+			button.appendChild(buildButtonLabel());
+			return button;
+		}
+
+		function buildButtonLabel() {
+			let label = document.createElement("span");
+			label.setAttribute("class", "_assistive-text");
+			label.innerHTML = "Copy All";
+			return label;
+		}
+
+		function buildButtonImage() {
+			const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+			const use = document.createElementNS("http://www.w3.org/2000/svg", "use");
+			svg.setAttribute("class", "icon -medium");
+			use.setAttributeNS(
+				"http://www.w3.org/1999/xlink",
+				"href",
+				"/images/svg/sprite.symbol.svg#icon_copy",
+			);
+			svg.appendChild(use);
+			return svg;
+		}
+
+		PowerUps.isEnabled("copy-issue-keys-and-subjects", (enabled) => {
+			if (enabled) {
+				main();
+			}
+		});
+	},
+});
