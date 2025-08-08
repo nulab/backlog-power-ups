@@ -7,5 +7,5 @@ export default defineConfig({
         description: "__MSG_app_description__",
         permissions: ['storage']
     },
-    modules: ["@wxt-dev/i18n/module", "@wxt-dev/auto-icons"],
+    modules: ["@wxt-dev/i18n/module", "@wxt-dev/auto-icons", "@wxt-dev/module-vue"],
 });

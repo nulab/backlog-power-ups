@@ -159,4 +159,4 @@ class PowerUpSettings {
     }
 }
 
-export { PowerUps, PowerUpPlugin };
+export { PowerUps, PowerUpPlugin, PowerUpSettings };

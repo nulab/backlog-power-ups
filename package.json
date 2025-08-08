@@ -13,9 +13,11 @@
     "@types/jquery": "^3.3.1",
     "@wxt-dev/auto-icons": "^1.0.2",
     "@wxt-dev/i18n": "^0.2.4",
+    "@wxt-dev/module-vue": "^1.0.2",
     "wxt": "^0.20.7"
   },
   "dependencies": {
-    "jquery": "^3.3.1"
+    "jquery": "^3.3.1",
+    "vue": "^3.5.18"
   }
 }
