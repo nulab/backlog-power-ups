@@ -1,2 +1,4 @@
-backlog-power-ups.zip
+node_modules/
+.wxt/
+.output/
 .DS_Store
