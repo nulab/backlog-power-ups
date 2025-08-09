@@ -85,14 +85,6 @@ export const raf = () =>
 
 export const html = htm.bind(vhtml);
 
-export const getId = () => {
-	// @ts-expect-error
-	window.__powerUps_id ||= 0;
-
-	// @ts-expect-error
-	return `:_powerUps_${++window.__powerUps_id}_:`;
-};
-
 export const createButton = (
 	html: string | string[],
 	listeners: { [K in "click"]?: (ev: HTMLElementEventMap[K]) => void } = {},
