@@ -1,7 +1,7 @@
 export default defineContentScript({
 	matches: defineMatches(["/view/*", "/add/*"]),
 	async main() {
-		if (await isPluginDisabled("child-page")) {
+		if (await isPluginDisabled("copy-issue")) {
 			return;
 		}
 
