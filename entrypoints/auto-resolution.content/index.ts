@@ -1,11 +1,16 @@
 export default defineContentScript({
-	matches: defineMatches(["/view/*"]),
+	matches: defineMatches(["/view/*", "/gantt/*"]),
+	allFrames: true,
 	async main() {
+		console.log("running...");
+
 		if (await isPluginDisabled("auto-resolution")) {
 			return;
 		}
 
 		const handleClick: EventListenerOrEventListenerObject = async (e) => {
+			await raf();
+
 			const resolution = document.querySelector(
 				"#resolutionLabel ~ * button[role='combobox']",
 			);
@@ -18,16 +23,24 @@ export default defineContentScript({
 
 			await raf();
 
-			for (const el of document.querySelectorAll(
-				"#resolutionLabel ~ * li[role='option']",
-			)) {
-				if (!(el instanceof HTMLLIElement)) {
-					continue;
-				}
+			if (
+				document.querySelector(
+					"#resolutionLabel ~ * li[role='option'][aria-selected='true']",
+				)
+			) {
+				resolution.click();
+			} else {
+				for (const el of document.querySelectorAll(
+					"#resolutionLabel ~ * li[role='option']",
+				)) {
+					if (!(el instanceof HTMLLIElement)) {
+						continue;
+					}
 
-				if (["Fixed", "処理済み"].includes(el.textContent)) {
-					el.click();
-					break;
+					if (["Fixed", "処理済み"].includes(el.textContent)) {
+						el.click();
+						break;
+					}
 				}
 			}
 
