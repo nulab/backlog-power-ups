@@ -55,25 +55,38 @@ export default defineContentScript({
 
 		observeQuerySelector("#page\\.content", async (el) => {
 			try {
-				// @ts-expect-error
 				const { projectKey, pageId } = JSON.parse(
+					// @ts-expect-error
 					sessionStorage.getItem(SESSION_STORAGE_KEY),
 				);
 
+				console.log(projectKey, pageId);
+
 				if (
 					typeof projectKey !== "string" ||
-					projectKey === "" ||
 					typeof pageId !== "string" ||
+					projectKey === "" ||
 					pageId === ""
 				) {
 					return;
 				}
 
 				if (el instanceof HTMLTextAreaElement && el.value === "") {
-					el.value = `hello: ${projectKey}`;
+					const res = await fetch(
+						`/ViewWikiJson.action?projectKey=${encodeURIComponent(projectKey)}&wikiId=${encodeURIComponent(pageId)}`,
+						{
+							headers: {
+								"x-requested-with": "XMLHttpRequest",
+							},
+						},
+					);
+					const { content } = await res.json();
+					el.value = content;
+
 					el.dispatchEvent(new Event("change", { bubbles: true }));
 				}
-			} catch {
+			} catch (err) {
+				console.warn(err);
 				// do nothing
 			} finally {
 				sessionStorage.removeItem(SESSION_STORAGE_KEY);
