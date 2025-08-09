@@ -1,6 +1,6 @@
 import { createRoot } from "react-dom/client";
 import { Suspense } from "react";
-import { App } from "./Popup";
+import { App } from "./components/App.tsx";
 
 const rootEl = document.getElementById("root");
 
