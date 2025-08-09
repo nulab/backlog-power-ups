@@ -22,3 +22,7 @@ popup:
   copy_issue_keys_and_subjects: 課題一覧で課題キーと件名を一括コピーする
   watch_list: ウォッチリストに担当者と期限日を表示する
   jump_issue: Ctrl(Cmd)+Kで課題キーを入力して、その課題を開く
+copy_issue:
+  prompt: 複製先のプロジェクトキーを入力してください。
+  copy_to: 別のプロジェクトに複製
+  refs: 関連課題

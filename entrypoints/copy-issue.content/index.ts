@@ -1,95 +1,119 @@
-// @ts-nocheck
-
 export default defineContentScript({
-	matches: [
-		"https://*.backlog.jp/view/*",
-		"https://*.backlogtool.com/view/*",
-		"https://*.backlog.com/view/*",
-		"https://*.backlog.jp/add/*",
-		"https://*.backlogtool.com/add/*",
-		"https://*.backlog.com/add/*",
-	],
+	matches: defineMatches(["/view/*", "/add/*"]),
 	async main() {
-		const { default: $ } = await import("jquery");
-		const { PowerUps } = await import("@/utils/power-ups");
-		const lang = PowerUps.getLang();
+		if (await isPluginDisabled("child-page")) {
+			return;
+		}
 
-		const RES =
-			lang == "ja"
-				? {
-						prompt: "複製先のプロジェクトキーを入力してください。",
-						copyTo: "別のプロジェクトに複製",
-						refs: "関連課題",
-					}
-				: {
-						prompt: "Please input destination project key",
-						copyTo: "Copy to another project",
-						refs: "Refs",
-					};
+		const SESSION_STORAGE_KEY = "__powerUps_copy-issue";
 
-		const issueView = () => {
-			const hideMenu = () => {
-				PowerUps.injectScript(
-					'$(".title-group__edit-actions dropdown-menu a.icon-button").click();',
-				);
-			};
-
-			const clickHandler = () => {
-				hideMenu();
-				var projectKey = prompt(RES["prompt"]);
-				if (projectKey) {
-					const markdown = $(".markdown-body").length > 0;
-					const h2 = markdown ? "##" : "**";
-					const script = `
-        var issue = ko.contextFor($("#issuecard")[0]).$data.store.issue();
-        issue.description = issue.description + "\n\n${h2} ${RES["refs"]}\n-" + issue.issueKey + issue.summary;
-        sessionStorage.setItem("copy-issue", JSON.stringify(issue));`;
-					PowerUps.injectScript(script);
-					const url = "/add/" + projectKey;
-					location.href = url;
-				}
-			};
-
-			setTimeout(() => {
-				const $menuItem = $('<li class="dropdown-menu__item" />').append(
-					$(
-						'<a class="dropdown-menu__link is_active" href="javascript:void(0)"></a>',
-					)
-						.text(RES["copyTo"])
-						.click(clickHandler),
-				);
-				$(".title-group__edit-actions ul.dropdown-menu").append($menuItem);
-			}, 2000);
-		};
-
-		const addIssueView = () => {
-			const restoreIssue = () => {
-				const script = `
-        var json = sessionStorage.getItem("copy-issue");
-        if (json) {
-            var issue = JSON.parse(json);
-            $("#summaryInput").val(issue.summary);
-            $("#descriptionTextArea").val(issue.description);
-            sessionStorage.removeItem("copy-issue");
-            var kodata = ko.contextFor($("#AddIssueForm")[0]).$data;
-            kodata.summary.set(issue.summary);
-            kodata.description.set(issue.description);
-        }`;
-				PowerUps.injectScript(script);
-			};
-			setTimeout(() => {
-				restoreIssue();
-			}, 1000);
-		};
-
-		PowerUps.isEnabled("copy-issue", (enabled) => {
-			if (enabled) {
-				if (location.pathname.startsWith("/view/")) {
-					issueView();
-				} else if (location.pathname.startsWith("/add/")) {
-					addIssueView();
-				}
+		observeQuerySelector('a[href$="/create"]', async (el) => {
+			if (!(el instanceof HTMLAnchorElement)) {
+				return;
 			}
+
+			const start = async () => {
+				const projectKey = window
+					.prompt(i18n.t("copy_issue.prompt"))
+					?.toUpperCase();
+
+				if (!projectKey) {
+					return;
+				}
+
+				const issueKey = document.querySelector(
+					".ticket__key-number",
+				)?.textContent;
+				const summary = document.getElementById("summary")?.textContent;
+
+				document.getElementById("editIssueButton")?.click();
+
+				const descriptionTextArea = await asyncQuerySelector(
+					"#descriptionTextArea",
+				);
+				const description = Array.from(descriptionTextArea?.children || []).map(
+					({ textContent }) => textContent,
+				);
+
+				sessionStorage.setItem(
+					SESSION_STORAGE_KEY,
+					JSON.stringify({
+						issueKey,
+						summary,
+						description,
+					}),
+				);
+
+				location.replace(`/add/${projectKey}`);
+			};
+
+			observeQuerySelector(
+				".title-group__edit-actions ul.dropdown-menu",
+				(el) => {
+					const li = document.createElement("li");
+					li.classList.add("dropdown-menu__item");
+
+					const button = createButton(
+						html`<button class="dropdown-menu__link is_active">${i18n.t("copy_issue.copy_to")}</button>`,
+						{
+							click: start,
+						},
+					);
+
+					li.appendChild(button);
+
+					el.appendChild(li);
+				},
+			);
+
+			observeQuerySelector("#AddIssueForm", async () => {
+				try {
+					// @ts-expect-error
+					const {
+						issueKey = "",
+						summary = "",
+						description,
+					} = JSON.parse(sessionStorage.getItem(SESSION_STORAGE_KEY));
+
+					const summaryInput = await asyncQuerySelector("#summaryInput");
+					const descriptionTextArea = await asyncQuerySelector(
+						"#descriptionTextArea",
+					);
+
+					if (summaryInput instanceof HTMLInputElement) {
+						summaryInput.value = summary;
+						summaryInput.dispatchEvent(new Event("change", { bubbles: true }));
+					}
+
+					if (
+						descriptionTextArea instanceof HTMLDivElement &&
+						Array.isArray(description)
+					) {
+						for (const child of descriptionTextArea.children) {
+							child.remove();
+						}
+
+						const heading = document.querySelector(".markdown-body")
+							? "##"
+							: "**";
+						const refs = [
+							"",
+							"",
+							`${heading} ${i18n.t("copy_issue.refs")}`,
+							`${issueKey} ${summary}`,
+						];
+
+						for (const line of description.concat(...refs)) {
+							const paragraph = document.createElement("p");
+							paragraph.textContent = line;
+
+							descriptionTextArea.append(paragraph);
+						}
+					}
+				} catch {
+					// do nothing
+				}
+			});
 		});
 	},
 });
