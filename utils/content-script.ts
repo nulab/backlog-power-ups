@@ -1,7 +1,7 @@
 export const defineMatches = (patterns: `/${string}`[]): string[] => {
-	return patterns.flatMap((pattern) => [
-		`https://*.backlog.jp${pattern}`,
-		`https://*.backlogtool.com${pattern}`,
-		`https://*.backlog.com${pattern}`,
-	]);
+	return patterns.flatMap((pattern) =>
+		["backlog.jp", "backlog.com", "backlogtool.com"].flatMap((domain) =>
+			["", "?*"].map((suffix) => `https://*.${domain}${pattern}${suffix}`),
+		),
+	);
 };
