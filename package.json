@@ -11,10 +11,12 @@
 	},
 	"dependencies": {
 		"clipboard": "2.0.4",
+		"htm": "^3.1.1",
 		"jquery": "3.3.1",
 		"pako": "^2.1.0",
 		"react": "^19.1.1",
 		"react-dom": "^19.1.1",
+		"vhtml": "^2.2.0",
 		"vue": "^3.5.18"
 	},
 	"devDependencies": {
@@ -24,6 +26,7 @@
 		"@types/pako": "^2.0.3",
 		"@types/react": "^19.1.9",
 		"@types/react-dom": "^19.1.7",
+		"@types/vhtml": "^2.2.9",
 		"@wxt-dev/auto-icons": "^1.0.2",
 		"@wxt-dev/i18n": "^0.2.4",
 		"@wxt-dev/module-react": "^1.1.3",

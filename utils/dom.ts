@@ -1,3 +1,6 @@
+import htm from "htm";
+import vhtml from "vhtml";
+
 type Listener = (el: HTMLElement) => void;
 
 const listenersMap: Map<
@@ -79,3 +82,34 @@ export const replaceTextNodes = (node: Node, text: string | string[]) => {
 
 export const raf = () =>
 	new Promise((resolve) => requestAnimationFrame(resolve));
+
+export const html = htm.bind(vhtml);
+
+export const getId = () => {
+	// @ts-expect-error
+	window.__powerUps_id ||= 0;
+
+	// @ts-expect-error
+	return `:_powerUps_${++window.__powerUps_id}_:`;
+};
+
+export const createButton = (
+	html: string | string[],
+	listeners: { [K in "click"]?: (ev: HTMLElementEventMap[K]) => void } = {},
+): HTMLButtonElement => {
+	const template = document.createElement("template");
+	template.innerHTML = Array.isArray(html) ? html[0] : html;
+
+	const buttonEl = template.content.querySelector("button");
+
+	if (!(buttonEl instanceof HTMLButtonElement)) {
+		throw new Error("invalid element");
+	}
+
+	Object.entries(listeners).forEach(([event, listener]) => {
+		// @ts-expect-error
+		buttonEl.addEventListener(event, listener);
+	});
+
+	return buttonEl;
+};
