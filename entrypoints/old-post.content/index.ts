@@ -1,85 +1,50 @@
-// @ts-nocheck
+import styles from "./index.module.css";
 
 export default defineContentScript({
-	matches: [
-		"https://*.backlog.jp/wiki/*/*",
-		"https://*.backlog.jp/alias/wiki/*",
-		"https://*.backlogtool.com/wiki/*/*",
-		"https://*.backlogtool.com/alias/wiki/*",
-		"https://*.backlog.com/wiki/*/*",
-		"https://*.backlog.com/alias/wiki/*",
-	],
+	matches: defineMatches(["/wiki/*", "/alias/wiki/*"]),
 	async main() {
-		const { PowerUps } = await import("@/utils/power-ups");
-		const showNotification = () => {
-			const xhr = new XMLHttpRequest();
-			xhr.open("GET", window.location.href, true);
-			xhr.send();
-			xhr.onreadystatechange = () => {
-				if (xhr.readyState === 4) {
-					// get now date from server
-					const serverDate = new Date(xhr.getResponseHeader("Date"));
-					const yyyy = serverDate.getFullYear();
-					const MM = ("0" + (serverDate.getMonth() + 1)).slice(-2);
-					const dd = ("0" + serverDate.getDate()).slice(-2);
-					const hh = ("0" + serverDate.getHours()).slice(-2);
-					const mm = ("0" + serverDate.getMinutes()).slice(-2);
-					const ss = ("0" + serverDate.getSeconds()).slice(-2);
-					const nowDate =
-						yyyy + "/" + MM + "/" + dd + " " + hh + ":" + mm + ":" + ss;
+		if (await isPluginDisabled("old-post")) {
+			return;
+		}
 
-					// from Backlog DOM
-					const userIconSet = document.querySelectorAll(
-						".user-history > .user-icon-set",
-					);
-					const lastElText = userIconSet[userIconSet.length - 1].querySelector(
-						".user-icon-set__text",
-					).innerHTML;
-					const lastUpDate =
-						PowerUps.getLang() == "ja"
-							? lastElText.match(
-									/(\d{4})(\/)(\d{2})(\/)(\d{2})(\s)(\d{2})(\:)(\d{2})(\:)(\d{2})/,
-								)[0]
-							: lastElText.match(
-									/(\w{3})(.)(\s)(\d{1,2})(\,)(\s)(\d{4})(\s)(\d{2})(\:)(\d{2})(\:)(\d{2})/,
-								)[0];
-					// calc diff
-					const msDiff =
-						new Date(nowDate).getTime() - new Date(lastUpDate).getTime();
-					const daysDiff = Math.floor(msDiff / (1000 * 60 * 60 * 24));
+		observeQuerySelector(".user-history", (el) => {
+			console.log("find element", el);
 
-					// notification element
-					if (daysDiff > 364) {
-						const notification = document.createElement("p");
-						// !!! PLEASE CHANGE ACCORDING TO YOUR STYLE GUIDE !!!
-						Object.assign(notification.style, {
-							backgroundColor: "#ffe79a",
-							color: "#533f03",
-							padding: "16px",
-						});
-						const message =
-							PowerUps.getLang() == "ja"
-								? "最終更新日から1年以上が経過しています。"
-								: "More than 1 year has passed since the last update date.";
-						notification.innerHTML = message;
+			const text =
+				el.querySelector(".user-icon-set:last-child .user-icon-set__text")
+					?.textContent || "";
+			const [dateInJapanese] =
+				/[0-9]{4}\/[0-9]{2}\/[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}/.exec(text) ||
+				[];
+			const [dateInEnglish] =
+				/[A-Za-z]{3}\. [0-9]{2}, [0-9]{4} [0-9]{2}:[0-9]{2}:[0-9]{2}/.exec(
+					text,
+				) || [];
+			const date = dateInJapanese || dateInEnglish;
 
-						// to Backlog UI
-						document
-							.getElementById("bodyLeft")
-							.insertBefore(
-								notification,
-								document.getElementById("mainTitle").nextSibling,
-							);
-					}
-				}
-			};
-		};
-
-		PowerUps.isEnabled("old-post", (enabled) => {
-			if (enabled) {
-				if (window.location.href.endsWith("/edit")) return false;
-				showNotification();
+			if (!date) {
+				return;
 			}
+
+			const diffMs = Date.now() - new Date(date).getTime();
+			const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+
+			if (diffDays < 365) {
+				return;
+			}
+
+			const messageHtml = html`
+                <p class=${styles.message}>
+                    ${i18n.t("old_post.alert")}
+                </p>
+            `;
+
+			document
+				.getElementById("mainTitle")
+				?.insertAdjacentHTML(
+					"afterend",
+					Array.isArray(messageHtml) ? messageHtml[0] : messageHtml,
+				);
 		});
 	},
 });

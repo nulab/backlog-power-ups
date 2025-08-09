@@ -35,3 +35,5 @@ jump_issue:
   prompt: Please enter the destination issue key or issue key number
   alert: Issue key format is invalid
   missing: Issue not found for the entered issue key
+old_post:
+  alert: More than 1 year has passed since the last update date.
