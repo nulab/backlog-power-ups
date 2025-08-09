@@ -60,6 +60,48 @@ export const observeQuerySelector = (
 	return () => listenersMap.delete(onAdd);
 };
 
+export const asyncQuerySelector = (
+	selector: string,
+	target = document.documentElement,
+) =>
+	new Promise<HTMLElement | null>((resolve) => {
+		const elements = nodeMatcher(selector, target);
+
+		for (const el of elements) {
+			resolve(el);
+			return;
+		}
+
+		const timer = setTimeout(() => {
+			observer.disconnect();
+			resolve(null);
+		}, 5000);
+
+		const observer = new MutationObserver((mutations) => {
+			for (const mutation of mutations) {
+				if (mutation.type === "childList") {
+					for (const node of mutation.addedNodes) {
+						for (const el of nodeMatcher(selector, node)) {
+							clearTimeout(timer);
+							resolve(el);
+							return;
+						}
+					}
+
+					for (const node of mutation.removedNodes) {
+						for (const el of nodeMatcher(selector, node)) {
+							clearTimeout(timer);
+							resolve(el);
+							return;
+						}
+					}
+				}
+			}
+		});
+
+		observer.observe(target, { childList: true, subtree: true });
+	});
+
 export const replaceTextNodes = (node: Node, text: string | string[]) => {
 	if (!(node instanceof HTMLElement)) {
 		return;
