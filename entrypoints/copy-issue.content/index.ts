@@ -68,11 +68,11 @@ export default defineContentScript({
 
 			observeQuerySelector("#AddIssueForm", async () => {
 				try {
-					// @ts-expect-error
 					const {
 						issueKey = "",
 						summary = "",
 						description,
+						// @ts-expect-error
 					} = JSON.parse(sessionStorage.getItem(SESSION_STORAGE_KEY));
 
 					const summaryInput = await asyncQuerySelector("#summaryInput");
