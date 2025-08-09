@@ -1,11 +1,7 @@
 export const getBacklogProjectKey = async () => {
-	const [, keyInTitle] = /\[([^\]]+)\]/.exec(document.title) || [];
-
-	if (keyInTitle) {
-		return keyInTitle;
-	}
-
-	const headerKey = await asyncQuerySelector(".header-icon-set__key");
+	const headerKey = await asyncQuerySelector(".header-icon-set__key", {
+		timeout: 0,
+	});
 	const [, keyInHeader] =
 		/\(([^)]+)\)/g.exec(headerKey?.textContent || "") || [];
 
@@ -15,6 +11,7 @@ export const getBacklogProjectKey = async () => {
 
 	const menuLink = await asyncQuerySelector(
 		'#projectNavList a[href^="/projects/"]',
+		{ timeout: 0 },
 	);
 	const [, keyInMenu] =
 		/\/([^/]+)\/?$/.exec(menuLink?.getAttribute("href") || "") || [];
@@ -23,5 +20,5 @@ export const getBacklogProjectKey = async () => {
 		return keyInMenu;
 	}
 
-	return keyInTitle;
+	return keyInMenu;
 };

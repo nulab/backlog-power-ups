@@ -31,3 +31,7 @@ copy_issue_keys_and_subjects:
 copy_wiki:
   prompt: 複製先のプロジェクトキーを入力してください。
   copy_to: 別のプロジェクトにコピー
+jump_issue:
+  prompt: 移動先の課題キーまたは課題キーの番号を入力してください。
+  alert: 課題キーのフォーマットが無効です。
+  missing: 入力されたキーの課題が見つかりません。

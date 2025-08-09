@@ -31,3 +31,7 @@ copy_issue_keys_and_subjects:
 copy_wiki:
   prompt: Please input destination project key
   copy_to: Copy to another project
+jump_issue:
+  prompt: Please enter the destination issue key or issue key number
+  alert: Issue key format is invalid
+  missing: Issue not found for the entered issue key

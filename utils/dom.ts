@@ -62,9 +62,12 @@ export const observeQuerySelector = (
 
 export const asyncQuerySelector = (
 	selector: string,
-	target = document.documentElement,
+	options: { target?: HTMLElement; timeout?: number } = {},
 ) =>
 	new Promise<HTMLElement | null>((resolve) => {
+		const target = options.target || document.documentElement;
+		const timeout = options.timeout ?? 5000;
+
 		const elements = nodeMatcher(selector, target);
 
 		for (const el of elements) {
@@ -75,7 +78,7 @@ export const asyncQuerySelector = (
 		const timer = setTimeout(() => {
 			observer.disconnect();
 			resolve(null);
-		}, 5000);
+		}, timeout);
 
 		const observer = new MutationObserver((mutations) => {
 			for (const mutation of mutations) {

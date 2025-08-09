@@ -1,81 +1,47 @@
-// @ts-nocheck
-
 export default defineContentScript({
-	matches: [
-		"https://*.backlog.jp/*",
-		"https://*.backlogtool.com/*",
-		"https://*.backlog.com/*",
-	],
+	matches: defineMatches(["/*"]),
+	allFrames: true,
 	async main() {
-		const { PowerUps } = await import("@/utils/power-ups");
-		const lang = PowerUps.getLang();
+		if (await isPluginDisabled("jump-issue")) {
+			return;
+		}
 
-		const RES =
-			lang == "ja"
-				? {
-						prompt: "移動先の課題キーまたは課題キーの番号を入力してください。",
-						alert: "課題キーのフォーマットが無効です。",
-						missing: "入力されたキーの課題が見つかりません。",
-					}
-				: {
-						prompt:
-							"Please enter the destination issue key or issue key number",
-						alert: "Issue key format is invalid",
-						missing: "Issue not found for the entered issue key",
-					};
+		const jumpIssue = async () => {
+			const projectKey = await getBacklogProjectKey();
 
-		function main(e) {
-			if (!window.Backlog || !window.Backlog.resource) {
+			const input = window.prompt(i18n.t("jump_issue.prompt")) || "";
+			const [number] = /^[0-9]+$/.exec(input) || [];
+			const [numberWithKey] = /[A-Z0-9_]+-[0-9]+/.exec(input) || [];
+			const issueKey =
+				numberWithKey?.toUpperCase() || `${projectKey}-${number}`;
+
+			if (
+				typeof issueKey !== "string" ||
+				!/^[A-Z0-9_]+-[0-9]+$/.test(issueKey)
+			) {
+				alert(i18n.t("jump_issue.alert"));
 				return;
 			}
 
-			const projectKey = window.Backlog.resource["project.key"];
+			const issueUrl = `${location.origin}/view/${issueKey}`;
 
-			if ((e.ctrlKey || e.metaKey) && e.key === "k") {
-				let issueNum;
-				while (true) {
-					issueNum = prompt(RES.prompt);
-					if (!issueNum) {
-						return;
-					}
-					issueNum = issueNum.replace(`${projectKey}-`, "");
-					if (!issueNum.match(/\d+/)) {
-						alert(RES.alert);
-						continue;
-					}
-					break;
-				}
-
-				const issueKey = `${projectKey}-${issueNum}`;
-				const issueUrl = `https://${location.hostname}/view/${issueKey}`;
-
-				fetch(issueUrl, {
-					method: "HEAD",
-					credentials: "include",
-				}).then((res) => {
-					if (!res.ok) {
-						alert(RES.missing);
-						return;
-					}
-					location.href = issueUrl;
-				});
-			}
-		}
-
-		function addHook() {
-			window.addEventListener("keydown", async (e) => {
-				main(e);
+			const res = await fetch(issueUrl, {
+				method: "HEAD",
+				credentials: "include",
 			});
-		}
 
-		PowerUps.isEnabled("jump-issue", (enabled) => {
-			if (enabled) {
-				PowerUps.injectScript(`
-              const RES = ${JSON.stringify(RES)};
-              ${main.toString()}
-              ${addHook.toString()}
-              addHook();
-            `);
+			await res.text();
+
+			if (res.ok) {
+				location.href = issueUrl;
+			} else {
+				alert(i18n.t("jump_issue.missing"));
+			}
+		};
+
+		window.addEventListener("keydown", (e) => {
+			if ((e.ctrlKey || e.metaKey) && e.key === "k") {
+				jumpIssue();
 			}
 		});
 	},
