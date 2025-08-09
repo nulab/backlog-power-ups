@@ -76,3 +76,6 @@ export const replaceTextNodes = (node: Node, text: string | string[]) => {
 		}
 	}
 };
+
+export const raf = () =>
+	new Promise((resolve) => requestAnimationFrame(resolve));

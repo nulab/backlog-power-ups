@@ -1,30 +1,53 @@
-// @ts-nocheck
-
 export default defineContentScript({
-	matches: [
-		"https://*.backlog.jp/view/*",
-		"https://*.backlogtool.com/view/*",
-		"https://*.backlog.com/view/*",
-	],
+	matches: defineMatches(["/view/*"]),
 	async main() {
-		const { default: $ } = await import("jquery");
-		const { PowerUps } = await import("@/utils/power-ups");
+		const handleClick: EventListenerOrEventListenerObject = async (e) => {
+			const resolution = document.querySelector(
+				"#resolutionLabel ~ * button[role='combobox']",
+			);
 
-		const setup = () => {
-			setTimeout(() => {
-				$("li.status-chosen__item--4").on("click", () => {
-					const script = document.createElement("script");
-					script.textContent = `ko.contextFor($("#resolutionLeft")[0]).$data.resolutionChosen.value(0)`;
-					document.body.appendChild(script);
-					script.remove();
-				});
-			}, 1000);
+			if (!(resolution instanceof HTMLElement)) {
+				return;
+			}
+
+			resolution.click();
+
+			await raf();
+
+			for (const el of document.querySelectorAll(
+				"#resolutionLabel ~ * li[role='option']",
+			)) {
+				if (!(el instanceof HTMLLIElement)) {
+					continue;
+				}
+
+				if (["Fixed", "処理済み"].includes(el.textContent)) {
+					el.click();
+					break;
+				}
+			}
+
+			await raf();
+
+			const status = document.querySelector(
+				"#statusLabel ~ * button[role='combobox']",
+			);
+
+			if (!(status instanceof HTMLElement)) {
+				return;
+			}
+
+			status.focus();
 		};
 
-		PowerUps.isEnabled("auto-resolution", (enabled: any) => {
-			if (enabled) {
-				setup();
-			}
-		});
+		observeQuerySelector(
+			"li.status-chosen__item--4",
+			(el) => {
+				el.addEventListener("click", handleClick);
+			},
+			(el) => {
+				el.removeEventListener("click", handleClick);
+			},
+		);
 	},
 });
