@@ -1,5 +1,5 @@
 export default defineContentScript({
-	matches: defineMatches(["/view/*", "/gantt/*"]),
+	matches: defineMatches(["/view/*", "/gantt/*", "/user/*"]),
 	allFrames: true,
 	async main() {
 		if (await isPluginDisabled("auto-resolution")) {
