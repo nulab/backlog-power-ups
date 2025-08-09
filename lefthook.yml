@@ -10,4 +10,4 @@ pre-commit:
       glob: package.json
       stage_fixed: true
       run: |-
-        npx sort-package-json {staged_files}
+        npx sort-package-json
