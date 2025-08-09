@@ -1,0 +1,13 @@
+pre-commit:
+  commands:
+    biome:
+      glob: "*.{js,ts,cjs,mjs,d.cts,d.mts,jsx,tsx,json,jsonc}"
+      stage_fixed: true
+      run: |-
+        npx biome format --write {staged_files}
+
+    sort-package-json:
+      glob: package.json
+      stage_fixed: true
+      run: |-
+        npx sort-package-json {staged_files}
