@@ -1,121 +1,82 @@
-// @ts-nocheck
-
 export default defineContentScript({
-	matches: [
-		"https://*.backlog.jp/wiki/*/*",
-		"https://*.backlog.jp/alias/wiki/*",
-		"https://*.backlogtool.com/wiki/*/*",
-		"https://*.backlogtool.com/alias/wiki/*",
-		"https://*.backlog.com/wiki/*/*",
-		"https://*.backlog.com/alias/wiki/*",
-	],
+	matches: defineMatches(["/wiki/*", "/alias/wiki/*"]),
 	async main() {
-		const { default: $ } = await import("jquery");
-		const { PowerUps } = await import("@/utils/power-ups");
-		const PATTERN_SHOW_WIKI = /^[/]wiki[/]([A-Z_0-9]+)[/]([^\/]+)$/;
-		const PATTERN_ALIAS = /^[/]alias[/]wiki[/](\d+)$/;
-		const PATTERN_CREATE_WIKI = /^[/]wiki[/]([A-Z_0-9]+)[/]([^\/]+)[/]create$/;
+		if (await isPluginDisabled("copy-wiki")) {
+			return;
+		}
 
-		const RES =
-			PowerUps.getLang() == "ja"
-				? {
-						prompt: "複製先のプロジェクトキーを入力してください。",
-						copyTo: "別のプロジェクトにコピー",
-					}
-				: {
-						prompt: "Please input destination project key",
-						copyTo: "Copy to another project",
-					};
-		const createPageView = () => {
-			const insertWikiContent = () => {
-				var json = sessionStorage.getItem("copy-wiki");
-				if (json) {
-					var data = JSON.parse(json);
-					$.ajax({
-						url: "/ViewWikiJson.action",
-						type: "GET",
-						data: {
-							projectKey: data.sourceProjectKey,
-							wikiId: data.sourcePageId,
-						},
-						cache: false,
-						timeout: 10000,
-						statusCode: {
-							"200": function (data) {
-								$(".comment-editor__textarea").val(data.content);
-							},
-						},
-						beforeSend: function (xhr) {
-							xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
-						},
-					});
-				}
-			};
-			setTimeout(() => {
-				insertWikiContent();
-			}, 1000);
-		};
+		const SESSION_STORAGE_KEY = "__powerUps_copy-wiki";
 
-		const getWikiPageNameFromTitle = () => {
-			return document.title.match(/^(\[.*?\])(.*)\| Wiki \| Backlog/)[2].trim();
-		};
+		const start = async () => {
+			const projectKey = window
+				.prompt(i18n.t("copy_wiki.prompt"))
+				?.toUpperCase();
 
-		const showPageView = () => {
-			const hideMenu = () => {
-				PowerUps.injectScript(
-					'jQuery(".wiki-page-tag-group--icon dropdown-menu a.icon-button").click();',
-				);
-			};
-
-			const clickMenuItemHandler = () => {
-				hideMenu();
-
-				const pageName = getWikiPageNameFromTitle();
-				const pageId = $('input[name="pageId"]').val();
-				const destProjectKey = prompt(RES["prompt"]);
-				if (destProjectKey) {
-					const script = `
-    var json = {sourceProjectKey: Backlog.resource['project.key'], sourcePageName: "${pageName}", sourcePageId: "${pageId}"};
-    sessionStorage.setItem("copy-wiki", JSON.stringify(json));
-    location.href = "/wiki/${destProjectKey}/${encodeURIComponent(pageName)}/create";
-                    `;
-					PowerUps.injectScript(script);
-				}
-			};
-
-			const setupMenuItem = () => {
-				const $menuItem = $('<li class="dropdown-menu__item" />').append(
-					$(
-						'<a class="dropdown-menu__link is_active" href="javascript:void(0)"></a>',
-					)
-						.text(RES["copyTo"])
-						.click(clickMenuItemHandler),
-				);
-				$(".wiki-page-tag-group--icon dropdown-menu ul.dropdown-menu").append(
-					$menuItem,
-				);
-			};
-			setupMenuItem();
-		};
-
-		const main = () => {
-			if (location.pathname.match(PATTERN_CREATE_WIKI)) {
-				setTimeout(() => {
-					createPageView();
-				}, 0);
-			} else if (
-				location.pathname.match(PATTERN_SHOW_WIKI) ||
-				location.pathname.match(PATTERN_ALIAS)
-			) {
-				setTimeout(() => {
-					showPageView();
-				}, 0);
+			if (!projectKey) {
+				return;
 			}
+
+			const pageIdInput = document.querySelector('input[name="pageId"]');
+			const pageId =
+				pageIdInput instanceof HTMLInputElement ? pageIdInput.value : null;
+			const title = await getWikiTitle().then((title) => title.join("/"));
+			const currentProjectKey = await getBacklogProjectKey();
+
+			sessionStorage.setItem(
+				SESSION_STORAGE_KEY,
+				JSON.stringify({
+					projectKey: currentProjectKey,
+					pageId,
+				}),
+			);
+
+			location.href = `/wiki/${projectKey}/${encodeURIComponent(title)}/create`;
 		};
 
-		PowerUps.isEnabled("copy-wiki", (enabled) => {
-			if (enabled) {
-				main();
+		observeQuerySelector(
+			".wiki-page-tag-group--icon dropdown-menu ul.dropdown-menu",
+			(el) => {
+				console.log(el);
+
+				const li = document.createElement("li");
+				li.classList.add("dropdown-menu__item");
+
+				const button = createButton(
+					html`<button class="dropdown-menu__link is_active">${i18n.t("copy_wiki.copy_to")}</button>`,
+					{
+						click: start,
+					},
+				);
+
+				li.appendChild(button);
+				el.appendChild(li);
+			},
+		);
+
+		observeQuerySelector("#page\\.content", async (el) => {
+			try {
+				// @ts-expect-error
+				const { projectKey, pageId } = JSON.parse(
+					sessionStorage.getItem(SESSION_STORAGE_KEY),
+				);
+
+				if (
+					typeof projectKey !== "string" ||
+					projectKey === "" ||
+					typeof pageId !== "string" ||
+					pageId === ""
+				) {
+					return;
+				}
+
+				if (el instanceof HTMLTextAreaElement && el.value === "") {
+					el.value = `hello: ${projectKey}`;
+					el.dispatchEvent(new Event("change", { bubbles: true }));
+				}
+			} catch {
+				// do nothing
+			} finally {
+				sessionStorage.removeItem(SESSION_STORAGE_KEY);
 			}
 		});
 	},

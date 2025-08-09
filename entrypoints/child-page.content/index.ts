@@ -10,17 +10,11 @@ export default defineContentScript({
 				return;
 			}
 
-			const mainTitle = await asyncQuerySelector("#mainTitle");
-			const items = Array.from(mainTitle?.children || [])
-				.filter((item) => item.classList.contains("breadcrumbs__item"))
-				.map((item) => {
-					const anchor = item.querySelector("a");
-					return anchor ? anchor.textContent : item.textContent;
-				});
+			const title = await getWikiTitle();
 
 			const projectKey = await getBacklogProjectKey();
 
-			el.href = `/wiki/${projectKey}/${encodeURIComponent(items.concat("").join("/"))}/create`;
+			el.href = `/wiki/${projectKey}/${encodeURIComponent(title.concat("").join("/"))}/create`;
 		});
 	},
 });
