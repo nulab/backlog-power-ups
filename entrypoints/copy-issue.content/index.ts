@@ -112,6 +112,8 @@ export default defineContentScript({
 					}
 				} catch {
 					// do nothing
+				} finally {
+					sessionStorage.removeItem(SESSION_STORAGE_KEY);
 				}
 			});
 		});
