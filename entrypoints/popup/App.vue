@@ -1,25 +1,25 @@
 <script setup lang="ts">
-import {ref, computed} from 'vue'
-import {PowerUps, PowerUpSettings} from '@/utils/power-ups'
+import { ref, computed } from "vue";
+import { PowerUps, PowerUpSettings } from "@/utils/power-ups";
 
 const settings = ref<any>();
 
 const isChanged = computed(() => {
-  return settings.value?.isChanged();
-})
+	return settings.value?.isChanged();
+});
 
 const apply = () => {
-  settings.value?.store();
-  PowerUps.reloadCurrentTab();
-  close()
-}
+	settings.value?.store();
+	PowerUps.reloadCurrentTab();
+	close();
+};
 
 onMounted(() => {
-  // @ts-expect-error
-  PowerUpSettings.load((v) => {
-    settings.value = v;
-  })
-})
+	// @ts-expect-error
+	PowerUpSettings.load((v) => {
+		settings.value = v;
+	});
+});
 </script>
 
 <template>
