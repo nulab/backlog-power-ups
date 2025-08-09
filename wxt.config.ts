@@ -8,8 +8,8 @@ export default defineConfig({
 		permissions: ["storage"],
 	},
 	modules: [
+		"@wxt-dev/module-react",
 		"@wxt-dev/i18n/module",
 		"@wxt-dev/auto-icons",
-		"@wxt-dev/module-vue",
 	],
 });
