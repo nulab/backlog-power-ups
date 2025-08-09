@@ -1,0 +1,134 @@
+* {
+	padding: 0;
+	margin: 0;
+	outline: 0;
+	box-sizing: border-box;
+}
+
+body {
+	font:
+		14px / 22px "Open Sans",
+		Arial,
+		sans-serif;
+	width: 500px;
+	background-color: #f0f0f0;
+}
+
+#app {
+	padding: 15px;
+}
+
+header {
+	padding: 10px 15px;
+	background-color: #4caf93;
+	color: 4caf93;
+}
+
+header h1 {
+	font-size: 18px;
+	color: #fff;
+}
+
+section {
+	padding: 5px 15px 10px 15px;
+}
+
+.plugins {
+	padding-left: 20px;
+}
+
+input[type="checkbox"] {
+	cursor: pointer;
+	display: none;
+}
+
+label {
+	cursor: pointer;
+}
+
+label span {
+	position: relative;
+	padding-left: 28px;
+}
+
+label span::before,
+label span::after {
+	transition: all 0.075s ease-in-out;
+}
+
+label span::before {
+	content: "";
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 16px;
+	height: 16px;
+	border: solid 2px #bbb;
+	background-color: #fff;
+	border-radius: 2px;
+	cursor: pointer;
+}
+
+label span::after {
+	content: "";
+	position: absolute;
+	top: 3px;
+	left: 4px;
+	width: 10px;
+	height: 6px;
+	-ms-transform: rotate(-45deg) scale(0);
+	transform: rotate(-45deg) scale(0);
+	border-bottom: 3px solid #fff;
+	border-left: 3px solid #fff;
+}
+
+input[type="checkbox"]:checked + span::before {
+	border-color: #00836b;
+	background-color: #00836b;
+}
+
+input[type="checkbox"]:checked + span::after {
+	-ms-transform: rotate(-45deg) scale(1);
+	transform: rotate(-45deg) scale(1);
+}
+
+.buttons {
+	text-align: center;
+}
+
+button[type="submit"] {
+	font-size: 15px;
+	padding: 3px 30px;
+	color: #fff;
+	background-color: #4caf93;
+	border: solid 2px #4caf93;
+	border-radius: 4px;
+	font-weight: 700;
+	transition-timing-function: ease-in-out;
+	transition-duration: 0.15s;
+	transition-property: background-color, border, fill, color, opacity;
+	cursor: pointer;
+}
+
+button[type="submit"]:hover {
+	color: #4caf93;
+	background-color: #fff;
+	border: solid 2px #4caf93;
+}
+
+button[type="submit"]:disabled {
+	border: solid 2px #aaa;
+	background-color: #aaa;
+	color: #eee;
+	cursor: default;
+}
+
+footer {
+	padding-top: 10px;
+	padding-bottom: 5px;
+	text-align: center;
+}
+
+footer small {
+	font-size: 10px;
+}
