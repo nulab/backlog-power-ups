@@ -28,3 +28,6 @@ copy_issue:
   refs: Refs
 copy_issue_keys_and_subjects:
   tooltip: Bulk copy key and subject of issues
+copy_wiki:
+  prompt: Please input destination project key
+  copy_to: Copy to another project
