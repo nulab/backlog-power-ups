@@ -1,6 +1,10 @@
 export default defineContentScript({
 	matches: defineMatches(["/view/*"]),
 	async main() {
+		if (await isPluginDisabled("auto-resolution")) {
+			return;
+		}
+
 		const handleClick: EventListenerOrEventListenerObject = async (e) => {
 			const resolution = document.querySelector(
 				"#resolutionLabel ~ * button[role='combobox']",
