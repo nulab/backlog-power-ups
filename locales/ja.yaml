@@ -26,3 +26,5 @@ copy_issue:
   prompt: 複製先のプロジェクトキーを入力してください。
   copy_to: 別のプロジェクトに複製
   refs: 関連課題
+copy_issue_keys_and_subjects:
+  tooltip: 課題キーと件名を一括コピー
