@@ -1,7 +1,3 @@
-import { isPluginDisabled } from "@/utils/storage";
-import { observeQuerySelector, replaceTextNodes } from "@/utils/dom.ts";
-import { defineMatches } from "@/utils/content-script.ts";
-
 export default defineContentScript({
 	matches: defineMatches(["/dashboard", "/projects/*", "/user/*"]),
 	async main() {
