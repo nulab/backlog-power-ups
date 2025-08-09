@@ -45,6 +45,10 @@ body {
     padding-block-start: 20px;
 }
 
+.form__fallback {
+    height: 320px;
+}
+
 .form__section {
     display: grid;
     gap: 8px;
