@@ -1,13 +1,4 @@
-:root {
-    --color-white: #fff;
-    --color-text: #333;
-    --color-text-weak: #767676;
-    --color-background: #f0f0f0;
-    --color-primary: #00836b;
-    --color-accent: #2c9a7a;
-    --color-disabled: #e5e5e5;
-    --z-floating: 10;
-}
+@import '@/assets/props.css';
 
 *, *:before, *:after {
     padding: 0;
@@ -18,8 +9,8 @@
 body {
     font: 14px / 1.5 sans-serif;
     width: 500px;
-    background-color: var(--color-background);
-    color: var(--color-text);
+    background-color: var(--powerups-color-background);
+    color: var(--powerups-color-text);
 }
 
 /* === Global Header === */
@@ -27,10 +18,10 @@ body {
     position: sticky;
     top: 0;
     width: 100%;
-    z-index: var(--z-floating);
+    z-index: var(--powerups-z-floating);
     padding: 8px 16px;
-    background-color: var(--color-accent);
-    color: var(--color-white);
+    background-color: var(--powerups-color-accent);
+    color: var(--powerups-color-white);
 }
 
 .header__title {
@@ -64,8 +55,8 @@ body {
     position: sticky;
     bottom: 0;
     width: 100%;
-    z-index: var(--z-floating);
-    background: var(--color-white);
+    z-index: var(--powerups-z-floating);
+    background: var(--powerups-color-white);
     padding: 8px 24px;
 }
 
@@ -75,23 +66,23 @@ body {
     width: 100%;
     height: 32px;
     padding-inline: 16px;
-    background: var(--color-accent);
-    border: 2px solid var(--color-accent);
+    background: var(--powerups-color-accent);
+    border: 2px solid var(--powerups-color-accent);
     border-radius: 4px;
     font-size: 14px;
     font-weight: bold;
-    color: var(--color-white);
+    color: var(--powerups-color-white);
     cursor: pointer;
 
     &:hover {
-        background-color: var(--color-white);
-        color: var(--color-accent);
+        background-color: var(--powerups-color-white);
+        color: var(--powerups-color-accent);
     }
 
     &:disabled {
-        background: var(--color-disabled);
-        border-color: var(--color-disabled);
-        color: var(--color-text-weak);
+        background: var(--powerups-color-disabled);
+        border-color: var(--powerups-color-disabled);
+        color: var(--powerups-color-text-weak);
         cursor: not-allowed;
     }
 }
@@ -118,18 +109,18 @@ body {
     height: 16px;
     appearance: none;
     border: solid 2px #bbb;
-    background-color: var(--color-white);
+    background-color: var(--powerups-color-white);
     border-radius: 2px;
     cursor: pointer;
     outline: 0;
 
     &:checked {
         border: 0;
-        background-color: var(--color-primary);
+        background-color: var(--powerups-color-primary);
     }
 
     &:checked:focus {
-        box-shadow: 0 0 4px var(--color-primary);
+        box-shadow: 0 0 4px var(--powerups-color-primary);
     }
 
     &:checked::before {
@@ -140,17 +131,17 @@ body {
         display: block;
         width: 12px;
         height: 8px;
-        border-bottom: 3px solid var(--color-white);
-        border-left: 3px solid var(--color-white);
+        border-bottom: 3px solid var(--powerups-color-white);
+        border-left: 3px solid var(--powerups-color-white);
         transform: translate(50%, 50%) rotate(-45deg);
     }
 }
 
 .field__label:hover ~ .field__checkbox,
 .field__checkbox:focus {
-    border-color: var(--color-primary);
+    border-color: var(--powerups-color-primary);
 
     &:checked {
-        box-shadow: 0 0 4px var(--color-primary);
+        box-shadow: 0 0 4px var(--powerups-color-primary);
     }
 }

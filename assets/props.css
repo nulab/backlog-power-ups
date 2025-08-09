@@ -1,0 +1,10 @@
+:root {
+    --powerups-color-white: #fff;
+    --powerups-color-text: #333;
+    --powerups-color-text-weak: #767676;
+    --powerups-color-background: #f0f0f0;
+    --powerups-color-primary: #00836b;
+    --powerups-color-accent: #2c9a7a;
+    --powerups-color-disabled: #e5e5e5;
+    --powerups-z-floating: 10;
+}
