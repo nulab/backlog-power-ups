@@ -1,0 +1,5 @@
+.hr {
+    margin-block: 2em;
+    border: 0;
+    border-bottom: 1px solid var(--borderColorDefault);
+}

@@ -1,46 +1,21 @@
-// @ts-nocheck
+import styles from "./index.module.css";
 
 export default defineContentScript({
-	matches: [
-		"https://*.backlog.jp/wiki/*/*",
-		"https://*.backlog.jp/alias/wiki/*",
-		"https://*.backlogtool.com/wiki/*/*",
-		"https://*.backlogtool.com/alias/wiki/*",
-		"https://*.backlog.com/wiki/*/*",
-		"https://*.backlog.com/alias/wiki/*",
-	],
+	matches: defineMatches(["/wiki/*", "/alias/wiki/*"]),
+	allFrames: true,
 	async main() {
-		const { PowerUps } = await import("@/utils/power-ups");
-		const PATTERN_SHOW_WIKI = /^[/]wiki[/]([A-Z_0-9]+)[/]([^\/]+)$/;
-		const PATTERN_ALIAS = /^[/]alias[/]wiki[/](\d+)$/;
-		const PATTERN_HR = /([-]{3,}|[_]{3,})([<]br[>])?$/gm;
+		if (await isPluginDisabled("hr")) {
+			return;
+		}
 
-		const replace = () => {
-			document.querySelectorAll("#loom p").forEach((elem) => {
-				const innerHTML = elem.innerHTML;
-				if (innerHTML.match(PATTERN_HR)) {
-					elem.innerHTML = "<hr>";
-				}
-			});
-		};
-
-		const main = () => {
-			const isMarkdown = document.querySelector(".markdown-body")
-				? true
-				: false;
-			if (isMarkdown) {
+		observeQuerySelector(".wiki-content p", (el) => {
+			if (document.querySelector(".markdown-body")) {
 				return;
-			} else if (
-				location.pathname.match(PATTERN_SHOW_WIKI) ||
-				location.pathname.match(PATTERN_ALIAS)
-			) {
-				replace();
 			}
-		};
 
-		PowerUps.isEnabled("hr", (enabled) => {
-			if (enabled) {
-				main();
+			if (el.textContent.trim() === "---" || el.textContent.trim() === "___") {
+				const hrHtml = html`<hr class=${styles.hr} />`;
+				el.innerHTML = Array.isArray(hrHtml) ? hrHtml[0] : hrHtml;
 			}
 		});
 	},
