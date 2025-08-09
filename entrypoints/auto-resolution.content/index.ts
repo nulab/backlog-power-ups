@@ -2,8 +2,6 @@ export default defineContentScript({
 	matches: defineMatches(["/view/*", "/gantt/*"]),
 	allFrames: true,
 	async main() {
-		console.log("running...");
-
 		if (await isPluginDisabled("auto-resolution")) {
 			return;
 		}
