@@ -64,7 +64,7 @@ export default defineContentScript({
 				</div>,
 			);
 
-			el.replaceWith(rootEl);
+			el.insertAdjacentElement("beforebegin", rootEl);
 		});
 	},
 });
