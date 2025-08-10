@@ -1,0 +1,20 @@
+export const childPage = definePowerUpsPlugin({
+	name: "popup.child_page",
+	group: "wiki",
+	defaultEnabled: true,
+	matches: ["/wiki/**", "/alias/wiki/*"],
+	async main({ observeQuerySelector }) {
+		observeQuerySelector('a[href$="/create"]', async (el) => {
+			console.log(el);
+
+			if (!(el instanceof HTMLAnchorElement)) {
+				return;
+			}
+
+			const title = getWikiTitle();
+			const projectKey = getBacklogProjectKey();
+
+			el.href = `/wiki/${projectKey}/${encodeURIComponent(title.concat("").join("/"))}/create`;
+		});
+	},
+});

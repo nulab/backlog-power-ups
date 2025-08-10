@@ -1,11 +1,11 @@
-import { DEFAULT_PLUGINS, type PluginId } from "@/utils/plugins.ts";
+import { DEFAULT_PLUGINS } from "@/helpers/plugin/list";
+import type { PluginId } from "@/helpers/plugin/types";
 
-export const enabledPlugins = storage.defineItem<PluginId[]>(
-	"local:enabledPlugins",
-	{
-		fallback: DEFAULT_PLUGINS,
-	},
-);
+const enabledPlugins = storage.defineItem<PluginId[]>("local:enabledPlugins", {
+	fallback: DEFAULT_PLUGINS,
+});
+
+export const getEnabledPlugins = () => enabledPlugins.getValue();
 
 export const isPluginEnabled = async (pluginId: PluginId): Promise<boolean> => {
 	const enabledPluginIds = await enabledPlugins.getValue();

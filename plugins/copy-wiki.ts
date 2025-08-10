@@ -1,10 +1,9 @@
-export default defineContentScript({
-	matches: defineMatches(["/wiki/*", "/alias/wiki/*"]),
-	async main() {
-		if (await isPluginDisabled("copy-wiki")) {
-			return;
-		}
-
+export const copyWiki = definePowerUpsPlugin({
+	name: "popup.copy_wiki",
+	group: "wiki",
+	defaultEnabled: true,
+	matches: ["/wiki/**", "/alias/wiki/*"],
+	async main({ observeQuerySelector }) {
 		const SESSION_STORAGE_KEY = "__powerUps_copy-wiki";
 
 		const start = async () => {
@@ -19,8 +18,8 @@ export default defineContentScript({
 			const pageIdInput = document.querySelector('input[name="pageId"]');
 			const pageId =
 				pageIdInput instanceof HTMLInputElement ? pageIdInput.value : null;
-			const title = await getWikiTitle().then((title) => title.join("/"));
-			const currentProjectKey = await getBacklogProjectKey();
+			const title = getWikiTitle().join("/");
+			const currentProjectKey = getBacklogProjectKey();
 
 			sessionStorage.setItem(
 				SESSION_STORAGE_KEY,
@@ -55,25 +54,36 @@ export default defineContentScript({
 
 		observeQuerySelector("#page\\.content", async (el) => {
 			try {
-				// @ts-expect-error
 				const { projectKey, pageId } = JSON.parse(
+					// @ts-expect-error
 					sessionStorage.getItem(SESSION_STORAGE_KEY),
 				);
 
 				if (
 					typeof projectKey !== "string" ||
-					projectKey === "" ||
 					typeof pageId !== "string" ||
+					projectKey === "" ||
 					pageId === ""
 				) {
 					return;
 				}
 
 				if (el instanceof HTMLTextAreaElement && el.value === "") {
-					el.value = `hello: ${projectKey}`;
+					const res = await fetch(
+						`/ViewWikiJson.action?projectKey=${encodeURIComponent(projectKey)}&wikiId=${encodeURIComponent(pageId)}`,
+						{
+							headers: {
+								"x-requested-with": "XMLHttpRequest",
+							},
+						},
+					);
+					const { content } = await res.json();
+					el.value = content;
+
 					el.dispatchEvent(new Event("change", { bubbles: true }));
 				}
-			} catch {
+			} catch (err) {
+				console.warn(err);
 				// do nothing
 			} finally {
 				sessionStorage.removeItem(SESSION_STORAGE_KEY);

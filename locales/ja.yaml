@@ -4,7 +4,6 @@ app:
 popup:
   apply_button: 適用
   issue: 課題
-  copy_issue: 別のプロジェクトに課題を複製
   auto_resolution: 状態の完了時、自動的に完了理由を対応済みにする
   extend_desc: 課題追加/編集画面の詳細の入力欄を広げる
   total_time: 検索結果の予定時間計と実績時間計を表示する
@@ -20,7 +19,6 @@ popup:
   user_switcher: 個人のガントチャートにユーザー切り替えを表示する
   absolute_date: 絶対時間で時間を表示する
   copy_issue_keys_and_subjects: 課題一覧で課題キーと件名を一括コピーする
-  watch_list: ウォッチリストに担当者と期限日を表示する
   jump_issue: Ctrl(Cmd)+Kで課題キーを入力して、その課題を開く
 copy_issue:
   prompt: 複製先のプロジェクトキーを入力してください。

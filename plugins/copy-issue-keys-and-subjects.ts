@@ -1,10 +1,9 @@
-export default defineContentScript({
-	matches: defineMatches(["/find/*"]),
-	async main() {
-		if (await isPluginDisabled("copy-issue-keys-and-subjects")) {
-			return;
-		}
-
+export const copyIssueKeysAndSubjects = definePowerUpsPlugin({
+	name: "popup.copy_issue_keys_and_subjects",
+	group: "issue",
+	defaultEnabled: true,
+	matches: ["/dashboard", "/find/*"],
+	async main({ observeQuerySelector, asyncQuerySelector }) {
 		observeQuerySelector("#my-issues-content", (el) => {
 			const handleClick = async () => {
 				const expand = document.querySelector(
@@ -43,10 +42,10 @@ export default defineContentScript({
                         class="icon-button icon-button--default -with-text -responsive-label | simptip-position-top simptip-movable simptip-smooth"
                         data-tooltip=${i18n.t("copy_issue_keys_and_subjects.tooltip")}
                     >
-                        <span class="_assistive-text">Copy All</span>
                         <svg role="image" class="icon -medium">
                             <use xlink:href="/images/svg/sprite.symbol.svg#icon_copy"></use>
                         </svg>
+                        <span class="_assistive-text">Copy All</span>
                     </button>
                 `,
 				{

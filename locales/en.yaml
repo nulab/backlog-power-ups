@@ -4,7 +4,6 @@ app:
 popup:
   apply_button: Apply
   issue: Issue
-  copy_issue: Copy issue to other project
   auto_resolution: When Changing status of issue to completed, automatically set the completion reason to fixed
   extend_desc: Extend description of issue on Add/Edit Issue
   total_time: Show total estimated and actual hours on search result of issues
@@ -20,7 +19,6 @@ popup:
   user_switcher: Show user switcher on personal Gantt
   absolute_date: Show absolute date
   copy_issue_keys_and_subjects: Copy issue keys and subjects on issue list
-  watch_list: Show assignee and due date on watch list
   jump_issue: Press Ctrl(Cmd)+K to enter the issue key and open to it
 copy_issue:
   prompt: Please input destination project key

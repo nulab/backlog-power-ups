@@ -1,6 +1,6 @@
 import { useTransition } from "react";
+import { PLUGINS_BY_GROUP } from "@/helpers/plugin/list";
 import { reloadActiveTab } from "@/utils/browser-tab.ts";
-import { PLUGINS_BY_GROUP } from "@/utils/plugins.ts";
 import { usePlugins } from "../hooks/usePlugins.ts";
 
 export const Form: React.FC = () => {

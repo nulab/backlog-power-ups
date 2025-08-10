@@ -1,13 +1,11 @@
 import styles from "./index.module.css";
 
-export default defineContentScript({
-	matches: defineMatches(["/wiki/*", "/alias/wiki/*"]),
-	allFrames: true,
-	async main() {
-		if (await isPluginDisabled("hr")) {
-			return;
-		}
-
+export const hr = definePowerUpsPlugin({
+	name: "popup.hr",
+	group: "wiki",
+	defaultEnabled: true,
+	matches: ["/wiki/**", "/alias/wiki/*"],
+	async main({ observeQuerySelector }) {
 		observeQuerySelector(".wiki-content p", (el) => {
 			if (document.querySelector(".markdown-body")) {
 				return;

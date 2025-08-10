@@ -1,16 +1,14 @@
-export default defineContentScript({
-	matches: defineMatches(["/view/*", "/gantt/*"]),
-	allFrames: true,
-	async main() {
-		if (await isPluginDisabled("auto-resolution")) {
-			return;
-		}
-
-		const handleClick: EventListenerOrEventListenerObject = async (_e) => {
+export const autoResolution = definePowerUpsPlugin({
+	name: "popup.auto_resolution",
+	group: "issue",
+	defaultEnabled: true,
+	matches: ["/view/**", "/gantt/**", "/user/**"],
+	main({ observeQuerySelector }) {
+		const handleClick = async () => {
 			await raf();
 
 			const resolution = document.querySelector(
-				"#resolutionLabel ~ * button[role='combobox']",
+				":where(#resolutionLabel ~ * button[role='combobox'], button[role='combobox'][aria-labelledby='resolutionLabel'])",
 			);
 
 			if (!(resolution instanceof HTMLElement)) {
@@ -23,13 +21,13 @@ export default defineContentScript({
 
 			if (
 				document.querySelector(
-					"#resolutionLabel ~ * li[role='option'][aria-selected='true']",
+					":where(#resolutionLabel, button[role='combobox'][aria-labelledby='resolutionLabel']) ~ * li[role='option'][aria-selected='true']",
 				)
 			) {
 				resolution.click();
 			} else {
 				for (const el of document.querySelectorAll(
-					"#resolutionLabel ~ * li[role='option']",
+					":where(#resolutionLabel, button[role='combobox'][aria-labelledby='resolutionLabel']) ~ * li[role='option']",
 				)) {
 					if (!(el instanceof HTMLLIElement)) {
 						continue;
@@ -55,14 +53,12 @@ export default defineContentScript({
 			status.focus();
 		};
 
-		observeQuerySelector(
-			"li.status-chosen__item--4",
-			(el) => {
-				el.addEventListener("click", handleClick);
-			},
-			(el) => {
+		observeQuerySelector("li.status-chosen__item--4", (el) => {
+			el.addEventListener("click", handleClick);
+
+			return () => {
 				el.removeEventListener("click", handleClick);
-			},
-		);
+			};
+		});
 	},
 });

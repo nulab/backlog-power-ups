@@ -1,12 +1,11 @@
 import styles from "./index.module.css";
 
-export default defineContentScript({
-	matches: defineMatches(["/board/*"]),
-	async main() {
-		if (await isPluginDisabled("board-oneline")) {
-			return;
-		}
-
+export const boardOneline = definePowerUpsPlugin({
+	name: "popup.board_oneline",
+	group: "board",
+	defaultEnabled: true,
+	matches: ["/board/*"],
+	async main({ observeQuerySelector }) {
 		const buttonHtml = html`<button class=${styles.button}>⊟</button>`;
 
 		observeQuerySelector(".title-group", (el) => {

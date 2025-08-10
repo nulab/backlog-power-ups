@@ -1,12 +1,10 @@
 import styles from "./index.module.css";
 
-export default defineContentScript({
-	matches: defineMatches(["/wiki/*", "/alias/wiki/*"]),
-	async main() {
-		if (await isPluginDisabled("old-post")) {
-			return;
-		}
-
+export const oldPost = definePowerUpsPlugin({
+	name: "popup.old_post",
+	group: "wiki",
+	matches: ["/wiki/**", "/alias/wiki/*"],
+	async main({ observeQuerySelector }) {
 		observeQuerySelector(".user-history", (el) => {
 			console.log("find element", el);
 

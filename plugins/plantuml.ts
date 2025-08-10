@@ -1,13 +1,10 @@
 import plantumlEncoder from "plantuml-encoder";
 
-export default defineContentScript({
-	matches: defineMatches(["/wiki/*", "/alias/wiki/*"]),
-	allFrames: true,
-	async main() {
-		if (await isPluginDisabled("plantuml")) {
-			return;
-		}
-
+export const plantuml = definePowerUpsPlugin({
+	name: "popup.plantuml",
+	group: "wiki",
+	matches: ["/wiki/**", "/alias/wiki/*"],
+	async main({ observeQuerySelector }) {
 		observeQuerySelector(".loom_code", (el) => {
 			const sourceCode = el.textContent.trim();
 

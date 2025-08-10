@@ -1,10 +1,9 @@
-export default defineContentScript({
-	matches: defineMatches(["/*"]),
-	async main() {
-		if (await isPluginDisabled("jump-issue")) {
-			return;
-		}
-
+export const jumpIssue = definePowerUpsPlugin({
+	name: "popup.jump_issue",
+	group: "issue",
+	defaultEnabled: true,
+	matches: ["/**"],
+	async main({ addEventListener }) {
 		const jumpIssue = async () => {
 			const projectKey = await getBacklogProjectKey();
 
@@ -38,7 +37,7 @@ export default defineContentScript({
 			}
 		};
 
-		window.addEventListener("keydown", (e) => {
+		addEventListener(window, "keydown", (e) => {
 			if ((e.ctrlKey || e.metaKey) && e.key === "k") {
 				jumpIssue();
 			}

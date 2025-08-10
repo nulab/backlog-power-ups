@@ -1,12 +1,10 @@
 import styles from "./index.module.css";
 
-export default defineContentScript({
-	matches: defineMatches(["/find/*"]),
-	async main() {
-		if (await isPluginDisabled("total-time")) {
-			return;
-		}
-
+export const totalTime = definePowerUpsPlugin({
+	name: "popup.total_time",
+	group: "issue",
+	matches: ["/find/**"],
+	async main({ observeQuerySelector }) {
 		observeQuerySelector("#issues-table tbody tr", (el) => {
 			const issueTable = el.closest("#issues-table");
 
@@ -47,6 +45,10 @@ export default defineContentScript({
 		});
 
 		observeQuerySelector("#container", (el) => {
+			if (document.getElementsByClassName(styles.totalTime).length > 0) {
+				return;
+			}
+
 			el.insertAdjacentHTML(
 				"beforeend",
 				html`

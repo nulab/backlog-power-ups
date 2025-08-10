@@ -2,13 +2,12 @@ import { createRoot } from "react-dom/client";
 import { UserCombobox, type UserComboboxUser } from "@/components/UserCombobox";
 import styles from "./index.module.css";
 
-export default defineContentScript({
-	matches: defineMatches(["/user/*"]),
-	async main() {
-		if (await isPluginDisabled("user-switcher")) {
-			return;
-		}
-
+export const userSwitcher = definePowerUpsPlugin({
+	name: "popup.user_switcher",
+	group: "general",
+	defaultEnabled: true,
+	matches: ["/user/*"],
+	async main({ observeQuerySelector }) {
 		const getUsers = async () => {
 			const res = await fetch("/users");
 			const userHtml = await res.text();

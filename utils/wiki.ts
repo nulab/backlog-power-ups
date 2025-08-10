@@ -1,5 +1,5 @@
-export const getWikiTitle = async (): Promise<string[]> => {
-	const mainTitle = await asyncQuerySelector("#mainTitle");
+export const getWikiTitle = (): string[] => {
+	const mainTitle = document.querySelector("#mainTitle");
 
 	return Array.from(mainTitle?.children || [])
 		.filter((item) => item.classList.contains("breadcrumbs__item"))

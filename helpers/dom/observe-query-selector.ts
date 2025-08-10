@@ -1,7 +1,7 @@
 import { nodeMatcher } from "./node-matcher.ts";
 import type { InvalidateFunction } from "./types.ts";
 
-type Listener = (el: HTMLElement) => InvalidateFunction | undefined;
+type Listener = (el: HTMLElement) => InvalidateFunction | void | Promise<void>;
 
 const handlersMap: Map<
 	Listener,
