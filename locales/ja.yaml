@@ -5,6 +5,7 @@ group:
   issue: 課題
   board: ボード
   wiki: Wiki
+  document: ドキュメント
   general: 一般
 popup:
   apply_button: 適用
@@ -23,8 +24,12 @@ copyWiki:
   name: 別のプロジェクトにWikiのページをコピー
   prompt: 複製先のプロジェクトキーを入力してください。
   copy_to: 別のプロジェクトにコピー
+zenMode:
+  name: ドキュメントで集中モード（他のUIを隠す）を切り替える
 extendDesc:
   name: 課題追加/編集画面の詳細の入力欄を広げる
+hideDocumentToolbar:
+  name: ドキュメントの編集中にツールバーを隠す
 hr:
   name: Backlog記法で水平線を表示("---" もしくは "___")
 jumpIssue:

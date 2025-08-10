@@ -2,4 +2,4 @@ import type * as pluginModules from "@/plugins";
 
 export type PluginId = keyof typeof pluginModules;
 
-export type PluginGroupId = "issue" | "board" | "wiki" | "general";
+export type PluginGroupId = "issue" | "board" | "wiki" | "general" | "document";

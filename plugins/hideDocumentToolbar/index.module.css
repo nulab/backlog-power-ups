@@ -1,0 +1,7 @@
+:global(.main-container):has(.hideToolbar) {
+    --toolbarHeight: 0px;
+
+    & :global(.toolbar-container) {
+        display: none;
+    }
+}

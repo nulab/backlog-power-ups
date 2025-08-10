@@ -5,6 +5,7 @@ group:
   issue: Issue
   board: Board
   wiki: Wiki
+  document: Document
   general: General
 
 popup:
@@ -25,8 +26,12 @@ copyWiki:
   name: Copy wiki page to other project
   prompt: Please input destination project key
   copy_to: Copy to another project
+zenMode:
+  name: Zen Mode (hide other UI) in Document
 extendDesc:
   name: Extend description of issue on Add/Edit Issue
+hideDocumentToolbar:
+  name: Hide toolbar while editing document
 hr:
   name: Show horizontal rule with Backlog syntax("---" or "___")
 jumpIssue:
