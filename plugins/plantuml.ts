@@ -15,7 +15,7 @@ export const plantuml = definePowerUpsPlugin({
 				const plantumlUrl = `https://www.plantuml.com/plantuml/png/${data}`;
 				const plantumlHtml = html`
                     <p>
-                        <img src=${plantumlUrl} />
+                        <img src=${plantumlUrl} alt="PlantUML Preview" />
                     </p>
                 `;
 

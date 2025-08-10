@@ -41,7 +41,7 @@ export const copyIssueKeysAndSubjects = definePowerUpsPlugin({
                         class="icon-button icon-button--default -with-text -responsive-label | simptip-position-top simptip-movable simptip-smooth"
                         data-tooltip=${i18n.t("copyIssueKeysAndSubjects.tooltip")}
                     >
-                        <svg role="image" class="icon -medium">
+                        <svg class="icon -medium">
                             <use xlink:href="/images/svg/sprite.symbol.svg#icon_copy"></use>
                         </svg>
                         <span class="_assistive-text">Copy All</span>
