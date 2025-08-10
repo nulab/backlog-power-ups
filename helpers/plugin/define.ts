@@ -1,4 +1,3 @@
-import type { GeneratedI18nStructure } from "#i18n";
 import {
 	createPowerUpsPluginContext,
 	type PowerUpsPluginContext,
@@ -7,7 +6,6 @@ import type { PluginStates } from "@/helpers/plugin-manager/storage.ts";
 import type { PluginGroupId } from "./types";
 
 type DefinePowerUpsPluginDefinition = {
-	name: keyof GeneratedI18nStructure;
 	group: PluginGroupId;
 	defaultEnabled?: boolean;
 	matches: string[];

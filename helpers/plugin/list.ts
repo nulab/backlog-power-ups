@@ -4,6 +4,7 @@ import * as pluginModules from "@/plugins";
 
 type Plugin = DefinePowerUpsReturn & {
 	pluginId: PluginId;
+	name: string;
 };
 
 type PluginCategory = {
@@ -18,7 +19,7 @@ const plugins = Object.entries(pluginModules).map(
 		({
 			...plugin,
 			pluginId: pluginId as PluginId,
-			name: i18n.t(plugin.name),
+			name: i18n.t(`${pluginId as PluginId}.name`),
 		}) as Plugin,
 );
 const groups: PluginGroupId[] = ["issue", "board", "wiki", "general"];

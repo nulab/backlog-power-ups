@@ -1,7 +1,6 @@
 import styles from "./index.module.css";
 
 export const totalTime = definePowerUpsPlugin({
-	name: "popup.total_time",
 	group: "issue",
 	matches: ["/find/**"],
 	async main({ observeQuerySelector }) {

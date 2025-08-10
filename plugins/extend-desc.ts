@@ -1,5 +1,4 @@
 export const extendDesc = definePowerUpsPlugin({
-	name: "popup.extend_desc",
 	group: "issue",
 	matches: ["/add/*", "/view/*", "/user/*", "/gantt/*"],
 	async main({ observeQuerySelector }) {

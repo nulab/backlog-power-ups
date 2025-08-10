@@ -1,5 +1,4 @@
 export const childPage = definePowerUpsPlugin({
-	name: "popup.child_page",
 	group: "wiki",
 	defaultEnabled: true,
 	matches: ["/wiki/**", "/alias/wiki/*"],

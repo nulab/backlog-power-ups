@@ -1,7 +1,6 @@
 import plantumlEncoder from "plantuml-encoder";
 
 export const plantuml = definePowerUpsPlugin({
-	name: "popup.plantuml",
 	group: "wiki",
 	matches: ["/wiki/**", "/alias/wiki/*"],
 	async main({ observeQuerySelector }) {

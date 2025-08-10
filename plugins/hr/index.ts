@@ -1,7 +1,6 @@
 import styles from "./index.module.css";
 
 export const hr = definePowerUpsPlugin({
-	name: "popup.hr",
 	group: "wiki",
 	defaultEnabled: true,
 	matches: ["/wiki/**", "/alias/wiki/*"],

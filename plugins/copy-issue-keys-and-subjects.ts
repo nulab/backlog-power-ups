@@ -1,5 +1,4 @@
 export const copyIssueKeysAndSubjects = definePowerUpsPlugin({
-	name: "popup.copy_issue_keys_and_subjects",
 	group: "issue",
 	defaultEnabled: true,
 	matches: ["/dashboard", "/find/*"],

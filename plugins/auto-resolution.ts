@@ -1,5 +1,4 @@
 export const autoResolution = definePowerUpsPlugin({
-	name: "popup.auto_resolution",
 	group: "issue",
 	defaultEnabled: true,
 	matches: ["/view/**", "/gantt/**", "/user/**"],

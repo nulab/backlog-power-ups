@@ -1,7 +1,6 @@
 import styles from "./index.module.css";
 
 export const oldPost = definePowerUpsPlugin({
-	name: "popup.old_post",
 	group: "wiki",
 	matches: ["/wiki/**", "/alias/wiki/*"],
 	async main({ observeQuerySelector }) {

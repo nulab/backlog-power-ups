@@ -1,5 +1,4 @@
 export const copyWiki = definePowerUpsPlugin({
-	name: "popup.copy_wiki",
 	group: "wiki",
 	defaultEnabled: true,
 	matches: ["/wiki/**", "/alias/wiki/*"],

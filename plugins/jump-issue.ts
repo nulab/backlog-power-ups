@@ -1,5 +1,4 @@
 export const jumpIssue = definePowerUpsPlugin({
-	name: "popup.jump_issue",
 	group: "issue",
 	defaultEnabled: true,
 	matches: ["/**"],

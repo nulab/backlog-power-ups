@@ -1,7 +1,6 @@
 import styles from "./index.module.css";
 
 export const boardOneline = definePowerUpsPlugin({
-	name: "popup.board_oneline",
 	group: "board",
 	defaultEnabled: true,
 	matches: ["/board/*"],

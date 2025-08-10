@@ -1,5 +1,4 @@
 export const absoluteDate = definePowerUpsPlugin({
-	name: "popup.absolute_date",
 	group: "general",
 	matches: ["/dashboard", "/projects/**", "/user/**"],
 	main({ observeQuerySelector }) {
