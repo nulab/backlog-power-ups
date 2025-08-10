@@ -11,8 +11,6 @@ export const replaceTextNodes = (node: Node, text: string | string[]) => {
 		(childNode) => childNode.nodeType === Node.TEXT_NODE,
 	);
 
-	console.log(newTexts, textNodes);
-
 	for (const childNode of node.childNodes) {
 		if (childNode.nodeType === Node.TEXT_NODE) {
 			const newText = newTexts[textNodes.indexOf(childNode)] || "";
