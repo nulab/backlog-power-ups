@@ -64,7 +64,7 @@ export const UserCombobox: React.FC<Props> = ({
 						value={option}
 						className={styles.option}
 					>
-						<img className={styles.icon} src={option.iconUrl} />
+						<img className={styles.icon} src={option.iconUrl} alt="" />
 						{option.name}
 					</ComboboxOption>
 				)}

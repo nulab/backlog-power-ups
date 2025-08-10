@@ -1,7 +1,7 @@
-import { POWER_UP_PLUGIN_GROUPS } from "@/utils/plugins.ts";
-import { usePlugins } from "../hooks/usePlugins.ts";
 import { useTransition } from "react";
 import { reloadActiveTab } from "@/utils/browser-tab.ts";
+import { POWER_UP_PLUGIN_GROUPS } from "@/utils/plugins.ts";
+import { usePlugins } from "../hooks/usePlugins.ts";
 
 export const Form: React.FC = () => {
 	const [isTouched, setIsTouched] = useState(false);
@@ -65,7 +65,11 @@ export const Form: React.FC = () => {
 				</section>
 			))}
 			<div className="form__footer">
-				<button className="form__submit" disabled={isPending || !isTouched}>
+				<button
+					type="submit"
+					className="form__submit"
+					disabled={isPending || !isTouched}
+				>
 					{i18n.t("popup.apply_button")}
 				</button>
 			</div>

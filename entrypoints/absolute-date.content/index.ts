@@ -1,6 +1,6 @@
-import { isPluginDisabled } from "@/utils/storage";
-import { observeQuerySelector, replaceTextNodes } from "@/utils/dom.ts";
 import { defineMatches } from "@/utils/content-script.ts";
+import { observeQuerySelector, replaceTextNodes } from "@/utils/dom.ts";
+import { isPluginDisabled } from "@/utils/storage";
 
 export default defineContentScript({
 	matches: defineMatches(["/dashboard", "/projects/*", "/user/*"]),

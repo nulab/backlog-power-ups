@@ -6,7 +6,7 @@ export default defineContentScript({
 			return;
 		}
 
-		const handleClick: EventListenerOrEventListenerObject = async (e) => {
+		const handleClick: EventListenerOrEventListenerObject = async (_e) => {
 			await raf();
 
 			const resolution = document.querySelector(

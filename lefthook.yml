@@ -4,7 +4,7 @@ pre-commit:
       glob: "*.{js,ts,cjs,mjs,d.cts,d.mts,jsx,tsx,json,jsonc}"
       stage_fixed: true
       run: |-
-        npx biome format --write {staged_files}
+        npx biome check --write --unsafe {staged_files}
 
     sort-package-json:
       glob: package.json
