@@ -12,10 +12,14 @@ export type PowerUpsPluginContext = Pick<
 	asyncQuerySelector: typeof asyncQuerySelector;
 };
 
-export const createPowerUpsPluginContext = () => {
+export const createPowerUpsPluginContext = (
+	ctx: ContentScriptContext,
+	pluginStates: PluginStates,
+) => {
 	const invalidatorSet = new Set<() => void>();
 
-	const context: Omit<PowerUpsPluginContext, "pluginStates"> = {
+	const context: PowerUpsPluginContext = {
+		pluginStates,
 		observeQuerySelector: (selector, handler) => {
 			const invalidate = observeQuerySelector(selector, handler);
 
@@ -34,23 +38,21 @@ export const createPowerUpsPluginContext = () => {
 		},
 		// @ts-expect-error
 		addEventListener: (target, type, handler, options) => {
-			target.addEventListener(type, handler, options);
+			ctx.addEventListener(target, type, handler, options);
 
 			invalidatorSet.add(() =>
 				target.removeEventListener(type, handler, options),
 			);
 		},
-		// @ts-expect-error
 		setTimeout: (...args) => {
-			const timer = setTimeout(...args);
+			const timer = ctx.setTimeout(...args);
 
 			invalidatorSet.add(() => clearTimeout(timer));
 
 			return timer;
 		},
-		// @ts-expect-error
 		setInterval: (...args) => {
-			const timer = setInterval(...args);
+			const timer = ctx.setInterval(...args);
 
 			invalidatorSet.add(() => clearInterval(timer));
 

@@ -1,3 +1,5 @@
+import type { ContentScriptContext } from "wxt/utils/content-script-context";
+import type { InvalidateFunction } from "@/helpers/dom/types.ts";
 import {
 	createPowerUpsPluginContext,
 	type PowerUpsPluginContext,
@@ -18,11 +20,19 @@ export type DefinePowerUpsReturn = ReturnType<typeof definePowerUpsPlugin>;
 export const definePowerUpsPlugin = (
 	definition: DefinePowerUpsPluginDefinition,
 ) => {
-	const { context, invalidate } = createPowerUpsPluginContext();
+	const initialize = (
+		ctx: ContentScriptContext,
+		pluginStates: PluginStates,
+	): InvalidateFunction => {
+		const { context, invalidate } = createPowerUpsPluginContext(
+			ctx,
+			pluginStates,
+		);
 
-	const initialize = (pluginStates: PluginStates) => {
-		definition.main({ ...context, pluginStates });
+		definition.main(context);
+
+		return invalidate;
 	};
 
-	return { initialize, invalidate, ...definition };
+	return { initialize, ...definition };
 };

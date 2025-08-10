@@ -1,15 +1,25 @@
 import { minimatch } from "minimatch";
 import type { ContentScriptContext } from "wxt/utils/content-script-context";
+import type { InvalidateFunction } from "@/helpers/dom/types.ts";
 import { PLUGINS } from "@/helpers/plugin/list.ts";
 import { getPluginStates } from "@/helpers/plugin-manager/storage.ts";
 
-const activePluginMap = new Map<string, (typeof PLUGINS)[number]>();
+const activePluginMap = new Map<
+	string,
+	{ plugin: (typeof PLUGINS)[number]; invalidate: InvalidateFunction }
+>();
 
-export const createPluginManager = async (_ctx: ContentScriptContext) => {
+export const createPluginManager = async (ctx: ContentScriptContext) => {
 	const pluginStates = await getPluginStates();
 
 	const onRouteChange = (pathname: string) => {
-		for (const [id, { matches, invalidate }] of activePluginMap.entries()) {
+		for (const [
+			id,
+			{
+				plugin: { matches },
+				invalidate,
+			},
+		] of activePluginMap.entries()) {
 			const isMatched = matches.some((match) => minimatch(pathname, match));
 
 			if (!isMatched) {
@@ -28,8 +38,8 @@ export const createPluginManager = async (_ctx: ContentScriptContext) => {
 			);
 
 			if (isMatched && !activePluginMap.has(plugin.pluginId)) {
-				plugin.initialize(pluginStates);
-				activePluginMap.set(plugin.pluginId, plugin);
+				const invalidate = plugin.initialize(ctx, pluginStates);
+				activePluginMap.set(plugin.pluginId, { plugin, invalidate });
 			}
 		}
 	};
