@@ -1,13 +1,13 @@
 app:
   name: Backlog Power Ups - Backlogを便利に
   description: Backlogの機能をパワーアップします。11個の機能追加があります。
-applyButton: hello
-popup:
-  apply_button: 適用
+group:
   issue: 課題
   board: ボード
   wiki: Wiki
   general: 一般
+popup:
+  apply_button: 適用
 absoluteDate:
   name: 絶対時間で時間を表示する
 autoResolution:
@@ -18,38 +18,28 @@ childPage:
   name: ページの新規作成時に親フォルダ名を自動入力する
 copyIssueKeysAndSubjects:
   name: 課題一覧で課題キーと件名を一括コピーする
+  tooltip: 課題キーと件名を一括コピー
 copyWiki:
   name: 別のプロジェクトにWikiのページをコピー
+  prompt: 複製先のプロジェクトキーを入力してください。
+  copy_to: 別のプロジェクトにコピー
 extendDesc:
   name: 課題追加/編集画面の詳細の入力欄を広げる
 hr:
   name: Backlog記法で水平線を表示("---" もしくは "___")
 jumpIssue:
   name: Ctrl(Cmd)+Kで課題キーを入力して、その課題を開く
+  prompt: 移動先の課題キーまたは課題キーの番号を入力してください。
+  alert: 課題キーのフォーマットが無効です。
+  missing: 入力されたキーの課題が見つかりません。
 oldPost:
   name: 最終更新日から1年以上経過した記事にお知らせを表示する
+  alert: 最終更新日から1年以上が経過しています。
 plantuml:
   name: PlantUMLを表示(UMLデータをplantuml.comに送信します)
 totalTime:
   name: 検索結果の予定時間計と実績時間計を表示する
-userSwitcher:
-  name: 個人のガントチャートにユーザー切り替えを表示する
-
-copy_issue:
-  prompt: 複製先のプロジェクトキーを入力してください。
-  copy_to: 別のプロジェクトに複製
-  refs: 関連課題
-copy_issue_keys_and_subjects:
-  tooltip: 課題キーと件名を一括コピー
-copy_wiki:
-  prompt: 複製先のプロジェクトキーを入力してください。
-  copy_to: 別のプロジェクトにコピー
-jump_issue:
-  prompt: 移動先の課題キーまたは課題キーの番号を入力してください。
-  alert: 課題キーのフォーマットが無効です。
-  missing: 入力されたキーの課題が見つかりません。
-old_post:
-  alert: 最終更新日から1年以上が経過しています。
-total_time:
   estimated_hours: 予定時間計
   actual_hours: 実績時間計
+userSwitcher:
+  name: 個人のガントチャートにユーザー切り替えを表示する

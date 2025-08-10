@@ -8,7 +8,6 @@ export const App: React.FC = () => {
 				<h1 className="header__title">{i18n.t("app.name")}</h1>
 			</header>
 			<Suspense fallback={<div className="form__fallback" />}>
-				<pre>{i18n.t("applyButton")}</pre>
 				<Form />
 			</Suspense>
 		</>

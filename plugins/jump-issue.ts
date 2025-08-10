@@ -6,7 +6,7 @@ export const jumpIssue = definePowerUpsPlugin({
 		const jumpIssue = async () => {
 			const projectKey = await getBacklogProjectKey();
 
-			const input = window.prompt(i18n.t("jump_issue.prompt")) || "";
+			const input = window.prompt(i18n.t("jumpIssue.prompt")) || "";
 			const [number] = /^[0-9]+$/.exec(input) || [];
 			const [numberWithKey] = /[A-Z0-9_]+-[0-9]+/.exec(input) || [];
 			const issueKey =
@@ -16,7 +16,7 @@ export const jumpIssue = definePowerUpsPlugin({
 				typeof issueKey !== "string" ||
 				!/^[A-Z0-9_]+-[0-9]+$/.test(issueKey)
 			) {
-				alert(i18n.t("jump_issue.alert"));
+				alert(i18n.t("jumpIssue.alert"));
 				return;
 			}
 
@@ -32,7 +32,7 @@ export const jumpIssue = definePowerUpsPlugin({
 			if (res.ok) {
 				location.href = issueUrl;
 			} else {
-				alert(i18n.t("jump_issue.missing"));
+				alert(i18n.t("jumpIssue.missing"));
 			}
 		};
 

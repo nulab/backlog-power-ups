@@ -26,7 +26,7 @@ const groups: PluginGroupId[] = ["issue", "board", "wiki", "general"];
 
 export const PLUGINS_BY_GROUP: PluginCategory[] = groups.map((group) => ({
 	group,
-	title: i18n.t(`popup.${group}`),
+	title: i18n.t(`group.${group}`),
 	plugins: plugins.filter((plugin) => plugin.group === group),
 }));
 

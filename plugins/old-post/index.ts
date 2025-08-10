@@ -32,7 +32,7 @@ export const oldPost = definePowerUpsPlugin({
 
 			const messageHtml = html`
                 <p class=${styles.message}>
-                    ${i18n.t("old_post.alert")}
+                    ${i18n.t("oldPost.alert")}
                 </p>
             `;
 

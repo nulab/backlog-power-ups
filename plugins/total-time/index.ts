@@ -53,12 +53,12 @@ export const totalTime = definePowerUpsPlugin({
 				html`
                     <div class=${styles.totalTime}>
                         <span>
-                            ${i18n.t("total_time.estimated_hours")}${": "}
+                            ${i18n.t("totalTime.estimated_hours")}${": "}
                             <span data-powerups-column-key="estimatedHours">-</span>
                             ${" hrs"}
                         </span>
                         <span>
-                            ${i18n.t("total_time.actual_hours")}${": "}
+                            ${i18n.t("totalTime.actual_hours")}${": "}
                             <span data-powerups-column-key="actualHours">-</span>
                             ${" hrs"}
                         </span>

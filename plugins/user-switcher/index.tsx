@@ -3,7 +3,6 @@ import { UserCombobox, type UserComboboxUser } from "@/components/UserCombobox";
 import styles from "./index.module.css";
 
 export const userSwitcher = definePowerUpsPlugin({
-	name: "popup.user_switcher",
 	group: "general",
 	defaultEnabled: true,
 	matches: ["/user/*"],

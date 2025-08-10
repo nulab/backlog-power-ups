@@ -7,7 +7,7 @@ export const copyWiki = definePowerUpsPlugin({
 
 		const start = async () => {
 			const projectKey = window
-				.prompt(i18n.t("copy_wiki.prompt"))
+				.prompt(i18n.t("copyWiki.prompt"))
 				?.toUpperCase();
 
 			if (!projectKey) {
@@ -40,7 +40,7 @@ export const copyWiki = definePowerUpsPlugin({
 				li.classList.add("dropdown-menu__item");
 
 				const button = createButton(
-					html`<button class="dropdown-menu__link is_active">${i18n.t("copy_wiki.copy_to")}</button>`,
+					html`<button class="dropdown-menu__link is_active">${i18n.t("copyWiki.copy_to")}</button>`,
 					{
 						click: start,
 					},
