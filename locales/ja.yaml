@@ -37,3 +37,6 @@ jump_issue:
   missing: 入力されたキーの課題が見つかりません。
 old_post:
   alert: 最終更新日から1年以上が経過しています。
+total_time:
+  estimated_hours: 予定時間計
+  actual_hours: 実績時間計

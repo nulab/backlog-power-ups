@@ -1,91 +1,69 @@
-// @ts-nocheck
-
-import "./style.css";
+import styles from "./index.module.css";
 
 export default defineContentScript({
-	matches: [
-		"https://*.backlog.jp/find/*",
-		"https://*.backlogtool.com/find/*",
-		"https://*.backlog.com/find/*",
-	],
+	matches: defineMatches(["/find/*"]),
 	async main() {
-		const { default: $ } = await import("jquery");
-		const { PowerUps } = await import("@/utils/power-ups");
-		const RES =
-			PowerUps.getLang() == "ja"
-				? {
-						totalEstimatedHours: "予定時間計",
-						totalActualHours: "実績時間計",
-					}
-				: {
-						totalEstimatedHours: "Total estimated",
-						totalActualHours: "Total actual",
-					};
+		if (await isPluginDisabled("total-time")) {
+			return;
+		}
 
-		const totalByColumnName = (columnName) => {
-			let total = 0;
-			const targetTable = $(".result-set table.find-issue-table");
-			const targetColumn = targetTable.find(
-				`thead tr th[data-column-key='${columnName}']`,
+		observeQuerySelector("#issues-table tbody tr", (el) => {
+			const issueTable = el.closest("#issues-table");
+
+			if (!(issueTable instanceof HTMLTableElement)) {
+				return;
+			}
+
+			const headings = Array.from(
+				issueTable.querySelectorAll("thead tr:first-child th"),
 			);
-			const targetIndex = targetTable.find("thead tr th").index(targetColumn);
-			targetTable
-				.find(`tbody tr td:nth-child(${targetIndex + 1})`)
-				.each((index, elem) => {
-					const text = $(elem).text();
-					if (text) {
-						total = total + parseFloat(text);
-					}
+
+			for (const columnKey of ["estimatedHours", "actualHours"]) {
+				const columnIndex = headings.findIndex((column) => {
+					return (
+						column instanceof HTMLTableCellElement &&
+						column.dataset.columnKey === columnKey
+					);
 				});
-			return total;
-		};
 
-		const update = () => {
-			const estimated = totalByColumnName("estimatedHours");
-			const actual = totalByColumnName("actualHours");
-			$("#total-time-container .estimatedTotal").text(estimated);
-			$("#total-time-container .actualTotal").text(actual);
-		};
+				const rows = Array.from(
+					issueTable.querySelectorAll(
+						`tbody tr td:nth-child(${columnIndex + 1})`,
+					),
+				);
+				const total = rows.reduce(
+					(total, row) => total + (Number(row.textContent) || 0),
+					0,
+				);
 
-		const observer = new MutationObserver((records, observer) => {
-			observer.disconnect();
-			update();
-			observeIssueTable();
+				const textEl = document.querySelector(
+					`[data-powerups-column-key="${columnKey}"]`,
+				);
+
+				if (textEl instanceof HTMLElement) {
+					textEl.textContent = `${total}`;
+				}
+			}
 		});
 
-		const observeIssueTable = () => {
-			observer.observe($(".result-set").get(0), {
-				childList: true,
-				subtree: true,
-			});
-		};
-
-		const setupUI = () => {
-			$(`
-            <div id="total-time-container">
-                <span>${RES["totalEstimatedHours"]}:</span>
-                <span class="estimatedTotal"></span>
-                <span>&nbsp;</span>
-                <span>${RES["totalActualHours"]}:</span>
-                <span class="actualTotal"></span>
-            </div>
-            `).appendTo("body");
-		};
-
-		const setup = () => {
-			setupUI();
-			update();
-			observeIssueTable();
-		};
-
-		const main = () => {
-			setup();
-		};
-
-		PowerUps.isEnabled("total-time", (enabled) => {
-			if (enabled) {
-				main();
-			}
+		observeQuerySelector("#container", (el) => {
+			el.insertAdjacentHTML(
+				"beforeend",
+				html`
+                    <div class=${styles.totalTime}>
+                        <span>
+                            ${i18n.t("total_time.estimated_hours")}${": "}
+                            <span data-powerups-column-key="estimatedHours">-</span>
+                            ${" hrs"}
+                        </span>
+                        <span>
+                            ${i18n.t("total_time.actual_hours")}${": "}
+                            <span data-powerups-column-key="actualHours">-</span>
+                            ${" hrs"}
+                        </span>
+                    </div>
+                ` as string,
+			);
 		});
 	},
 });

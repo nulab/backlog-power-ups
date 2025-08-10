@@ -1,0 +1,22 @@
+@import '@/assets/props.css';
+
+.totalTime {
+    position: fixed;
+    left: 216px;
+    bottom: 12px;
+    display: flex;
+    gap: 8px;
+    padding: 8px;
+    z-index: var(--powerups-z-floating);
+    background-color: #fffa;
+    box-shadow: 0 2px 4px #0002;
+    backdrop-filter: blur(10px);
+    color: var(--powerups-color-text);
+    transition: left 0.15s ease-out;
+}
+
+:global(.is_project-nav-collapsed) {
+    .totalTime {
+        left: 66px;
+    }
+}

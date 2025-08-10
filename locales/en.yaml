@@ -37,3 +37,6 @@ jump_issue:
   missing: Issue not found for the entered issue key
 old_post:
   alert: More than 1 year has passed since the last update date.
+total_time:
+  estimated_hours: Total estimated
+  actual_hours: Total actual
