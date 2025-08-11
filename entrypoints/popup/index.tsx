@@ -1,6 +1,6 @@
 import { Suspense } from "react";
 import { createRoot } from "react-dom/client";
-import { App } from "./components/App.tsx";
+import { App } from "./components/App";
 import "./style.css";
 
 const rootEl = document.getElementById("root");

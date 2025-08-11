@@ -6,6 +6,7 @@
 	--powerups-color-primary: #00836b;
 	--powerups-color-accent: #2c9a7a;
 	--powerups-color-disabled: #e5e5e5;
+	--powerups-color-border: #c2c2c2;
 	--powerups-z-floating: 10;
 	--powerups-z-select: 500;
 }
