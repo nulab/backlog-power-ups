@@ -7,6 +7,7 @@ export * from "./copyWiki";
 export * from "./expandDiffFileLink";
 export * from "./extendDesc";
 export * from "./favicon";
+export * from "./ganttFilterParentAndChild";
 export * from "./hideDocumentToolbar";
 export * from "./hr";
 export * from "./jumpIssue";

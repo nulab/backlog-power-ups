@@ -61,3 +61,9 @@ expandDiffFileLink:
   name: 差分ファイルのリンク領域を広げます
 searchKeyboard:
   name: キーワード検索の結果をTabと矢印キーで操作する
+ganttFilterParentAndChild:
+  name: 親子関係で行をフィルタリングする
+  label: 親子関係
+  all: すべて
+  parent: 親課題のみ
+  child: 子課題のみ
