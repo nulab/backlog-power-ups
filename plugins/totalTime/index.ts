@@ -1,18 +1,13 @@
+import pDebounce from "p-debounce";
 import styles from "./index.module.css";
 
 export const totalTime = definePowerUpsPlugin({
 	group: "issue",
 	matches: ["/find/**", "/FindIssueAllOver.action"],
 	async main({ observeQuerySelector }) {
-		observeQuerySelector("#issues-table tbody tr", (el) => {
-			const issueTable = el.closest("#issues-table");
-
-			if (!(issueTable instanceof HTMLTableElement)) {
-				return;
-			}
-
+		const calculateTotalTime = pDebounce((table: HTMLTableElement) => {
 			const headings = Array.from(
-				issueTable.querySelectorAll("thead tr:first-child th"),
+				table.querySelectorAll("thead tr:first-child th"),
 			);
 
 			for (const columnKey of ["estimatedHours", "actualHours"]) {
@@ -24,9 +19,7 @@ export const totalTime = definePowerUpsPlugin({
 				});
 
 				const rows = Array.from(
-					issueTable.querySelectorAll(
-						`tbody tr td:nth-child(${columnIndex + 1})`,
-					),
+					table.querySelectorAll(`tbody tr td:nth-child(${columnIndex + 1})`),
 				);
 				const total = rows.reduce(
 					(total, row) => total + (Number(row.textContent) || 0),
@@ -41,6 +34,17 @@ export const totalTime = definePowerUpsPlugin({
 					textEl.textContent = `${total}`;
 				}
 			}
+		}, 100);
+
+		observeQuerySelector("#issues-table tbody tr", (el) => {
+			const issueTable = el.closest("#issues-table");
+
+			if (!(issueTable instanceof HTMLTableElement)) {
+				return;
+			}
+
+			calculateTotalTime(issueTable);
+			return () => calculateTotalTime(issueTable);
 		});
 
 		observeQuerySelector("#container", (el) => {
