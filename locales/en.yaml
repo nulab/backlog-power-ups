@@ -12,7 +12,6 @@ group:
   git: Git / SVN
 popup:
   apply_button: Apply
-
 absoluteDate:
   name: Show absolute date
 autoResolution:
@@ -46,6 +45,8 @@ oldPost:
   alert: More than 1 year has passed since the last update date.
 plantuml:
   name: Show PlantUML(Send UML data to plantuml.com)
+sidebarAutoClose:
+  name: Automatically open and close the sidebar depending on the screen size
 totalTime:
   name: Show total estimated and actual hours on search result of issues
   estimated_hours: Total estimated

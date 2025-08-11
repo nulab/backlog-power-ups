@@ -45,6 +45,8 @@ oldPost:
   alert: 最終更新日から1年以上が経過しています。
 plantuml:
   name: PlantUMLを表示(UMLデータをplantuml.comに送信します)
+sidebarAutoClose:
+  name: 画面サイズによって自動でサイドバーを開閉する
 totalTime:
   name: 検索結果の予定時間計と実績時間計を表示する
   estimated_hours: 予定時間計

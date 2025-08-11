@@ -10,6 +10,7 @@ export * from "./hr";
 export * from "./jumpIssue.ts";
 export * from "./oldPost";
 export * from "./plantuml";
+export * from "./sidebarAutoClose";
 export * from "./totalTime";
 export * from "./userSwitcher";
 export * from "./zenMode";
