@@ -71,3 +71,5 @@ openInDialog:
   name: Backlogスペース内のリンクを長押ししてダイアログで開く
   openInMainFrame: このページに移動する
   close: 閉じる
+hideEmptyColumn:
+  name: 値がすべて空の列を隠す

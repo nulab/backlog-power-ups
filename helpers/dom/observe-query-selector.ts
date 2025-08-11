@@ -15,9 +15,7 @@ const handlersMap: Map<
 const observer = new MutationObserver((mutations) => {
 	for (const mutation of mutations) {
 		if (mutation.type === "childList") {
-			for (const [handler, { selector, elementsMap }] of Array.from(
-				handlersMap.entries(),
-			)) {
+			for (const [handler, { selector, elementsMap }] of handlersMap) {
 				for (const node of mutation.addedNodes) {
 					for (const el of nodeMatcher(selector, node)) {
 						const invalidate = handler(el);
@@ -28,11 +26,13 @@ const observer = new MutationObserver((mutations) => {
 					}
 				}
 
-				for (const node of mutation.removedNodes) {
-					for (const el of nodeMatcher(selector, node)) {
-						const invalidate = elementsMap.get(el);
-						invalidate?.();
-						elementsMap.delete(el);
+				if (mutation.removedNodes.length > 0) {
+					for (const [el, invalidate] of elementsMap) {
+						if (!el.isConnected) {
+							console.log(selector, el, "invalidated XXXXXXXXX");
+							invalidate?.();
+							elementsMap.delete(el);
+						}
 					}
 				}
 			}

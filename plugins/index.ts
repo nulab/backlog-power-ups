@@ -9,6 +9,7 @@ export * from "./extendDesc";
 export * from "./favicon";
 export * from "./ganttFilterParentAndChild";
 export * from "./hideDocumentToolbar";
+export * from "./hideEmptyColumn";
 export * from "./hr";
 export * from "./jumpIssue";
 export * from "./oldPost";
