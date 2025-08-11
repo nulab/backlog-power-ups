@@ -59,3 +59,5 @@ userSwitcher:
   name: Show user switcher on personal Gantt
 expandDiffFileLink:
   name: Expand the link area for the difference file
+searchKeyboard:
+  name: Navigate through keyword search results with Tab and arrow keys

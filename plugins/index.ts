@@ -13,6 +13,7 @@ export * from "./jumpIssue";
 export * from "./oldPost";
 export * from "./plantuml";
 export * from "./quickSearch";
+export * from "./searchKeyboard";
 export * from "./sidebarAutoClose";
 export * from "./totalTime";
 export * from "./userSwitcher";

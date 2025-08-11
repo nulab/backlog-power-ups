@@ -59,3 +59,5 @@ userSwitcher:
   name: 個人のガントチャートにユーザー切り替えを表示する
 expandDiffFileLink:
   name: 差分ファイルのリンク領域を広げます
+searchKeyboard:
+  name: キーワード検索の結果をTabと矢印キーで操作する
