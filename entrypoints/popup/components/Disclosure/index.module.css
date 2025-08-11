@@ -32,7 +32,7 @@
 	}
 
 	&:where(:hover, :focus-within)::before {
-		border-color: var(--powerups-color-accent);
+		border-color: var(--powerups-color-primary);
 	}
 }
 
@@ -42,7 +42,7 @@
 	width: 20px;
 	height: 20px;
 	margin-left: auto;
-	background-color: var(--powerups-color-notification);
+	background-color: var(--powerups-color-badge);
 	border-radius: 4px;
 	font-size: 12px;
 	font-weight: normal;

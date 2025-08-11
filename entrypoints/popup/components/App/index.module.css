@@ -4,6 +4,10 @@
 	position: fixed;
 	top: 0;
 	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 8px;
 	z-index: var(--powerups-z-floating);
 	padding: 8px 16px;
 	background-color: var(--powerups-color-accent);
