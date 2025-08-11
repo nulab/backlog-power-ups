@@ -24,6 +24,9 @@ export const raf = () =>
 
 export const html = htm.bind(vhtml);
 
+export const isMainFrame =
+	typeof window !== "undefined" && window.self === window.top;
+
 export const createButton = (
 	html: string | string[],
 	listeners: { [K in "click"]?: (ev: HTMLElementEventMap[K]) => void } = {},

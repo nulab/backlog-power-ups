@@ -4,7 +4,7 @@ import type { PluginId } from "@/helpers/plugin/types";
 export type PluginStates = Record<PluginId, boolean>;
 
 const defaultPlugins = PLUGINS.filter(
-	({ defaultEnabled }) => defaultEnabled,
+	({ defaultEnabled }) => defaultEnabled || import.meta.env.DEV,
 ).map(({ pluginId }) => pluginId);
 
 const enabledPlugins = storage.defineItem<PluginId[]>("local:enabledPlugins", {

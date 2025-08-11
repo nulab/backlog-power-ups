@@ -2,11 +2,14 @@ app:
   name: Backlog Power Ups - Backlogを便利に
   description: Backlogの機能をパワーアップします。11個の機能追加があります。
 group:
+  general: 一般
   issue: 課題
   board: ボード
-  wiki: Wiki
+  gantt: ガントチャート
   document: ドキュメント
-  general: 一般
+  wiki: Wiki
+  file: ファイル
+  git: Git / SVN
 popup:
   apply_button: 適用
 absoluteDate:

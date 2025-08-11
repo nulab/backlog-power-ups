@@ -1,7 +1,9 @@
 import { useTransition } from "react";
+import { usePlugins } from "@/entrypoints/popup/hooks/usePlugins";
 import { PLUGINS_BY_GROUP } from "@/helpers/plugin/list";
 import { reloadActiveTab } from "@/utils/browser-tab.ts";
-import { usePlugins } from "../hooks/usePlugins.ts";
+import { Disclosure } from "../Disclosure";
+import styles from "./index.module.css";
 
 export const Form: React.FC = () => {
 	const [isTouched, setIsTouched] = useState(false);
@@ -43,31 +45,44 @@ export const Form: React.FC = () => {
 	}, []);
 
 	return (
-		<form className="form" onSubmit={handleSubmit}>
-			{PLUGINS_BY_GROUP.map(({ group, title, plugins }) => (
-				<section key={group} className="form__section">
-					<h2 className="form__heading">{title}</h2>
-					{plugins.map(({ pluginId, name }) => (
-						<div key={pluginId} className="field">
-							<label htmlFor={pluginId} className="field__label">
-								{name}
-							</label>
-							<input
-								type="checkbox"
-								id={pluginId}
-								className="field__checkbox"
-								name={pluginId}
-								value="enabled"
-								defaultChecked={enabledPluginIds.includes(pluginId)}
-							/>
-						</div>
-					))}
-				</section>
-			))}
-			<div className="form__footer">
+		<form className={styles.form} onSubmit={handleSubmit}>
+			{PLUGINS_BY_GROUP.map(
+				({ group, title, plugins }) =>
+					plugins.length > 0 && (
+						<section key={group} className={styles.form__section}>
+							<Disclosure
+								label={title}
+								badge={
+									plugins.filter(({ pluginId }) =>
+										enabledPluginIds.includes(pluginId),
+									).length
+								}
+							>
+								<div className={styles.form__fields}>
+									{plugins.map(({ pluginId, name }) => (
+										<div key={pluginId} className={styles.field}>
+											<label htmlFor={pluginId} className={styles.field__label}>
+												{name}
+											</label>
+											<input
+												type="checkbox"
+												id={pluginId}
+												className={styles.field__checkbox}
+												name={pluginId}
+												value="enabled"
+												defaultChecked={enabledPluginIds.includes(pluginId)}
+											/>
+										</div>
+									))}
+								</div>
+							</Disclosure>
+						</section>
+					),
+			)}
+			<div className={styles.form__footer}>
 				<button
 					type="submit"
-					className="form__submit"
+					className={styles.form__submit}
 					disabled={isPending || !isTouched}
 				>
 					{i18n.t("popup.apply_button")}

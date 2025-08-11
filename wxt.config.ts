@@ -5,7 +5,7 @@ export default defineConfig({
 		default_locale: "en",
 		name: "__MSG_app_name__",
 		description: "__MSG_app_description__",
-		permissions: ["storage"],
+		permissions: ["storage", "tabs"],
 	},
 	modules: [
 		"@wxt-dev/module-react",

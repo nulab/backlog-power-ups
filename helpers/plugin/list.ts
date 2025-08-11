@@ -23,11 +23,14 @@ const plugins = Object.entries(pluginModules).map(
 		}) as Plugin,
 );
 const groups: PluginGroupId[] = [
+	"general",
 	"issue",
 	"board",
-	"wiki",
+	"gantt",
 	"document",
-	"general",
+	"wiki",
+	"file",
+	"git",
 ];
 
 export const PLUGINS_BY_GROUP: PluginCategory[] = groups.map((group) => ({

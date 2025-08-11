@@ -1,9 +1,10 @@
 export const autoResolution = definePowerUpsPlugin({
 	group: "issue",
 	defaultEnabled: true,
+	allFrames: true,
 	matches: ["/view/**", "/gantt/**", "/user/**"],
-	main({ observeQuerySelector }) {
-		const handleClick = async () => {
+	main({ observeQuerySelector, addEventListener }) {
+		const setResolution = async () => {
 			await raf();
 
 			const resolution = document.querySelector(
@@ -32,7 +33,7 @@ export const autoResolution = definePowerUpsPlugin({
 						continue;
 					}
 
-					if (["Fixed", "処理済み"].includes(el.textContent)) {
+					if (["Fixed", "対応済み"].includes(el.textContent)) {
 						el.click();
 						break;
 					}
@@ -41,9 +42,11 @@ export const autoResolution = definePowerUpsPlugin({
 
 			await raf();
 
-			const status = document.querySelector(
-				"#statusLabel ~ * button[role='combobox']",
-			);
+			const status =
+				document.querySelector("#statusLabel ~ * button[role='combobox']") ||
+				document.querySelector(
+					".status-chosen-wrapper button[role='combobox']",
+				);
 
 			if (!(status instanceof HTMLElement)) {
 				return;
@@ -53,7 +56,28 @@ export const autoResolution = definePowerUpsPlugin({
 		};
 
 		observeQuerySelector("li.status-chosen__item--4", (el) => {
-			el.addEventListener("click", handleClick);
+			addEventListener(el, "click", setResolution);
+
+			return () => {
+				el.removeEventListener("click", setResolution);
+			};
+		});
+
+		observeQuerySelector("#changeToNextStatus", (el) => {
+			const handleClick = (e: Event) => {
+				if (e.currentTarget instanceof HTMLButtonElement) {
+					const { textContent } = e.currentTarget;
+
+					if (
+						textContent === "完了に設定" ||
+						textContent === 'Set to "Closed"'
+					) {
+						setResolution();
+					}
+				}
+			};
+
+			addEventListener(el, "click", handleClick);
 
 			return () => {
 				el.removeEventListener("click", handleClick);

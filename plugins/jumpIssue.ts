@@ -7,15 +7,12 @@ export const jumpIssue = definePowerUpsPlugin({
 			const projectKey = await getBacklogProjectKey();
 
 			const input = window.prompt(i18n.t("jumpIssue.prompt")) || "";
-			const [number] = /^[0-9]+$/.exec(input) || [];
-			const [numberWithKey] = /[A-Z0-9_]+-[0-9]+/.exec(input) || [];
-			const issueKey =
-				numberWithKey?.toUpperCase() || `${projectKey}-${number}`;
+			const [number] = /[0-9]+$/.exec(input) || [];
+			const [numberWithKey] =
+				/[A-Z0-9_]+-[0-9]+/.exec(input.toUpperCase()) || [];
+			const issueKey = numberWithKey || `${projectKey}-${number}`;
 
-			if (
-				typeof issueKey !== "string" ||
-				!/^[A-Z0-9_]+-[0-9]+$/.test(issueKey)
-			) {
+			if (typeof issueKey !== "string") {
 				alert(i18n.t("jumpIssue.alert"));
 				return;
 			}

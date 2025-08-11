@@ -2,12 +2,14 @@ app:
   name: Backlog Power Ups
   description: Power up tools for Backlog
 group:
+  general: General
   issue: Issue
   board: Board
-  wiki: Wiki
+  gantt: Gantt Chart
   document: Document
-  general: General
-
+  wiki: Wiki
+  file: File
+  git: Git / SVN
 popup:
   apply_button: Apply
 
