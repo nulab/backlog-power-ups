@@ -36,12 +36,19 @@
 	}
 }
 
+.badges {
+	display: grid;
+	grid-auto-flow: column;
+	gap: 4px;
+	margin-left: auto;
+}
+
 .badge {
 	display: grid;
 	place-items: center;
 	width: 20px;
 	height: 20px;
-	margin-left: auto;
+
 	background-color: var(--powerups-color-badge);
 	border-radius: 4px;
 	font-size: 12px;
