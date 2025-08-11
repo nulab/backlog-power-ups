@@ -1,0 +1,38 @@
+/*.container {*/
+/*    padding-block-end: 50vh;*/
+
+/*    &,*/
+/*    :global(:where(.title, .git-navi-bar)) {*/
+/*        max-width: 1200px;*/
+/*        margin-inline: auto;*/
+/*    }*/
+/*}*/
+
+/*:global(body):has(:global(.code-view-set)) {*/
+/*    .container {*/
+/*        max-width: 100%;*/
+/*    }*/
+/*}*/
+
+/*:global(.tab-loading-wrapper > div) {*/
+/*    display: grid;*/
+/*    grid-template:*/
+/*        "updated-list code-view-mode-buttons-wrap"*/
+/*        "updated-list code";*/
+
+/*    :global(.title) {*/
+/*        grid-area: title;*/
+/*    }*/
+
+/*    :global(.updated-list) {*/
+/*        grid-area: updated-list;*/
+/*    }*/
+
+/*    :global(.code-view-mode-buttons-wrap) {*/
+/*        grid-area: code-view-mode-buttons-wrap;*/
+/*    }*/
+
+/*    :global(.code) {*/
+/*        grid-area: code;*/
+/*    }*/
+/*}*/

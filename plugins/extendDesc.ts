@@ -1,11 +1,10 @@
 export const extendDesc = definePowerUpsPlugin({
 	group: "issue",
-	matches: ["/add/*", "/view/*", "/user/*", "/gantt/*"],
+	matches: ["/add/*", "/view/**", "/user/*", "/gantt/*"],
 	async main({ observeQuerySelector }) {
 		const EXTENDED_HEIGHT = "480px";
 
 		observeQuerySelector("#descriptionTextArea", (el) => {
-			console.log("FIND...!");
 			el.style.height = EXTENDED_HEIGHT;
 		});
 
@@ -25,11 +24,6 @@ export const extendDesc = definePowerUpsPlugin({
 						mutation.attributeName !== "class" ||
 						!(mutation.target instanceof HTMLElement)
 					) {
-						console.log(
-							mutation.attributeName !== "class",
-							"style" in mutation.target,
-						);
-
 						return;
 					}
 

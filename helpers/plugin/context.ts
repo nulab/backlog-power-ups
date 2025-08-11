@@ -21,6 +21,11 @@ export const createPowerUpsPluginContext = (
 	const context: PowerUpsPluginContext = {
 		pluginStates,
 		observeQuerySelector: (selector, handler) => {
+			logger.info(
+				`starting %c\`observeQuerySelector(${selector})\``,
+				"color: #4488c5",
+			);
+
 			const invalidate = observeQuerySelector(selector, handler);
 
 			invalidatorSet.add(invalidate);
@@ -28,6 +33,11 @@ export const createPowerUpsPluginContext = (
 			return invalidate;
 		},
 		asyncQuerySelector: (selector, options) => {
+			logger.info(
+				`starting %c\`asyncQuerySelector(${selector})\``,
+				"color: #4488c5",
+			);
+
 			const controller = new AbortController();
 			invalidatorSet.add(() => controller.abort());
 
@@ -38,6 +48,12 @@ export const createPowerUpsPluginContext = (
 		},
 		// @ts-expect-error
 		addEventListener: (target, type, handler, options) => {
+			const targetName = target instanceof Window ? "window" : target.nodeName;
+			logger.info(
+				`starting %c\`${targetName}.addEventListener(${type})\``,
+				"color: #4488c5",
+			);
+
 			ctx.addEventListener(target, type, handler, options);
 
 			invalidatorSet.add(() =>
@@ -45,6 +61,8 @@ export const createPowerUpsPluginContext = (
 			);
 		},
 		setTimeout: (...args) => {
+			logger.info(`starting %c\`setTimeout(${args[1]})\``, "color: #4488c5");
+
 			const timer = ctx.setTimeout(...args);
 
 			invalidatorSet.add(() => clearTimeout(timer));
@@ -52,6 +70,8 @@ export const createPowerUpsPluginContext = (
 			return timer;
 		},
 		setInterval: (...args) => {
+			logger.info(`starting %c\`setInterval(${args[1]})\``, "color: #4488c5");
+
 			const timer = ctx.setInterval(...args);
 
 			invalidatorSet.add(() => clearInterval(timer));
@@ -61,6 +81,11 @@ export const createPowerUpsPluginContext = (
 	};
 
 	const invalidate = () => {
+		logger.info(
+			`invalidating %c${invalidatorSet.size} listeners`,
+			"color: #e07b9a",
+		);
+
 		for (const invalidate of invalidatorSet) {
 			invalidate();
 		}
