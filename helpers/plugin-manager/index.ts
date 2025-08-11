@@ -24,7 +24,9 @@ export const createPluginManager = async (ctx: ContentScriptContext) => {
 
 			if (!isMatched) {
 				logger.info(
-					`invalidating %c${pluginId}%c plugin`,
+					`invalidating %c${pluginId}%c plugin${
+						isMainFrame ? "" : " in subframe"
+					}`,
 					"font-weight: bold; color: #ed8077",
 					"font-weight: normal",
 				);
@@ -35,7 +37,10 @@ export const createPluginManager = async (ctx: ContentScriptContext) => {
 		}
 
 		for (const plugin of PLUGINS) {
-			if (!pluginStates[plugin.pluginId]) {
+			if (
+				!pluginStates[plugin.pluginId] ||
+				(!isMainFrame && !plugin.allFrames)
+			) {
 				continue;
 			}
 
@@ -45,8 +50,12 @@ export const createPluginManager = async (ctx: ContentScriptContext) => {
 
 			if (matched && !activePluginMap.has(plugin.pluginId)) {
 				logger.info(
-					`initializing %c\`${plugin.pluginId}\`%c plugin (matched %c\`${matched}\`%c)`,
-					"font-weight: bold; color: #5eb5a6",
+					`initializing %c\`${plugin.pluginId}\`%c plugin${
+						isMainFrame ? "" : " in subframe"
+					} (matched %c\`${matched}\`%c)`,
+					isMainFrame
+						? "font-weight: bold; color: #5eb5a6"
+						: "font-weight: bold; color: #ea733b",
 					"font-weight: normal",
 					"font-weight: bold; color: #666",
 					"font-weight: normal",

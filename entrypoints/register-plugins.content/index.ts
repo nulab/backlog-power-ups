@@ -10,7 +10,7 @@ export default defineContentScript({
 	async main(ctx) {
 		const manager = await createPluginManager(ctx);
 
-		if (window.self === window.top) {
+		if (isMainFrame) {
 			const enabledPlugins = Object.entries(manager.pluginStates)
 				.filter(([, enabled]) => enabled)
 				.map(([id]) => id);

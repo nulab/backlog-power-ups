@@ -9,6 +9,7 @@ import type { PluginGroupId } from "./types";
 
 type DefinePowerUpsPluginDefinition = {
 	group: PluginGroupId;
+	allFrames?: boolean;
 	defaultEnabled?: boolean;
 	matches: string[];
 	excludeMatches?: string[];

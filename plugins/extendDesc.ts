@@ -1,5 +1,6 @@
 export const extendDesc = definePowerUpsPlugin({
 	group: "issue",
+	allFrames: true,
 	matches: ["/add/*", "/view/**", "/user/*", "/gantt/*"],
 	async main({ observeQuerySelector }) {
 		const EXTENDED_HEIGHT = "480px";
