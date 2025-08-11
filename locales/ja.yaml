@@ -47,6 +47,8 @@ oldPost:
   alert: 最終更新日から1年以上が経過しています。
 plantuml:
   name: PlantUMLを表示(UMLデータをplantuml.comに送信します)
+quickSearch:
+  name: Ctrl(Cmd)+Shift+Fで選択しているテキストでキーワード検索する
 sidebarAutoClose:
   name: 画面サイズによって自動でサイドバーを開閉する
 totalTime:

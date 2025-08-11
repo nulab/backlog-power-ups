@@ -7,6 +7,11 @@ export const jumpIssue = definePowerUpsPlugin({
 			const projectKey = await getBacklogProjectKey();
 
 			const input = window.prompt(i18n.t("jumpIssue.prompt")) || "";
+
+			if (!input) {
+				return;
+			}
+
 			const [number] = /[0-9]+$/.exec(input) || [];
 			const [numberWithKey] =
 				/[A-Z0-9_]+-[0-9]+/.exec(input.toUpperCase()) || [];
@@ -34,7 +39,12 @@ export const jumpIssue = definePowerUpsPlugin({
 		};
 
 		addEventListener(window, "keydown", (e) => {
-			if ((e.ctrlKey || e.metaKey) && e.key === "k") {
+			if (
+				(e.ctrlKey || e.metaKey) &&
+				!e.shiftKey &&
+				!e.altKey &&
+				e.key === "k"
+			) {
 				jumpIssue();
 			}
 		});

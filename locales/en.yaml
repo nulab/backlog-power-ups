@@ -47,6 +47,8 @@ oldPost:
   alert: More than 1 year has passed since the last update date.
 plantuml:
   name: Show PlantUML(Send UML data to plantuml.com)
+quickSearch:
+  name: Ctrl(Cmd)+Shift+F to search for keywords in the selected text
 sidebarAutoClose:
   name: Automatically open and close the sidebar depending on the screen size
 totalTime:
