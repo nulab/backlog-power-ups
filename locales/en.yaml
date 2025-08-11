@@ -67,3 +67,7 @@ ganttFilterParentAndChild:
   all: All
   parent: Parent issue
   child: Child issue
+openInDialog:
+  name: Long press a link in a Backlog space to open it in a dialog
+  openInMainFrame: Go to this page
+  close: Close

@@ -12,6 +12,7 @@ export * from "./hideDocumentToolbar";
 export * from "./hr";
 export * from "./jumpIssue";
 export * from "./oldPost";
+export * from "./openInDialog";
 export * from "./plantuml";
 export * from "./quickSearch";
 export * from "./searchKeyboard";

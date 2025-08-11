@@ -67,3 +67,7 @@ ganttFilterParentAndChild:
   all: すべて
   parent: 親課題のみ
   child: 子課題のみ
+openInDialog:
+  name: Backlogスペース内のリンクを長押ししてダイアログで開く
+  openInMainFrame: このページに移動する
+  close: 閉じる

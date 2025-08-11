@@ -1,0 +1,70 @@
+@import "@/assets/props.css";
+
+.dialog {
+	position: relative;
+	z-index: var(--powerups-z-dialog);
+}
+
+.backdrop {
+	position: fixed;
+	inset: 0;
+	opacity: 0.4;
+	background-color: #000;
+}
+
+.root {
+	position: fixed;
+	inset: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	padding-inline: 100px;
+}
+
+.panel {
+	position: relative;
+	width: 100%;
+	height: 100%;
+}
+
+.close {
+	position: fixed !important;
+	top: 32px !important;
+	left: auto !important;
+	bottom: auto !important;
+	right: 64px !important;
+}
+
+.container {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+	width: 100%;
+	height: 100%;
+	padding-top: 8px;
+}
+
+.link {
+	margin-left: auto;
+	flex-shrink: 0;
+	background-color: transparent;
+	border: 0;
+	outline: 0;
+	font-size: 13px;
+	color: var(--powerups-color-white);
+
+	&:hover,
+	&:focus-within {
+		text-decoration: underline;
+	}
+}
+
+.iframe {
+	flex-grow: 1;
+	overflow: hidden;
+	background-color: var(--powerups-color-background);
+	border: 0;
+	border-top-left-radius: 4px;
+	border-top-right-radius: 4px;
+}

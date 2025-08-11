@@ -1,52 +1,55 @@
 .table {
-  :global(.gantt-left-cell[aria-hidden="true"]),
-  :global([id^="ganttIssue-"][aria-hidden="true"]),
-  :global(.gantt-right-cell[aria-hidden="true"]),
-  :global(.gantt-right-cell-borderless[aria-hidden="true"]) {
-    display: none;  
-  }
+	:global(.gantt-left-cell[aria-hidden="true"]),
+	:global([id^="ganttIssue-"][aria-hidden="true"]),
+	:global(.gantt-right-cell[aria-hidden="true"]),
+	:global(.gantt-right-cell-borderless[aria-hidden="true"]) {
+		display: none;
+	}
 
-  &.Filtered {
-    :global(.parent-child-mask),
-    :global(.wing),
-    :global([class^="_selectionHighlight_"]),
-    :global([class^="_unselectAll_"]) {
-      display: none;
-    }
+	&.Filtered {
+		:global(.parent-child-mask),
+		:global(.wing),
+		:global([class^="_selectionHighlight_"]),
+		:global([class^="_unselectAll_"]) {
+			display: none;
+		}
 
-    :global(.chart.-child-issue),
-    :global(:where(.chart.-child-issue, .chart.selected.-child-issue) .resize-handle) {
-      height: 40px !important;
-    }
-  }
+		:global(.chart.-child-issue),
+		:global(
+				:where(.chart.-child-issue, .chart.selected.-child-issue)
+				.resize-handle
+			) {
+			height: 40px !important;
+		}
+	}
 }
 
 .combobox {
-  position: relative;
+	position: relative;
 
 	&::before {
 		position: absolute;
 		top: 50%;
-    right: 11px;
+		right: 11px;
 		transform: translateY(-25%);
 		content: "";
 		height: 0;
 		width: 13px;
 		border: 6px solid transparent;
-		border-top: 7px solid var(--iconColorDefault);;
+		border-top: 7px solid var(--iconColorDefault);
 		border-radius: 3px;
 	}
 
-  &:hover::before {
-    border-top-color: var(--defaultColorAccent);
-  }
+	&:hover::before {
+		border-top-color: var(--defaultColorAccent);
+	}
 }
 
 .select {
-  height: 32px;
-  padding-inline: 11px 32px;
-  border: 1px solid var(--borderColorFormElement);
-  border-radius: 4px;
-  font-size: 13px;
-  appearance: none;
+	height: 32px;
+	padding-inline: 11px 32px;
+	border: 1px solid var(--borderColorFormElement);
+	border-radius: 4px;
+	font-size: 13px;
+	appearance: none;
 }

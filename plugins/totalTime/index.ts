@@ -2,7 +2,7 @@ import styles from "./index.module.css";
 
 export const totalTime = definePowerUpsPlugin({
 	group: "issue",
-	matches: ["/find/**"],
+	matches: ["/find/**", "/FindIssueAllOver.action"],
 	async main({ observeQuerySelector }) {
 		observeQuerySelector("#issues-table tbody tr", (el) => {
 			const issueTable = el.closest("#issues-table");

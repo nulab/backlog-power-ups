@@ -1,21 +1,21 @@
 .zenMode {
-    :global(#global),
-    :global(#project-header),
-    :global(#projectNav) {
-        display: none;
-    }
+	:global(#global),
+	:global(#project-header),
+	:global(#projectNav) {
+		display: none;
+	}
 
-    :global(#container) {
-        --globalNavHeight: 0px !important;
-        --wikiGlobalHeaderHeight: 0px !important;
-    }
+	:global(#container) {
+		--globalNavHeight: 0px !important;
+		--wikiGlobalHeaderHeight: 0px !important;
+	}
 
-    :global(.content-outer) {
-        margin-left: 0 !important;
-    }
+	:global(.content-outer) {
+		margin-left: 0 !important;
+	}
 
-    :global(.sidebar-container) {
-        top: 0 !important;
-        height: 100vh !important;
-    }
+	:global(.sidebar-container) {
+		top: 0 !important;
+		height: 100vh !important;
+	}
 }
