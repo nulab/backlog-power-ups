@@ -10,6 +10,18 @@ export default defineContentScript({
 	async main(ctx) {
 		const manager = await createPluginManager(ctx);
 
+		if (isMainFrame) {
+			const enabledPlugins = Object.entries(manager.pluginStates)
+				.filter(([, enabled]) => enabled)
+				.map(([id]) => id);
+			logger.info(
+				`enabled ${enabledPlugins.length} plugins: %c${enabledPlugins.join(
+					", ",
+				)}`,
+				"color: #a1af2f",
+			);
+		}
+
 		let { pathname: currentPathname } = location;
 
 		manager.onRouteChange(currentPathname);

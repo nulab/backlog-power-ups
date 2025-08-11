@@ -51,19 +51,19 @@ export const totalTime = definePowerUpsPlugin({
 			el.insertAdjacentHTML(
 				"beforeend",
 				html`
-                    <div class=${styles.totalTime}>
-                        <span>
-                            ${i18n.t("totalTime.estimated_hours")}${": "}
-                            <span data-powerups-column-key="estimatedHours">-</span>
-                            ${" hrs"}
-                        </span>
-                        <span>
-                            ${i18n.t("totalTime.actual_hours")}${": "}
-                            <span data-powerups-column-key="actualHours">-</span>
-                            ${" hrs"}
-                        </span>
-                    </div>
-                ` as string,
+          <div class=${styles.totalTime}>
+            <span>
+              ${i18n.t("totalTime.estimated_hours")}${": "}
+              <span data-powerups-column-key="estimatedHours">-</span>
+              ${" hrs"}
+            </span>
+            <span>
+              ${i18n.t("totalTime.actual_hours")}${": "}
+              <span data-powerups-column-key="actualHours">-</span>
+              ${" hrs"}
+            </span>
+          </div>
+        ` as string,
 			);
 		});
 	},

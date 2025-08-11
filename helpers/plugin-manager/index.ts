@@ -16,33 +16,56 @@ export const createPluginManager = async (ctx: ContentScriptContext) => {
 		for (const [
 			id,
 			{
-				plugin: { matches },
+				plugin: { pluginId, matches },
 				invalidate,
 			},
 		] of activePluginMap.entries()) {
 			const isMatched = matches.some((match) => minimatch(pathname, match));
 
 			if (!isMatched) {
+				logger.info(
+					`invalidating %c${pluginId}%c plugin${
+						isMainFrame ? "" : " in subframe"
+					}`,
+					"font-weight: bold; color: #ed8077",
+					"font-weight: normal",
+				);
+
 				invalidate();
 				activePluginMap.delete(id);
 			}
 		}
 
 		for (const plugin of PLUGINS) {
-			if (!pluginStates[plugin.pluginId]) {
+			if (
+				!pluginStates[plugin.pluginId] ||
+				(!isMainFrame && !plugin.allFrames)
+			) {
 				continue;
 			}
 
-			const isMatched = plugin.matches.some((match) =>
+			const matched = plugin.matches.find((match) =>
 				minimatch(pathname, match),
 			);
 
-			if (isMatched && !activePluginMap.has(plugin.pluginId)) {
+			if (matched && !activePluginMap.has(plugin.pluginId)) {
+				logger.info(
+					`initializing %c\`${plugin.pluginId}\`%c plugin${
+						isMainFrame ? "" : " in subframe"
+					} (matched %c\`${matched}\`%c)`,
+					isMainFrame
+						? "font-weight: bold; color: #5eb5a6"
+						: "font-weight: bold; color: #ea733b",
+					"font-weight: normal",
+					"font-weight: bold; color: #666",
+					"font-weight: normal",
+				);
+
 				const invalidate = plugin.initialize(ctx, pluginStates);
 				activePluginMap.set(plugin.pluginId, { plugin, invalidate });
 			}
 		}
 	};
 
-	return { onRouteChange };
+	return { onRouteChange, pluginStates };
 };
