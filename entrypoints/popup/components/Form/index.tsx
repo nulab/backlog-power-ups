@@ -52,9 +52,14 @@ export const Form: React.FC = () => {
 						<section key={group} className={styles.form__section}>
 							<Disclosure
 								label={title}
-								badge={
+								enabledBadge={
 									plugins.filter(({ pluginId }) =>
 										enabledPluginIds.includes(pluginId),
+									).length
+								}
+								disabledBadge={
+									plugins.filter(
+										({ pluginId }) => !enabledPluginIds.includes(pluginId),
 									).length
 								}
 							>
