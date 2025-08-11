@@ -27,6 +27,8 @@ copyWiki:
   name: Copy wiki page to other project
   prompt: Please input destination project key
   copy_to: Copy to another project
+favicon:
+  name: Replace the favicon with a space icon or project icon (number of notifications cannot be displayed)
 zenMode:
   name: Zen Mode (hide other UI) in Document
 extendDesc:

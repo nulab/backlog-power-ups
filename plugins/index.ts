@@ -5,6 +5,7 @@ export * from "./childPage.ts";
 export * from "./copyIssueKeysAndSubjects.ts";
 export * from "./copyWiki.ts";
 export * from "./extendDesc.ts";
+export * from "./favicon";
 export * from "./hideDocumentToolbar";
 export * from "./hr";
 export * from "./jumpIssue.ts";
