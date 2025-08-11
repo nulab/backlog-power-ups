@@ -5,8 +5,10 @@
 	--powerups-color-background: #f0f0f0;
 	--powerups-color-primary: #00836b;
 	--powerups-color-accent: #2c9a7a;
+	--powerups-color-notification: #f42858;
 	--powerups-color-disabled: #e5e5e5;
 	--powerups-color-border: #c2c2c2;
+	--powerups-color-hover: #fcfade;
 	--powerups-z-floating: 10;
 	--powerups-z-select: 500;
 }
