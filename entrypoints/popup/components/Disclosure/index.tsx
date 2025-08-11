@@ -16,7 +16,13 @@ const Component: React.FC<Props> = ({ label, badge, children }) => {
 		<Disclosure>
 			<DisclosureButton className={styles.button}>
 				<span>{label}</span>
-				{badge != null && <span className={styles.badge}>{badge}</span>}
+				{badge != null && (
+					<span
+						className={`${styles.badge} ${badge === 0 ? styles.Disabled : ""}`}
+					>
+						{badge}
+					</span>
+				)}
 			</DisclosureButton>
 			<DisclosurePanel static className={styles.panel}>
 				{children}

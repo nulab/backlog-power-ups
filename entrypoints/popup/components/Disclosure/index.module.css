@@ -11,6 +11,11 @@
 	border-top-width: 2px;
 	font-size: 14px;
 	font-weight: bold;
+	cursor: pointer;
+
+	&:hover {
+		background-color: var(--powerups-color-hover);
+	}
 
 	&::before {
 		display: block;
@@ -26,7 +31,7 @@
 		transform: translateY(-4px) rotate(135deg);
 	}
 
-	&:where(:hover, :focus)::before {
+	&:where(:hover, :focus-within)::before {
 		border-color: var(--powerups-color-accent);
 	}
 }
@@ -37,11 +42,16 @@
 	width: 20px;
 	height: 20px;
 	margin-left: auto;
-	background-color: var(--powerups-color-accent);
-	border-radius: 50%;
+	background-color: var(--powerups-color-notification);
+	border-radius: 4px;
 	font-size: 12px;
 	font-weight: normal;
 	color: var(--powerups-color-white);
+
+	&.Disabled {
+		background-color: var(--powerups-color-disabled);
+		color: var(--powerups-color-text);
+	}
 }
 
 .panel {
