@@ -4,6 +4,7 @@ export * from "./boardOneline";
 export * from "./childPage";
 export * from "./copyIssueKeysAndSubjects";
 export * from "./copyWiki";
+export * from "./expandDiffFileLink";
 export * from "./extendDesc";
 export * from "./favicon";
 export * from "./hideDocumentToolbar";

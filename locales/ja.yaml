@@ -57,3 +57,5 @@ totalTime:
   actual_hours: 実績時間計
 userSwitcher:
   name: 個人のガントチャートにユーザー切り替えを表示する
+expandDiffFileLink:
+  name: 差分ファイルのリンク領域を広げます

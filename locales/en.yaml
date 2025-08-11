@@ -57,3 +57,5 @@ totalTime:
   actual_hours: Total actual
 userSwitcher:
   name: Show user switcher on personal Gantt
+expandDiffFileLink:
+  name: Expand the link area for the difference file
