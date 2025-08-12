@@ -34,13 +34,13 @@ export const copyWiki = definePowerUpsPlugin({
 		observeQuerySelector(
 			".wiki-page-tag-group--icon dropdown-menu ul.dropdown-menu",
 			(el) => {
-				console.log(el);
-
 				const li = document.createElement("li");
 				li.classList.add("dropdown-menu__item");
 
 				const button = createButton(
-					html`<button class="dropdown-menu__link is_active">${i18n.t("copyWiki.copy_to")}</button>`,
+					html`<button class="dropdown-menu__link is_active">
+            ${i18n.t("copyWiki.copy_to")}
+          </button>`,
 					{
 						click: start,
 					},
@@ -69,7 +69,9 @@ export const copyWiki = definePowerUpsPlugin({
 
 				if (el instanceof HTMLTextAreaElement && el.value === "") {
 					const res = await fetch(
-						`/ViewWikiJson.action?projectKey=${encodeURIComponent(projectKey)}&wikiId=${encodeURIComponent(pageId)}`,
+						`/ViewWikiJson.action?projectKey=${encodeURIComponent(
+							projectKey,
+						)}&wikiId=${encodeURIComponent(pageId)}`,
 						{
 							headers: {
 								"x-requested-with": "XMLHttpRequest",

@@ -7,7 +7,7 @@ import {
 import type { PluginStates } from "@/helpers/plugin-manager/storage.ts";
 import type { PluginGroupId } from "./types";
 
-type DefinePowerUpsPluginDefinition = {
+export type DefinePowerUpsPluginDefinition = {
 	group: PluginGroupId;
 	allFrames?: boolean;
 	defaultEnabled?: boolean;
@@ -28,6 +28,7 @@ export const definePowerUpsPlugin = (
 		const { context, invalidate } = createPowerUpsPluginContext(
 			ctx,
 			pluginStates,
+			definition,
 		);
 
 		definition.main(context);

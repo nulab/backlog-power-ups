@@ -47,3 +47,11 @@ export const createButton = (
 
 	return buttonEl;
 };
+
+export const getId = () => {
+	// @ts-expect-error
+	window.__powerUpsId ||= 0;
+
+	// @ts-expect-error
+	return `__powerUps_autoId_${++window.__powerUpsId}`;
+};

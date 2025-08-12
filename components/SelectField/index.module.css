@@ -1,0 +1,29 @@
+.field {
+	position: relative;
+
+	&::before {
+		position: absolute;
+		top: 50%;
+		right: 11px;
+		transform: translateY(-25%);
+		content: "";
+		height: 0;
+		width: 13px;
+		border: 6px solid transparent;
+		border-top: 7px solid var(--iconColorDefault);
+		border-radius: 3px;
+	}
+
+	&:hover::before {
+		border-top-color: var(--defaultColorAccent);
+	}
+}
+
+.select {
+	height: 32px;
+	padding-inline: 11px 32px;
+	border: 1px solid var(--borderColorFormElement);
+	border-radius: 4px;
+	font-size: 13px;
+	appearance: none;
+}

@@ -5,8 +5,6 @@ export const oldPost = definePowerUpsPlugin({
 	matches: ["/wiki/**", "/alias/wiki/*"],
 	async main({ observeQuerySelector }) {
 		observeQuerySelector(".user-history", (el) => {
-			console.log("find element", el);
-
 			const text =
 				el.querySelector(".user-icon-set:last-child .user-icon-set__text")
 					?.textContent || "";
@@ -31,10 +29,8 @@ export const oldPost = definePowerUpsPlugin({
 			}
 
 			const messageHtml = html`
-                <p class=${styles.message}>
-                    ${i18n.t("oldPost.alert")}
-                </p>
-            `;
+        <p class=${styles.message}>${i18n.t("oldPost.alert")}</p>
+      `;
 
 			document
 				.getElementById("mainTitle")

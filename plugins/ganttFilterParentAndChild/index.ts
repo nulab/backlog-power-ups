@@ -1,35 +1,24 @@
 import debounce from "p-debounce";
+import { createSelectField } from "@/components/SelectField";
 import styles from "./index.module.css";
 
 export const ganttFilterParentAndChild = definePowerUpsPlugin({
 	group: "gantt",
-	matches: ["/gantt/*"],
+	matches: ["/gantt/**"],
 	main({ observeQuerySelector, addEventListener }) {
-		const template = document.createElement("template");
-		template.innerHTML = html`
-      <li class="form-element__item _mg-t-10">
-        <label class="form-element__label" for="powerups-select">
-          ${i18n.t("ganttFilterParentAndChild.label")}
-        </label>
-        <div class=${styles.combobox}>
-          <select id="powerups-select" class=${styles.select}>
-            <option value="all">
-              ${i18n.t("ganttFilterParentAndChild.all")}
-            </option>
-            <option value="parent">
-              ${i18n.t("ganttFilterParentAndChild.parent")}
-            </option>
-            <option value="child">
-              ${i18n.t("ganttFilterParentAndChild.child")}
-            </option>
-          </select>
-        </div>
-      </li>
-    ` as string;
-
-		const select = template.content.querySelector(
-			"select",
-		) as HTMLSelectElement;
+		const { element, select } = createSelectField({
+			label: i18n.t("ganttFilterParentAndChild.label"),
+			defaultValue: "all",
+			options: html`
+        <option value="all">${i18n.t("ganttFilterParentAndChild.all")}</option>
+        <option value="parent">
+          ${i18n.t("ganttFilterParentAndChild.parent")}
+        </option>
+        <option value="child">
+          ${i18n.t("ganttFilterParentAndChild.child")}
+        </option>
+      `,
+		});
 
 		const handleChange = debounce(() => {
 			const { value } = select;
@@ -109,7 +98,7 @@ export const ganttFilterParentAndChild = definePowerUpsPlugin({
 
 		observeQuerySelector(".result-set__controller .form-element", (el) => {
 			addEventListener(select, "change", handleChange);
-			el.appendChild(template.content);
+			el.appendChild(element);
 
 			return () => {
 				select.removeEventListener("change", handleChange);

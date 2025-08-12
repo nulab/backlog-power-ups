@@ -73,3 +73,10 @@ openInDialog:
   close: Close
 hideEmptyColumn:
   name: Hide all empty columns
+projectIssueFilter:
+  name: Select a filter for the project on the issue list
+  placeholder: Filter
+  loading: Loading...
+  projectLabel: Filter for $1
+  spaceLabel: Issue search filter
+  empty: No filters available

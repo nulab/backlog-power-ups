@@ -48,6 +48,10 @@ export const createPluginManager = async (ctx: ContentScriptContext) => {
 				minimatch(pathname, match),
 			);
 
+			if (plugin.pluginId === "ganttFilterParentAndChild") {
+				console.log(plugin, matched, pathname);
+			}
+
 			if (matched && !activePluginMap.has(plugin.pluginId)) {
 				logger.info(
 					`initializing %c\`${plugin.pluginId}\`%c plugin${

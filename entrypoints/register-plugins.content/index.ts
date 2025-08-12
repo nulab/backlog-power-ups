@@ -1,3 +1,4 @@
+import pDebounce from "p-debounce";
 import { createPluginManager } from "@/helpers/plugin-manager";
 
 export default defineContentScript({
@@ -24,7 +25,9 @@ export default defineContentScript({
 
 		let { pathname: currentPathname } = location;
 
-		manager.onRouteChange(currentPathname);
+		const onRouteChange = pDebounce(manager.onRouteChange, 10);
+
+		onRouteChange(currentPathname);
 
 		const observer = new MutationObserver(() => {
 			const { pathname } = location;
@@ -32,10 +35,10 @@ export default defineContentScript({
 			if (currentPathname !== pathname) {
 				currentPathname = pathname;
 
-				manager.onRouteChange(currentPathname);
+				onRouteChange(currentPathname);
 			}
 		});
 
-		observer.observe(document.body, { childList: true });
+		observer.observe(document.body, { childList: true, subtree: true });
 	},
 });
