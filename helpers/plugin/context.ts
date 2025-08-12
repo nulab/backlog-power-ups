@@ -33,12 +33,11 @@ export const createPowerUpsPluginContext = (
 			const isMatched = definition.matches.some((match) =>
 				minimatch(location.pathname, match),
 			);
-			console.log(selector, isMatched, definition.matches, location.pathname);
 			if (!isMatched) {
 				return () => {};
 			}
 
-			logger.info(
+			logger.debug(
 				`starting %c\`observeQuerySelector(${selector})\``,
 				"color: #4488c5",
 			);
@@ -54,7 +53,7 @@ export const createPowerUpsPluginContext = (
 			return invalidate;
 		},
 		asyncQuerySelector: (selector, options) => {
-			logger.info(
+			logger.debug(
 				`starting %c\`asyncQuerySelector(${selector})\``,
 				"color: #4488c5",
 			);
@@ -70,7 +69,7 @@ export const createPowerUpsPluginContext = (
 		// @ts-expect-error
 		addEventListener: (target, type, handler, options) => {
 			const targetName = target instanceof Window ? "window" : target.nodeName;
-			logger.info(
+			logger.debug(
 				`starting %c\`${targetName}.addEventListener(${type})\``,
 				"color: #4488c5",
 			);
@@ -82,7 +81,7 @@ export const createPowerUpsPluginContext = (
 			);
 		},
 		setTimeout: (...args) => {
-			logger.info(`starting %c\`setTimeout(${args[1]})\``, "color: #4488c5");
+			logger.debug(`starting %c\`setTimeout(${args[1]})\``, "color: #4488c5");
 
 			const timer = ctx.setTimeout(...args);
 
@@ -91,7 +90,7 @@ export const createPowerUpsPluginContext = (
 			return timer;
 		},
 		setInterval: (...args) => {
-			logger.info(`starting %c\`setInterval(${args[1]})\``, "color: #4488c5");
+			logger.debug(`starting %c\`setInterval(${args[1]})\``, "color: #4488c5");
 
 			const timer = ctx.setInterval(...args);
 
@@ -102,7 +101,7 @@ export const createPowerUpsPluginContext = (
 	};
 
 	const invalidate = () => {
-		logger.info(
+		logger.debug(
 			`invalidating %c${invalidatorSet.size} listeners`,
 			"color: #e07b9a",
 		);

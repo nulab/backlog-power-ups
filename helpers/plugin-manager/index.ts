@@ -54,7 +54,7 @@ export const createPluginManager = async (ctx: ContentScriptContext) => {
 
 			if (matched && !activePluginMap.has(plugin.pluginId)) {
 				logger.info(
-					`initializing %c\`${plugin.pluginId}\`%c plugin${
+					`starting %c\`${plugin.pluginId}\`%c plugin${
 						isMainFrame ? "" : " in subframe"
 					} (matched %c\`${matched}\`%c)`,
 					isMainFrame
