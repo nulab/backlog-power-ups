@@ -52,6 +52,8 @@ export const openInDialog = definePowerUpsPlugin({
 		if (isMainFrame) {
 			addEventListener(window, "mousedown", handleMouseDown);
 			addEventListener(window, "mouseup", () => controller?.abort());
+			addEventListener(window, "mousemove", () => controller?.abort());
+			addEventListener(window, "contextmenu", () => controller?.abort());
 
 			return;
 		}
