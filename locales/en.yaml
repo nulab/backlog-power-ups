@@ -80,3 +80,9 @@ projectIssueFilter:
   projectLabel: Filter for $1
   spaceLabel: Issue search filter
   empty: No filters available
+copyRawFile:
+  name: Add a button to copy the file content
+  label: Copy content
+filePermalink:
+  name: Add a button to move from the branch file URL to the commit hash file URL
+  label: Permalink

@@ -80,3 +80,9 @@ projectIssueFilter:
   projectLabel: $1のフィルタ
   spaceLabel: 課題検索のフィルタ
   empty: フィルタがありません
+copyRawFile:
+  name: ファイルの内容をコピーするボタンを追加する
+  label: 内容をコピー
+filePermalink:
+  name: ブランチのファイルURLからコミットハッシュのファイルURLに移動するボタンを追加する
+  label: パーマリンク

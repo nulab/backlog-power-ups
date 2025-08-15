@@ -1,3 +1,6 @@
 {
-	"extends": ["./.wxt/tsconfig.json", "@tsconfig/vite-react"]
+	"extends": ["./.wxt/tsconfig.json", "@tsconfig/vite-react"],
+	"compilerOptions": {
+		"lib": ["ESNext", "DOM", "DOM.Iterable"]
+	}
 }
