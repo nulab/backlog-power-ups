@@ -86,3 +86,6 @@ copyRawFile:
 filePermalink:
   name: Add a button to move from the branch file URL to the commit hash file URL
   label: Permalink
+copyPullSummary:
+  name: Add a button to copy the pull request number and title
+  tooltip: Copy the pull request number ($1) and title to the clipboard. Shift-click to copy only the pull request number.

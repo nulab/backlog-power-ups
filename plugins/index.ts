@@ -3,6 +3,7 @@ export * from "./autoResolution";
 export * from "./boardOneline";
 export * from "./childPage";
 export * from "./copyIssueKeysAndSubjects";
+export * from "./copyPullSummary";
 export * from "./copyRawFile";
 export * from "./copyWiki";
 export * from "./expandDiffFileLink";
