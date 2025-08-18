@@ -44,7 +44,7 @@ The file or directory name should be the same as the exported plugin name (which
 ### Add an Entry Point
 
 > [!TIP]
-> Variables exported from /utils, such as definePowerUpsPlugin, can be used without importing them.  
+> Variables exported from `/utils`, such as `definePowerUpsPlugin`, can be used without importing them.  
 > See: https://wxt.dev/guide/essentials/config/auto-imports
 
 First, define an entry point in `plugins/{plugin_id}.ts` or `plugins/{plugin_id}/index.ts` using `definePowerUpsPlugin()`.
