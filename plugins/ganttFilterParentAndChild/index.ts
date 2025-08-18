@@ -105,12 +105,24 @@ export const ganttFilterParentAndChild = definePowerUpsPlugin({
 			};
 		});
 
-		observeQuerySelector(".gantt-table__left-inner > .gantt-left-cell", () =>
-			handleChange(),
+		observeQuerySelector(
+			".gantt-table__left-inner > .gantt-left-cell",
+			async () => {
+				await handleChange();
+			},
 		);
 
 		observeQuerySelector(".gantt-table", (el) => {
 			el.classList.add(styles.table);
+
+			const observer = new MutationObserver(() => {
+				el.classList.toggle(styles.table, true);
+			});
+
+			return observer.observe(el, {
+				attributes: true,
+				attributeFilter: ["class"],
+			});
 		});
 	},
 });
