@@ -1,5 +1,5 @@
 .dialogRoot {
-	--globalNavHeight: 0 !important;
+	--globalNavHeight: 0px !important;
 
 	:global(#global),
 	:global(#projectNav),
