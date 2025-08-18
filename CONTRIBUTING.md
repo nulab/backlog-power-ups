@@ -118,7 +118,7 @@ definePowerUpsPlugin({
 })
 ```
 
-Releasing Updates
+## Releasing Updates
 
 Releases are handled via GitHub Actions.
 
