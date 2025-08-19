@@ -19,35 +19,35 @@ also compatible with
 👆 Requires a user action (like a click) to work.
 
 |                           | Name                                                                    | Description                                                      |      |
-|:--------------------------|:------------------------------------------------------------------------|:-----------------------------------------------------------------|:----:|
-| ![General][general-src]   | [absoluteDate](plugins/absoluteDate.ts)                                 | Converts relative dates (e.g., "2 hours ago") to absolute dates. | ☑️🪄 |
-| ![General][general-src]   | [copyIssueKeyAndSubjects](plugins/copyIssueKeyAndSubjects.ts)           | Copies the key and subject of issues.                            | ☑️👆 |
-| ![General][general-src]   | [favicon](plugins/favicon.ts)                                           | Changes the favicon based on the project.                        | ☑️🪄 |
-| ![General][general-src]   | [jumpIssue](plugins/jumpIssue.ts)                                       | Allows jumping directly to an issue by its key.                  | ☑️👆 |
-| ![General][general-src]   | [openInDialog](plugins/openInDialog/index.ts)                           | Opens links in a dialog box instead of a new tab.                | ☑️👆 |
-| ![General][general-src]   | [quickSearch](plugins/quickSearch.ts)                                   | Provides a quick search functionality.                           | ☑️🪄 |
-| ![General][general-src]   | [searchKeyboard](plugins/searchKeyboard.ts)                             | Adds keyboard shortcuts for searching.                           | ☑️🪄 |
-| ![General][general-src]   | [sidebarAutoClose](plugins/sidebarAutoClose.ts)                         | Automatically closes the sidebar.                                | ☑️🪄 |
-| ![General][general-src]   | [userSwitcher](plugins/userSwitcher/index.ts)                           | Allows for quick user switching.                                 | ☑️👆 |
-| ![Issue][issue-src]       | [autoResolution](plugins/autoResolution.ts)                             | Automatically sets the resolution for an issue when closed.      | ☑️🪄 |
-| ![Issue][issue-src]       | [expandDiffFileLink](plugins/expandDiffFileLink/index.ts)               | Expands long file paths in pull request diffs.                   | ☑️🪄 |
-| ![Issue][issue-src]       | [extendDesc](plugins/extendDesc.ts)                                     | Expands the description field on the issue details page.         | ☑️🪄 |
-| ![Issue][issue-src]       | [hideEmptyColumn](plugins/hideEmptyColumn/index.ts)                     | Hides empty columns in the issue list view.                      | ☑️🪄 |
-| ![Issue][issue-src]       | [projectIssueFilter](plugins/projectIssueFilter/index.ts)               | Adds a filter to the cross-project issue list.                   | ☑️👆 |
-| ![Issue][issue-src]       | [totalTime](plugins/totalTime/index.ts)                                 | Calculates and displays the total estimated and actual time.     | ☑️🪄 |
-| ![Board][board-src]       | [boardOneline](plugins/boardOneline/index.ts)                           | Displays issue titles on a single line in the Kanban board.      | ☑️👆 |
-| ![Gantt][gantt-src]       | [ganttFilterParentAndChild](plugins/ganttFilterParentAndChild/index.ts) | Filters parent and child issues in the Gantt chart.              | ☑️👆 |
-| ![Wiki][wiki-src]         | [childPage](plugins/childPage.ts)                                       | Displays a list of child pages on a Wiki page.                   | ☑️🪄 |
-| ![Wiki][wiki-src]         | [copyWiki](plugins/copyWiki.ts)                                         | Adds a button to copy a Wiki page.                               | ☑️👆 |
-| ![Wiki][wiki-src]         | [hr](plugins/hr/index.ts)                                               | Adds a horizontal rule (`<hr>`) button to the editor toolbar.    | ☑️🪄 |
-| ![Wiki][wiki-src]         | [oldPost](plugins/oldPost/index.ts)                                     | Displays a warning on old Wiki posts.                            | ☑️🪄 |
-| ![Wiki][wiki-src]         | [plantuml](plugins/plantuml.ts)                                         | Renders PlantUML diagrams in Wiki pages.                         | ☑️🪄 |
-| ![Document][document-src] | [hideDocumentToolbar](plugins/hideDocumentToolbar/index.ts)             | Hides the toolbar in the document view.                          | ☑️🪄 |
+|:-------------------------:|:------------------------------------------------------------------------|:-----------------------------------------------------------------|:----:|
+|  ![General][general-src]  | [absoluteDate](plugins/absoluteDate.ts)                                 | Converts relative dates (e.g., "2 hours ago") to absolute dates. |  🪄  |
+|  ![General][general-src]  | [copyIssueKeyAndSubjects](plugins/copyIssueKeyAndSubjects.ts)           | Copies the key and subject of issues.                            | ☑️👆 |
+|  ![General][general-src]  | [favicon](plugins/favicon.ts)                                           | Changes the favicon based on the project.                        |  🪄  |
+|  ![General][general-src]  | [jumpIssue](plugins/jumpIssue.ts)                                       | Allows jumping directly to an issue by its key.                  | ☑️👆 |
+|  ![General][general-src]  | [openInDialog](plugins/openInDialog/index.ts)                           | Opens links in a dialog box instead of a new tab.                | ☑️👆 |
+|  ![General][general-src]  | [quickSearch](plugins/quickSearch.ts)                                   | Provides a quick search functionality.                           | ☑️🪄 |
+|  ![General][general-src]  | [searchKeyboard](plugins/searchKeyboard.ts)                             | Adds keyboard shortcuts for searching.                           |  🪄  |
+|  ![General][general-src]  | [sidebarAutoClose](plugins/sidebarAutoClose.ts)                         | Automatically closes the sidebar.                                | ☑️🪄 |
+|  ![General][general-src]  | [userSwitcher](plugins/userSwitcher/index.ts)                           | Allows for quick user switching.                                 | ☑️👆 |
+|    ![Issue][issue-src]    | [autoResolution](plugins/autoResolution.ts)                             | Automatically sets the resolution for an issue when closed.      |  🪄  |
+|    ![Issue][issue-src]    | [extendDesc](plugins/extendDesc.ts)                                     | Expands the description field on the issue details page.         |  🪄  |
+|    ![Issue][issue-src]    | [hideEmptyColumn](plugins/hideEmptyColumn/index.ts)                     | Hides empty columns in the issue list view.                      |  🪄  |
+|    ![Issue][issue-src]    | [projectIssueFilter](plugins/projectIssueFilter/index.ts)               | Adds a filter to the cross-project issue list.                   | ☑️👆 |
+|    ![Issue][issue-src]    | [totalTime](plugins/totalTime/index.ts)                                 | Calculates and displays the total estimated and actual time.     | ☑️🪄 |
+|    ![Board][board-src]    | [boardOneline](plugins/boardOneline/index.ts)                           | Displays issue titles on a single line in the Kanban board.      | ☑️👆 |
+|    ![Gantt][gantt-src]    | [ganttFilterParentAndChild](plugins/ganttFilterParentAndChild/index.ts) | Filters parent and child issues in the Gantt chart.              | ☑️👆 |
+|     ![Wiki][wiki-src]     | [childPage](plugins/childPage.ts)                                       | Displays a list of child pages on a Wiki page.                   |  🪄  |
+|     ![Wiki][wiki-src]     | [copyWiki](plugins/copyWiki.ts)                                         | Adds a button to copy a Wiki page.                               | ☑️👆 |
+|     ![Wiki][wiki-src]     | [hr](plugins/hr/index.ts)                                               | Adds a horizontal rule (`<hr>`) button to the editor toolbar.    |  🪄  |
+|     ![Wiki][wiki-src]     | [oldPost](plugins/oldPost/index.ts)                                     | Displays a warning on old Wiki posts.                            | ☑️🪄 |
+|     ![Wiki][wiki-src]     | [plantuml](plugins/plantuml.ts)                                         | Renders PlantUML diagrams in Wiki pages.                         |  🪄  |
+| ![Document][document-src] | [hideDocumentToolbar](plugins/hideDocumentToolbar/index.ts)             | Hides the toolbar in the document view.                          |  🪄  |
 | ![Document][document-src] | [zenMode](plugins/zenMode/index.ts)                                     | Provides a distraction-free "Zen Mode" for viewing and editing.  | ☑️👆 |
-| ![Git][git-src]           | [copyPullSummary](plugins/copyPullSummary/index.ts)                     | Copies the summary (title and URL) of a pull request.            | ☑️👆 |
-| ![Git][git-src]           | [copyRawFile](plugins/copyRawFile.ts)                                   | Adds a button to copy the raw content of a file.                 | ☑️👆 |
-| ![Git][git-src]           | [filePermalink](plugins/filePermalink.ts)                               | Gets a permalink for a file in the repository.                   | ☑️👆 |
-| ![Git][git-src]           | [gitSmallContainer](plugins/gitSmallContainer/index.ts)                 | Reduces the size of the Git repository container.                | ☑️🪄 |
+|      ![Git][git-src]      | [copyPullSummary](plugins/copyPullSummary/index.ts)                     | Copies the summary (title and URL) of a pull request.            | ☑️👆 |
+|      ![Git][git-src]      | [copyRawFile](plugins/copyRawFile.ts)                                   | Adds a button to copy the raw content of a file.                 | ☑️👆 |
+|      ![Git][git-src]      | [filePermalink](plugins/filePermalink.ts)                               | Gets a permalink for a file in the repository.                   | ☑️👆 |
+|      ![Git][git-src]      | [gitSmallContainer](plugins/gitSmallContainer/index.ts)                 | Reduces the size of the Git repository container.                |  🪄  |
+|      ![Git][git-src]      | [expandDiffFileLink](plugins/expandDiffFileLink/index.ts)               | Expands long file paths in pull request diffs.                   |  🪄  |
 
 ## Contributing
 
