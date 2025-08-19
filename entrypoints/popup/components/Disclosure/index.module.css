@@ -1,0 +1,74 @@
+@import "@/assets/props.css";
+
+.button {
+	display: flex;
+	align-items: center;
+	gap: 16px;
+	width: 100%;
+	padding: 8px 12px;
+	background-color: var(--powerups-color-white);
+	border: 1px solid var(--powerups-color-border);
+	border-top-width: 2px;
+	font-size: 14px;
+	font-weight: bold;
+	cursor: pointer;
+
+	&:hover {
+		background-color: var(--powerups-color-hover);
+	}
+
+	&::before {
+		display: block;
+		content: "";
+		width: 13px;
+		height: 13px;
+		border-top: 2px solid var(--powerups-color-text-weak);
+		border-right: 2px solid var(--powerups-color-text-weak);
+		transform: translateY(4px) rotate(-45deg);
+	}
+
+	&[aria-expanded="true"]::before {
+		transform: translateY(-4px) rotate(135deg);
+	}
+
+	&:where(:hover, :focus-within)::before {
+		border-color: var(--powerups-color-primary);
+	}
+}
+
+.badges {
+	display: grid;
+	grid-auto-flow: column;
+	gap: 4px;
+	margin-left: auto;
+}
+
+.badge {
+	display: grid;
+	place-items: center;
+	width: 20px;
+	height: 20px;
+
+	background-color: var(--powerups-color-badge);
+	border-radius: 4px;
+	font-size: 12px;
+	font-weight: normal;
+	color: var(--powerups-color-white);
+
+	&.Disabled {
+		background-color: var(--powerups-color-disabled);
+		color: var(--powerups-color-text);
+	}
+}
+
+.panel {
+	display: none;
+	padding: 8px;
+	background-color: var(--powerups-color-white);
+	border: 1px solid var(--powerups-color-border);
+	border-top: 0;
+
+	&[data-open] {
+		display: block;
+	}
+}

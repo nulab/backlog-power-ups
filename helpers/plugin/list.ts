@@ -22,7 +22,16 @@ const plugins = Object.entries(pluginModules).map(
 			name: i18n.t(`${pluginId as PluginId}.name`),
 		}) as Plugin,
 );
-const groups: PluginGroupId[] = ["issue", "board", "wiki", "general"];
+const groups: PluginGroupId[] = [
+	"general",
+	"issue",
+	"board",
+	"gantt",
+	"document",
+	"wiki",
+	"file",
+	"git",
+];
 
 export const PLUGINS_BY_GROUP: PluginCategory[] = groups.map((group) => ({
 	group,
