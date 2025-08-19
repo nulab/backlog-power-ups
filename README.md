@@ -14,8 +14,8 @@ also compatible with
 
 ## Available Plugins
 
-☑️ Enabled by default.
-🪄 Works automatically when enabled.
+☑️ Enabled by default.  
+🪄 Works automatically when enabled.  
 👆 Requires a user action (like a click) to work.
 
 |                           | Name                                                                    | Description                                                      |      |
