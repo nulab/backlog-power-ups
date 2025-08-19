@@ -12,6 +12,7 @@
 		border: 6px solid transparent;
 		border-top: 7px solid var(--iconColorDefault);
 		border-radius: 3px;
+        pointer-events: none;
 	}
 
 	&:hover::before {
