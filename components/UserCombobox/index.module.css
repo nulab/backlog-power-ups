@@ -1,0 +1,108 @@
+@import "@/assets/props.css";
+
+.field {
+	position: relative;
+	width: 100%;
+	display: flex;
+	align-items: stretch;
+}
+
+.input {
+	width: 100%;
+	height: 32px;
+	padding-inline: 12px 24px;
+	font-size: 13px;
+	background-color: var(--backgroundColorSchemeBase);
+	border: 1px solid var(--borderColorFormElement);
+	border-radius: 4px;
+	color: var(--defaultColorText);
+	outline: none;
+
+	&[aria-expanded="true"],
+	&:focus {
+		background-color: var(--backgroundColorHover);
+		border-color: var(--defaultColorLink);
+		box-shadow: 0 0 3px var(--defaultColorLink);
+	}
+
+	&[aria-expanded="true"] {
+		border-bottom-left-radius: 0;
+		border-bottom-right-radius: 0;
+	}
+}
+
+.button {
+	position: absolute;
+	right: 0;
+	top: 50%;
+	display: grid;
+	place-items: center;
+	transform: translateY(-50%);
+	width: 32px;
+	height: 100%;
+	background-color: transparent;
+	border: 0;
+	color: var(--iconColorDefault);
+
+	&[aria-expanded="true"],
+	&:hover {
+		color: var(--defaultColorAccent);
+	}
+
+	&::before {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -25%);
+		content: "";
+		height: 0;
+		width: 13px;
+		border: 6px solid transparent;
+		border-top: 7px solid currentColor;
+		border-radius: 3px;
+	}
+}
+
+.options {
+	max-height: 215px;
+	padding: 4px;
+	overflow: auto;
+	width: var(--input-width);
+	background-color: var(--backgroundColorSchemeBase);
+	border: 1px solid var(--borderColorDefault);
+	border-radius: 0 0 4px 4px;
+	box-shadow: var(--shadowModuleSmall);
+	z-index: var(--powerups-z-select);
+
+	&:empty {
+		visibility: hidden;
+	}
+}
+
+.option {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	width: 100%;
+	padding: 5px 10px;
+	border-radius: 4px;
+	font-size: 13px;
+	line-height: 1.3;
+	color: var(--textColorDefault);
+	cursor: pointer;
+
+	&[data-focus],
+	&:hover {
+		background-color: rgba(var(--defaultColorAccent-rgb), 0.1);
+	}
+
+	&[aria-selected="true"] {
+		background-color: rgba(var(--defaultColorAccent-rgb), 0.25);
+	}
+}
+
+.icon {
+	width: 20px;
+	height: 20px;
+	border-radius: 50%;
+}

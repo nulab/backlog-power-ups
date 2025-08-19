@@ -1,0 +1,57 @@
+/* === One-lined Style === */
+
+.onelined {
+	& :global(.card div) {
+		padding: 0;
+	}
+
+	& :global(.card) {
+		max-width: 100% !important;
+		flex-direction: row;
+		display: flex;
+		margin-bottom: -1px !important;
+		padding: 5px !important;
+
+		&:hover {
+			z-index: 10;
+		}
+	}
+
+	& :global(.card-summary) {
+		text-overflow: ellipsis;
+		overflow: hidden;
+		white-space: nowrap;
+	}
+
+	& :global(.card-label) {
+		display: none;
+	}
+
+	& :global(.card-status) {
+		display: none;
+	}
+}
+
+/* === Toggle Button === */
+.button {
+	font-size: x-large;
+	height: 20px;
+	padding: 0 8px;
+	margin-bottom: 4px;
+	color: gray;
+	background: transparent;
+	border: 0;
+
+	&:hover {
+		text-decoration: none;
+		color: red;
+	}
+}
+
+.onelined .button {
+	color: red;
+
+	&:hover {
+		color: gray;
+	}
+}

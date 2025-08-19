@@ -1,0 +1,3 @@
+{
+	"extends": ["./.wxt/tsconfig.json", "@tsconfig/vite-react"]
+}

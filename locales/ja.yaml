@@ -1,0 +1,42 @@
+app:
+  name: Backlog Power Ups - Backlogを便利に
+  description: Backlogの機能をパワーアップします。11個の機能追加があります。
+popup:
+  apply_button: 適用
+  issue: 課題
+  copy_issue: 別のプロジェクトに課題を複製
+  auto_resolution: 状態の完了時、自動的に完了理由を対応済みにする
+  extend_desc: 課題追加/編集画面の詳細の入力欄を広げる
+  total_time: 検索結果の予定時間計と実績時間計を表示する
+  board: ボード
+  board_oneline: ボードの状態を1行表示するボタンを追加する
+  wiki: Wiki
+  copy_wiki: 別のプロジェクトにWikiのページをコピー
+  child_page: ページの新規作成時に親フォルダ名を自動入力する
+  plantuml: PlantUMLを表示(UMLデータをplantuml.comに送信します)
+  hr: Backlog記法で水平線を表示("---" もしくは "___")
+  old_post: 最終更新日から1年以上経過した記事にお知らせを表示する
+  general: 一般
+  user_switcher: 個人のガントチャートにユーザー切り替えを表示する
+  absolute_date: 絶対時間で時間を表示する
+  copy_issue_keys_and_subjects: 課題一覧で課題キーと件名を一括コピーする
+  watch_list: ウォッチリストに担当者と期限日を表示する
+  jump_issue: Ctrl(Cmd)+Kで課題キーを入力して、その課題を開く
+copy_issue:
+  prompt: 複製先のプロジェクトキーを入力してください。
+  copy_to: 別のプロジェクトに複製
+  refs: 関連課題
+copy_issue_keys_and_subjects:
+  tooltip: 課題キーと件名を一括コピー
+copy_wiki:
+  prompt: 複製先のプロジェクトキーを入力してください。
+  copy_to: 別のプロジェクトにコピー
+jump_issue:
+  prompt: 移動先の課題キーまたは課題キーの番号を入力してください。
+  alert: 課題キーのフォーマットが無効です。
+  missing: 入力されたキーの課題が見つかりません。
+old_post:
+  alert: 最終更新日から1年以上が経過しています。
+total_time:
+  estimated_hours: 予定時間計
+  actual_hours: 実績時間計
