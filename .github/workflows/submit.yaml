@@ -33,6 +33,11 @@ jobs:
           node-version: 24
           cache: npm
 
+      - name: configure Git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
       - name: get the latest tag
         id: get_latest_tag
         run: |
@@ -43,7 +48,7 @@ jobs:
         id: bump_version
         run: |
           npm version ${{ steps.get_latest_tag.outputs.latest_tag }} --no-git-tag-version --allow-same-version
-          npm version ${{ github.event.inputs.newversion }}
+          npm version ${{ github.event.inputs.newversion }} --force
           
           new_tag=$(git describe --tags --abbrev=0)
           echo "Created new tag: ${new_tag}"
@@ -75,6 +80,11 @@ jobs:
       - uses: actions/download-artifact@v5
         with:
           path: .output
+
+      - name: configure Git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
 
       - name: update version
         run: npm version ${{ needs.build.outputs.new_tag }}
