@@ -24,7 +24,7 @@ jobs:
     outputs:
       new_tag: ${{ steps.bump_version.outputs.new_tag }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           fetch-depth: 0
 
@@ -57,7 +57,6 @@ jobs:
 
       - uses: actions/upload-artifact@v4
         with:
-          name: output
           path: .output
 
   submit:
@@ -75,7 +74,6 @@ jobs:
 
       - uses: actions/download-artifact@v5
         with:
-          name: output
           path: .output
 
       - name: update version
