@@ -1,6 +1,6 @@
 import { useTransition } from "react";
+import { PLUGINS_BY_GROUP } from "@/helpers/plugin/list";
 import { reloadActiveTab } from "@/utils/browser-tab.ts";
-import { POWER_UP_PLUGIN_GROUPS } from "@/utils/plugins.ts";
 import { usePlugins } from "../hooks/usePlugins.ts";
 
 export const Form: React.FC = () => {
@@ -12,7 +12,7 @@ export const Form: React.FC = () => {
 		e.preventDefault();
 
 		const formData = new FormData(e.currentTarget);
-		const enabledPlugins = POWER_UP_PLUGIN_GROUPS.flatMap(({ plugins }) => [
+		const enabledPlugins = PLUGINS_BY_GROUP.flatMap(({ plugins }) => [
 			...plugins,
 		]).filter(({ pluginId }) => formData.get(pluginId) === "enabled");
 
@@ -44,13 +44,13 @@ export const Form: React.FC = () => {
 
 	return (
 		<form className="form" onSubmit={handleSubmit}>
-			{POWER_UP_PLUGIN_GROUPS.map(({ groupId, name, plugins }) => (
-				<section key={groupId} className="form__section">
-					<h2 className="form__heading">{name}</h2>
-					{plugins.map(({ pluginId, label }) => (
+			{PLUGINS_BY_GROUP.map(({ group, title, plugins }) => (
+				<section key={group} className="form__section">
+					<h2 className="form__heading">{title}</h2>
+					{plugins.map(({ pluginId, name }) => (
 						<div key={pluginId} className="field">
 							<label htmlFor={pluginId} className="field__label">
-								{label}
+								{name}
 							</label>
 							<input
 								type="checkbox"

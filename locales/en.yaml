@@ -1,42 +1,47 @@
 app:
   name: Backlog Power Ups
   description: Power up tools for Backlog
+group:
+  issue: Issue
+  board: Board
+  wiki: Wiki
+  general: General
+
 popup:
   apply_button: Apply
-  issue: Issue
-  copy_issue: Copy issue to other project
-  auto_resolution: When Changing status of issue to completed, automatically set the completion reason to fixed
-  extend_desc: Extend description of issue on Add/Edit Issue
-  total_time: Show total estimated and actual hours on search result of issues
-  board: Board
-  board_oneline: Add button to show task as oneline view in Board
-  wiki: Wiki
-  copy_wiki: Copy wiki page to other project
-  child_page: Input parent page name automatically when creating new page
-  plantuml: Show PlantUML(Send UML data to plantuml.com)
-  hr: Show horizontal rule with Backlog syntax("---" or "___")
-  old_post: Show notification in old Wiki
-  general: General
-  user_switcher: Show user switcher on personal Gantt
-  absolute_date: Show absolute date
-  copy_issue_keys_and_subjects: Copy issue keys and subjects on issue list
-  watch_list: Show assignee and due date on watch list
-  jump_issue: Press Ctrl(Cmd)+K to enter the issue key and open to it
-copy_issue:
-  prompt: Please input destination project key
-  copy_to: Copy to another project
-  refs: Refs
-copy_issue_keys_and_subjects:
+
+absoluteDate:
+  name: Show absolute date
+autoResolution:
+  name: When Changing status of issue to completed, automatically set the completion reason to fixed
+boardOneline:
+  name: Add button to show task as oneline view in Board
+childPage:
+  name: Input parent page name automatically when creating new page
+copyIssueKeysAndSubjects:
+  name: Copy issue keys and subjects on issue list
   tooltip: Bulk copy key and subject of issues
-copy_wiki:
+copyWiki:
+  name: Copy wiki page to other project
   prompt: Please input destination project key
   copy_to: Copy to another project
-jump_issue:
+extendDesc:
+  name: Extend description of issue on Add/Edit Issue
+hr:
+  name: Show horizontal rule with Backlog syntax("---" or "___")
+jumpIssue:
+  name: Press Ctrl(Cmd)+K to enter the issue key and open to it
   prompt: Please enter the destination issue key or issue key number
   alert: Issue key format is invalid
   missing: Issue not found for the entered issue key
-old_post:
+oldPost:
+  name: Show notification in old Wiki
   alert: More than 1 year has passed since the last update date.
-total_time:
+plantuml:
+  name: Show PlantUML(Send UML data to plantuml.com)
+totalTime:
+  name: Show total estimated and actual hours on search result of issues
   estimated_hours: Total estimated
   actual_hours: Total actual
+userSwitcher:
+  name: Show user switcher on personal Gantt

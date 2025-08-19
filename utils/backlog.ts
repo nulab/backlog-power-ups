@@ -1,7 +1,5 @@
-export const getBacklogProjectKey = async () => {
-	const headerKey = await asyncQuerySelector(".header-icon-set__key", {
-		timeout: 0,
-	});
+export const getBacklogProjectKey = (): string => {
+	const headerKey = document.querySelector(".header-icon-set__key");
 	const [, keyInHeader] =
 		/\(([^)]+)\)/g.exec(headerKey?.textContent || "") || [];
 
@@ -9,9 +7,8 @@ export const getBacklogProjectKey = async () => {
 		return keyInHeader;
 	}
 
-	const menuLink = await asyncQuerySelector(
+	const menuLink = document.querySelector(
 		'#projectNavList a[href^="/projects/"]',
-		{ timeout: 0 },
 	);
 	const [, keyInMenu] =
 		/\/([^/]+)\/?$/.exec(menuLink?.getAttribute("href") || "") || [];
@@ -21,4 +18,15 @@ export const getBacklogProjectKey = async () => {
 	}
 
 	return keyInMenu;
+};
+
+export const getWikiTitle = (): string[] => {
+	const mainTitle = document.querySelector("#mainTitle");
+
+	return Array.from(mainTitle?.children || [])
+		.filter((item) => item.classList.contains("breadcrumbs__item"))
+		.map((item) => {
+			const anchor = item.querySelector("a");
+			return anchor ? anchor.textContent : item.textContent;
+		});
 };
