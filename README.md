@@ -58,31 +58,17 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for this.
 [MIT](LICENSE) License (c) 2018 Nulab Inc.
 
 <!-- sources and urls -->
-
 [chrome-web-store-url]: https://chromewebstore.google.com/detail/backlog-power-ups/oknjgkbkglfeeobjojelkbhfpjkgcndb
-
 [chrome-web-store-versions-src]: https://img.shields.io/chrome-web-store/v/oknjgkbkglfeeobjojelkbhfpjkgcndb?style=for-the-badge
-
 [chrome-web-store-users-src]: https://img.shields.io/chrome-web-store/users/oknjgkbkglfeeobjojelkbhfpjkgcndb?style=for-the-badge
-
 [chrome-web-store-stars-src]: https://img.shields.io/chrome-web-store/stars/oknjgkbkglfeeobjojelkbhfpjkgcndb?style=for-the-badge
-
 [browser-chrome-src]: https://cdnjs.cloudflare.com/ajax/libs/browser-logos/75.0.1/chrome/chrome_16x16.png
-
 [browser-edge-src]: https://cdnjs.cloudflare.com/ajax/libs/browser-logos/75.0.1/edge/edge_16x16.png
-
 [browser-brave-src]: https://cdnjs.cloudflare.com/ajax/libs/browser-logos/75.0.1/brave/brave_16x16.png
-
 [general-src]: https://img.shields.io/badge/General-007BFF?style=flat-square
-
 [issue-src]: https://img.shields.io/badge/Issue-28A745?style=flat-square
-
 [board-src]: https://img.shields.io/badge/Board-17A2B8?style=flat-square
-
 [gantt-src]: https://img.shields.io/badge/Gantt-9013FE?style=flat-square
-
 [wiki-src]: https://img.shields.io/badge/Wiki-E85D04?style=flat-square
-
 [document-src]: https://img.shields.io/badge/Document-4A4A4A?style=flat-square
-
 [git-src]: https://img.shields.io/badge/Git-D94125?style=flat-square
