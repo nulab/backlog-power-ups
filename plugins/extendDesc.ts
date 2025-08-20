@@ -5,15 +5,8 @@ export const extendDesc = definePowerUpsPlugin({
 	async main({ observeQuerySelector }) {
 		const EXTENDED_HEIGHT = "480px";
 
+		// in edit form
 		observeQuerySelector("#descriptionTextArea", (el) => {
-			el.style.height = EXTENDED_HEIGHT;
-		});
-
-		observeQuerySelector(".comment-editor__textarea", (el) => {
-			if (el.closest(".comment-editor.-fixed-footer")) {
-				return;
-			}
-
 			el.style.height = EXTENDED_HEIGHT;
 		});
 
