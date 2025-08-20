@@ -1,0 +1,104 @@
+name: Submit to Web Store
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        type: environment
+        description: Environment to submit extension
+        default: dry-run
+        required: true
+      newversion:
+        type: choice
+        options:
+          - patch
+          - minor
+          - major
+        description: New version
+        default: patch
+        required: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    outputs:
+      new_tag: ${{ steps.bump_version.outputs.new_tag }}
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: configure git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: get the latest tag
+        id: get_latest_tag
+        run: |
+          latest_tag=$(git describe --tags --abbrev=0 2>/dev/null || echo "v0.0.0")
+          echo "latest_tag=${latest_tag}" >> $GITHUB_OUTPUT
+
+      - name: bump version
+        id: bump_version
+        run: |
+          npm version ${{ steps.get_latest_tag.outputs.latest_tag }} --no-git-tag-version --allow-same-version
+          npm version ${{ github.event.inputs.newversion }} --force
+          
+          new_tag=$(git describe --tags --abbrev=0)
+          echo "Created new tag: ${new_tag}"
+          echo "new_tag=${new_tag}" >> $GITHUB_OUTPUT
+
+      - name: install dependencies
+        run: npm ci
+
+      - name: zip extension
+        run: npx wxt zip
+
+      - uses: actions/upload-artifact@v4
+        with:
+          path: .output
+
+  submit:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: ${{ inputs.environment }}
+    permissions:
+      contents: write
+      issues: write
+      pull-requests: write
+      id-token: write
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/download-artifact@v5
+        with:
+          path: .output
+
+      - name: configure git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: update version
+        run: npm version ${{ needs.build.outputs.new_tag }}
+
+      - name: submit to web store
+        run: npx wxt submit
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          DRY_RUN: ${{ inputs.environment == 'dry-run' }}
+          CHROME_EXTENSION_ID: ${{ vars.CHROME_EXTENSION_ID }}
+          CHROME_CLIENT_ID: ${{ secrets.CHROME_CLIENT_ID }}
+          CHROME_CLIENT_SECRET: ${{ secrets.CHROME_CLIENT_SECRET }}
+          CHROME_REFRESH_TOKEN: ${{ secrets.CHROME_REFRESH_TOKEN }}
+          CHROME_SKIP_SUBMIT_REVIEW: 'true'
+
+      - name: push the new tag
+        run: git push origin ${{ needs.build.outputs.new_tag }}
