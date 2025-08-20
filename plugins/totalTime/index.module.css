@@ -20,3 +20,9 @@
 		left: 66px;
 	}
 }
+
+:global(body:not(:has(#projectNav))) {
+	.totalTime {
+		left: 48px;
+	}
+}

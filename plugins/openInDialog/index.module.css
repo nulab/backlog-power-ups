@@ -1,0 +1,35 @@
+.dialogRoot {
+	--globalNavHeight: 0px !important;
+
+	:global(#global),
+	:global(#projectNav),
+	:global(#project-header .project-header__actions),
+	:global([class^="krkr"]) {
+		display: none;
+	}
+
+	:global(.content-outer) {
+		margin: 0 !important;
+	}
+
+	/* Kanban */
+	:global(.content-header) {
+		left: 0 !important;
+	}
+
+	/* Gantt Chart */
+	:global([class*="_ganttHeaderLeft__withAddIssue_"]) {
+		top: 33px !important;
+	}
+
+	:global([class*="_ganttTable__header__withAddIssue_"]) {
+		top: 0 !important;
+	}
+
+	/* Git */
+	:global(#scroll-pull-request) {
+		top: 0 !important;
+		left: 0 !important;
+		width: 100% !important;
+	}
+}

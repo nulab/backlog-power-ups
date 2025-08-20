@@ -12,7 +12,6 @@ group:
   git: Git / SVN
 popup:
   apply_button: Apply
-
 absoluteDate:
   name: Show absolute date
 autoResolution:
@@ -28,8 +27,14 @@ copyWiki:
   name: Copy wiki page to other project
   prompt: Please input destination project key
   copy_to: Copy to another project
+favicon:
+  name: Replace the favicon with a space icon or project icon (number of notifications cannot be displayed)
+zenMode:
+  name: Zen Mode (hide other UI) in Document
 extendDesc:
   name: Extend description of issue on Add/Edit Issue
+hideDocumentToolbar:
+  name: Hide toolbar while editing document
 hr:
   name: Show horizontal rule with Backlog syntax("---" or "___")
 jumpIssue:
@@ -42,9 +47,45 @@ oldPost:
   alert: More than 1 year has passed since the last update date.
 plantuml:
   name: Show PlantUML(Send UML data to plantuml.com)
+quickSearch:
+  name: Ctrl(Cmd)+Shift+F to search for keywords in the selected text
+sidebarAutoClose:
+  name: Automatically open and close the sidebar depending on the screen size
 totalTime:
   name: Show total estimated and actual hours on search result of issues
   estimated_hours: Total estimated
   actual_hours: Total actual
 userSwitcher:
   name: Show user switcher on personal Gantt
+expandDiffFileLink:
+  name: Expand the link area for the difference file
+searchKeyboard:
+  name: Navigate through keyword search results with Tab and arrow keys
+ganttFilterParentAndChild:
+  name: Filter rows by parent-child relationship
+  label: Relationship
+  all: All
+  parent: Parent issue
+  child: Child issue
+openInDialog:
+  name: Long press a link in a Backlog space to open it in a dialog
+  openInMainFrame: Go to this page
+  close: Close
+hideEmptyColumn:
+  name: Hide all empty columns
+projectIssueFilter:
+  name: Select a filter for the project on the issue list
+  placeholder: Filter
+  loading: Loading...
+  projectLabel: Filter for $1
+  spaceLabel: Issue search filter
+  empty: No filters available
+copyRawFile:
+  name: Add a button to copy the file content
+  label: Copy content
+filePermalink:
+  name: Add a button to move from the branch file URL to the commit hash file URL
+  label: Permalink
+copyPullSummary:
+  name: Add a button to copy the pull request number and title
+  tooltip: Copy the pull request number ($1) and title to the clipboard. Shift-click to copy only the pull request number.

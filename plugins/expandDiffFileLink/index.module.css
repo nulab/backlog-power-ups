@@ -1,0 +1,32 @@
+:global(.updated-list):has(.item) {
+	padding: 0;
+}
+
+.item {
+	&:has(:global(.pill--updated-A)) {
+		--background-color: var(--diffColorAddedBase);
+	}
+
+	&:has(:global(.pill--updated-M)) {
+		--background-color: var(--diffColorChangedBase);
+	}
+
+	&:has(:global(.pill--updated-D)) {
+		--background-color: var(--diffColorDeletedBase);
+	}
+
+	padding: 6px 12px !important;
+	background-color: rgb(from var(--background-color) r g b / 0.3);
+
+	&:not(:has(:global(.updated-list__path :where(.changed-path, del)))) {
+		cursor: pointer;
+
+		&:hover {
+			background-color: var(--backgroundColorUpdateHover);
+		}
+
+		&:hover:not(:has(:global(a:hover))) :global(.updated-list__path > a) {
+			text-decoration: underline;
+		}
+	}
+}

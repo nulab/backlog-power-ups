@@ -1,5 +1,5 @@
-import { createRoot } from "react-dom/client";
 import { UserCombobox, type UserComboboxUser } from "@/components/UserCombobox";
+import { renderReactComponent } from "@/utils/renderReactComponent";
 import styles from "./index.module.css";
 
 export const userSwitcher = definePowerUpsPlugin({
@@ -50,9 +50,7 @@ export const userSwitcher = definePowerUpsPlugin({
 				location.href = url.href;
 			};
 
-			const rootEl = document.createElement("div");
-			const root = createRoot(rootEl);
-			root.render(
+			renderReactComponent(
 				<div className={styles.container}>
 					<UserCombobox
 						users={users}
@@ -60,9 +58,8 @@ export const userSwitcher = definePowerUpsPlugin({
 						onChange={handleChange}
 					/>
 				</div>,
+				el,
 			);
-
-			el.insertAdjacentElement("beforebegin", rootEl);
 		});
 	},
 });

@@ -27,8 +27,14 @@ copyWiki:
   name: 別のプロジェクトにWikiのページをコピー
   prompt: 複製先のプロジェクトキーを入力してください。
   copy_to: 別のプロジェクトにコピー
+favicon:
+  name: ファビコンをスペースアイコンかプロジェクトアイコンに置き換え(お知らせ件数の表示はできません)
+zenMode:
+  name: ドキュメントで集中モード（他のUIを隠す）を切り替える
 extendDesc:
   name: 課題追加/編集画面の詳細の入力欄を広げる
+hideDocumentToolbar:
+  name: ドキュメントの編集中にツールバーを隠す
 hr:
   name: Backlog記法で水平線を表示("---" もしくは "___")
 jumpIssue:
@@ -41,9 +47,45 @@ oldPost:
   alert: 最終更新日から1年以上が経過しています。
 plantuml:
   name: PlantUMLを表示(UMLデータをplantuml.comに送信します)
+quickSearch:
+  name: Ctrl(Cmd)+Shift+Fで選択しているテキストでキーワード検索する
+sidebarAutoClose:
+  name: 画面サイズによって自動でサイドバーを開閉する
 totalTime:
   name: 検索結果の予定時間計と実績時間計を表示する
   estimated_hours: 予定時間計
   actual_hours: 実績時間計
 userSwitcher:
   name: 個人のガントチャートにユーザー切り替えを表示する
+expandDiffFileLink:
+  name: 差分ファイルのリンク領域を広げます
+searchKeyboard:
+  name: キーワード検索の結果をTabと矢印キーで操作する
+ganttFilterParentAndChild:
+  name: 親子関係で行をフィルタリングする
+  label: 親子関係
+  all: すべて
+  parent: 親課題のみ
+  child: 子課題のみ
+openInDialog:
+  name: Backlogスペース内のリンクを長押ししてダイアログで開く
+  openInMainFrame: このページに移動する
+  close: 閉じる
+hideEmptyColumn:
+  name: 値がすべて空の列を隠す
+projectIssueFilter:
+  name: 課題一覧でそのプロジェクトのフィルタを選択する
+  placeholder: フィルタ
+  loading: 読み込み中...
+  projectLabel: $1のフィルタ
+  spaceLabel: 課題検索のフィルタ
+  empty: フィルタがありません
+copyRawFile:
+  name: ファイルの内容をコピーするボタンを追加する
+  label: 内容をコピー
+filePermalink:
+  name: ブランチのファイルURLからコミットハッシュのファイルURLに移動するボタンを追加する
+  label: パーマリンク
+copyPullSummary:
+  name: プルリクエストの番号とタイトルをコピーするボタンを追加する
+  tooltip: プルリクエスト番号（$1）とタイトルをクリップボードにコピーします。Shiftキーを押しながらクリックするとプルリクエスト番号のみがコピーされます。

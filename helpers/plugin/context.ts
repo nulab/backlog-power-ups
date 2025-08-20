@@ -1,6 +1,11 @@
+import { minimatch } from "minimatch";
 import type { ContentScriptContext } from "wxt/utils/content-script-context";
 import { asyncQuerySelector } from "@/helpers/dom/async-query-selector";
-import { observeQuerySelector } from "@/helpers/dom/observe-query-selector";
+import {
+	type Listener,
+	observeQuerySelector,
+} from "@/helpers/dom/observe-query-selector";
+import type { DefinePowerUpsPluginDefinition } from "@/helpers/plugin/define";
 import type { PluginStates } from "@/helpers/plugin-manager/storage.ts";
 
 export type PowerUpsPluginContext = Pick<
@@ -8,25 +13,40 @@ export type PowerUpsPluginContext = Pick<
 	"addEventListener" | "setTimeout" | "setInterval"
 > & {
 	pluginStates: PluginStates;
-	observeQuerySelector: typeof observeQuerySelector;
+	observeQuerySelector: (
+		selector: string,
+		handler: Listener,
+	) => ReturnType<typeof observeQuerySelector>;
 	asyncQuerySelector: typeof asyncQuerySelector;
 };
 
 export const createPowerUpsPluginContext = (
 	ctx: ContentScriptContext,
 	pluginStates: PluginStates,
+	definition: DefinePowerUpsPluginDefinition,
 ) => {
 	const invalidatorSet = new Set<() => void>();
 
 	const context: PowerUpsPluginContext = {
 		pluginStates,
 		observeQuerySelector: (selector, handler) => {
+			const isMatched = definition.matches.some((match) =>
+				minimatch(location.pathname, match),
+			);
+			if (!isMatched) {
+				return () => {};
+			}
+
 			logger.debug(
 				`starting %c\`observeQuerySelector(${selector})\``,
 				"color: #4488c5",
 			);
 
-			const invalidate = observeQuerySelector(selector, handler);
+			const invalidate = observeQuerySelector(
+				selector,
+				handler,
+				definition.matches,
+			);
 
 			invalidatorSet.add(invalidate);
 
