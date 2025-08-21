@@ -84,7 +84,7 @@ openInDialog:
 hideEmptyColumn:
   name: 検索結果ですべての値が空の列を隠す
 projectIssueFilter:
-  name: 検索結果にそのプロジェクトのフィルタを選択する
+  name: 検索結果にそのプロジェクトのフィルタを表示する
   placeholder: フィルタ
   loading: 読み込み中...
   projectLabel: $1のフィルタ
