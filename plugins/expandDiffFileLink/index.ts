@@ -3,6 +3,7 @@ import styles from "./index.module.css";
 export const expandDiffFileLink = definePowerUpsPlugin({
 	group: "git",
 	matches: ["/git/**", "/subversion/**", "/rev/**"],
+	allFrames: true,
 	main({ observeQuerySelector, addEventListener }) {
 		observeQuerySelector(".updated-list > .updated-list__item", (el) => {
 			el.classList.add(styles.item);

@@ -3,15 +3,19 @@ import styles from "./index.module.css";
 export const zenMode = definePowerUpsPlugin({
 	group: "document",
 	matches: ["/document/**"],
+	defaultEnabled: true,
+	allFrames: true,
 	main({ observeQuerySelector }) {
 		observeQuerySelector(".topbar-info", (el) => {
 			const button = createButton(
 				html`
-                <button class="icon-button icon-button--default">
-                    <svg class="icon -nu-ui -medium"><use xlink:href="/images/svg_nu-ui/sprite.svg#fire"></use></svg>
-                    <span class="_assistive-text">Zen Mode</span>
-                </button>
-            `,
+          <button class="icon-button icon-button--default">
+            <svg class="icon -nu-ui -medium">
+              <use xlink:href="/images/svg_nu-ui/sprite.svg#fire"></use>
+            </svg>
+            <span class="_assistive-text">Zen Mode</span>
+          </button>
+        `,
 				{
 					click(e) {
 						if (e.currentTarget instanceof HTMLButtonElement) {

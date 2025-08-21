@@ -1,6 +1,7 @@
 export const absoluteDate = definePowerUpsPlugin({
 	group: "general",
 	matches: ["/dashboard", "/projects/**", "/user/**"],
+	allFrames: true,
 	main({ observeQuerySelector }) {
 		observeQuerySelector(
 			".stream-update__meta > abbr:not(.converted)",

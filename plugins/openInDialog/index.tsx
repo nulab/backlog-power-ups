@@ -4,6 +4,7 @@ import styles from "./index.module.css";
 export const openInDialog = definePowerUpsPlugin({
 	group: "general",
 	matches: ["/**"],
+	defaultEnabled: true,
 	allFrames: true,
 	main({ addEventListener }) {
 		let controller: AbortController | undefined;

@@ -1,6 +1,5 @@
 export const autoResolution = definePowerUpsPlugin({
 	group: "issue",
-	defaultEnabled: true,
 	allFrames: true,
 	matches: ["/view/**", "/gantt/**", "/user/**"],
 	main({ observeQuerySelector, addEventListener }) {

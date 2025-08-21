@@ -4,13 +4,9 @@
 
 ## Install
 
-> [![Chrome Web Store][chrome-web-store-versions-src]][chrome-web-store-url]
-> [![][chrome-web-store-users-src]][chrome-web-store-url]
-> [![][chrome-web-store-stars-src]][chrome-web-store-url]  
+> [![Chrome Web Store][chrome-web-store-versions-src]][chrome-web-store-url] > [![][chrome-web-store-users-src]][chrome-web-store-url] > [![][chrome-web-store-stars-src]][chrome-web-store-url]  
 > also compatible with
-> [<img src="https://cdnjs.cloudflare.com/ajax/libs/browser-logos/75.0.1/chrome/chrome.svg" width="20" alt="Google Chrome">][chrome-web-store-url]
-> [<img src="https://cdnjs.cloudflare.com/ajax/libs/browser-logos/75.0.1/edge/edge.svg" width="20" alt="Microsoft Edge">][chrome-web-store-url]
-> [<img src="https://cdnjs.cloudflare.com/ajax/libs/browser-logos/75.0.1/brave/brave.svg" width="20" alt="Brave">][chrome-web-store-url]
+> [<img src="https://cdnjs.cloudflare.com/ajax/libs/browser-logos/75.0.1/chrome/chrome.svg" width="20" alt="Google Chrome">][chrome-web-store-url] > [<img src="https://cdnjs.cloudflare.com/ajax/libs/browser-logos/75.0.1/edge/edge.svg" width="20" alt="Microsoft Edge">][chrome-web-store-url] > [<img src="https://cdnjs.cloudflare.com/ajax/libs/browser-logos/75.0.1/brave/brave.svg" width="20" alt="Brave">][chrome-web-store-url]
 
 ## Available Plugins
 
@@ -20,8 +16,8 @@
 
 |                               Group                               | Description                                                                                                                                                              |     |     |
 | :---------------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :-: | :-: |
-|        [![General][general-src]](plugins/absoluteDate.ts)         | Displays update times in a specific format like *12:00* instead of relative time like *2 minutes ago*.                                                                   |     | 🪄  |
-|   [![General][general-src]](plugins/copyIssueKeyAndSubjects.ts)   | Adds a button to copy the displayed issues on the dashboard's *My Issues* and issue search results.                                                                      | ☑️  | 👆  |
+|        [![General][general-src]](plugins/absoluteDate.ts)         | Displays update times in a specific format like _12:00_ instead of relative time like _2 minutes ago_.                                                                   |     | 🪄  |
+|   [![General][general-src]](plugins/copyIssueKeyAndSubjects.ts)   | Adds a button to copy the displayed issues on the dashboard's _My Issues_ and issue search results.                                                                      | ☑️  | 👆  |
 |           [![General][general-src]](plugins/favicon.ts)           | Replaces the default Backlog favicon with the project or space icon.                                                                                                     |     | 🪄  |
 |          [![General][general-src]](plugins/jumpIssue.ts)          | Displays a prompt to jump to an issue key using `Cmd/Ctrl + K`.                                                                                                          | ☑️  | 👆  |
 |     [![General][general-src]](plugins/openInDialog/index.ts)      | Long-press a link within a space to open its destination in a dialog box.                                                                                                | ☑️  | 👆  |
@@ -29,11 +25,11 @@
 |       [![General][general-src]](plugins/searchKeyboard.ts)        | Enables keyboard navigation for search results in the global bar.<br>Tab: Switch search target, Up/Down: Select suggestion, Left/Right: Paginate, Enter: Open selection. |     | 🪄  |
 |      [![General][general-src]](plugins/sidebarAutoClose.ts)       | Automatically opens and closes the sidebar based on the screen size.                                                                                                     | ☑️  | 🪄  |
 |     [![General][general-src]](plugins/userSwitcher/index.ts)      | Adds a search bar to the user page to find and switch between users.                                                                                                     | ☑️  | 👆  |
-|         [![Issue][issue-src]](plugins/autoResolution.ts)          | Automatically sets the *Resolution* to *Fixed* when an issue's *Status* is changed to *Closed*.                                                                          |     | 🪄  |
+|         [![Issue][issue-src]](plugins/autoResolution.ts)          | Automatically sets the _Resolution_ to _Fixed_ when an issue's _Status_ is changed to _Closed_.                                                                          |     | 🪄  |
 |           [![Issue][issue-src]](plugins/extendDesc.ts)            | Increases the default size of the description input field.                                                                                                               |     | 🪄  |
 |      [![Issue][issue-src]](plugins/hideEmptyColumn/index.ts)      | Hides columns that have no values in the issue list.                                                                                                                     |     | 🪄  |
 |    [![Issue][issue-src]](plugins/projectIssueFilter/index.ts)     | Adds a dropdown menu to the top right of the issue list to switch project filters.                                                                                       | ☑️  | 👆  |
-|         [![Issue][issue-src]](plugins/totalTime/index.ts)         | Displays the total of *Estimated Hours* and *Actual Hours* for the listed issues at the bottom left of the issue list.                                                   | ☑️  | 🪄  |
+|         [![Issue][issue-src]](plugins/totalTime/index.ts)         | Displays the total of _Estimated Hours_ and _Actual Hours_ for the listed issues at the bottom left of the issue list.                                                   | ☑️  | 🪄  |
 |       [![Board][board-src]](plugins/boardOneline/index.ts)        | Adds a button to minimize and display board cards on a single line.                                                                                                      | ☑️  | 👆  |
 | [![Gantt][gantt-src]](plugins/ganttFilterParentAndChild/index.ts) | Adds a dropdown menu to the Gantt chart to filter by parent-child relationships.                                                                                         | ☑️  | 👆  |
 |             [![Wiki][wiki-src]](plugins/childPage.ts)             | Sets the default location for new Wiki pages to be under the currently viewed page.                                                                                      |     | 🪄  |
@@ -46,7 +42,6 @@
 |        [![Git][git-src]](plugins/copyPullSummary/index.ts)        | Adds a button to copy the pull request number and title.                                                                                                                 | ☑️  | 👆  |
 |             [![Git][git-src]](plugins/copyRawFile.ts)             | Adds a button to copy the raw content of a file.                                                                                                                         | ☑️  | 👆  |
 |            [![Git][git-src]](plugins/filePermalink.ts)            | Adds a link to navigate to the file URL with the commit hash when viewing a file on a branch.                                                                            | ☑️  | 👆  |
-|       [![Git][git-src]](plugins/gitSmallContainer/index.ts)       | Sets a maximum width for the content on Git pages where no files are displayed.                                                                                          |     | 🪄  |
 |      [![Git][git-src]](plugins/expandDiffFileLink/index.ts)       | Makes the entire file entry in a diff list clickable, not just the filename.                                                                                             |     | 🪄  |
 
 ## Contributing

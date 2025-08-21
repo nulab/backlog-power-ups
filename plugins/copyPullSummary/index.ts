@@ -3,6 +3,8 @@ import styles from "./index.module.css";
 export const copyPullSummary = definePowerUpsPlugin({
 	group: "git",
 	matches: ["/git/*/*/pullRequests/**"],
+	defaultEnabled: true,
+	allFrames: true,
 	main({ observeQuerySelector, addEventListener }) {
 		observeQuerySelector(".pull-req-status", (el) => {
 			let shiftKey = false;
@@ -21,16 +23,18 @@ export const copyPullSummary = definePowerUpsPlugin({
 
 			const button = createButton(
 				html`
-                    <button 
-                        type="button"
-                        class="${styles.button} icon-button icon-button--default | simptip-position-right simptip-movable simptip-smooth simptip-multiline -copy-button-multiline"
-                        data-tooltip=${i18n.t("copyPullSummary.tooltip", [pullNumberText])}
-                    >
-                        <span class="copy-trigger">
-                            <svg class="icon -medium"><use xlink:href="/images/svg/sprite.symbol.svg#icon_copy"></use></svg>
-                        </span>
-                    </button>
-                `,
+          <button
+            type="button"
+            class="${styles.button} icon-button icon-button--default | simptip-position-right simptip-movable simptip-smooth simptip-multiline -copy-button-multiline"
+            data-tooltip=${i18n.t("copyPullSummary.tooltip", [pullNumberText])}
+          >
+            <span class="copy-trigger">
+              <svg class="icon -medium">
+                <use xlink:href="/images/svg/sprite.symbol.svg#icon_copy"></use>
+              </svg>
+            </span>
+          </button>
+        `,
 				{
 					click: async () => {
 						const href = `${location.origin}${location.pathname}`;

@@ -1,6 +1,7 @@
 export const quickSearch = definePowerUpsPlugin({
 	group: "general",
 	matches: ["/**"],
+	defaultEnabled: true,
 	main({ addEventListener }) {
 		const focusSearchInSpace = () => {
 			const globalSearch = document.getElementById("globalSearch");

@@ -1,6 +1,7 @@
 export const copyIssueKeysAndSubjects = definePowerUpsPlugin({
 	group: "issue",
 	defaultEnabled: true,
+	allFrames: true,
 	matches: ["/dashboard", "/find/*"],
 	async main({ observeQuerySelector, asyncQuerySelector }) {
 		observeQuerySelector("#my-issues-content", (el) => {
@@ -37,16 +38,16 @@ export const copyIssueKeysAndSubjects = definePowerUpsPlugin({
 
 			const button = createButton(
 				html`
-                    <button 
-                        class="icon-button icon-button--default -with-text -responsive-label | simptip-position-top simptip-movable simptip-smooth"
-                        data-tooltip=${i18n.t("copyIssueKeysAndSubjects.tooltip")}
-                    >
-                        <svg class="icon -medium">
-                            <use xlink:href="/images/svg/sprite.symbol.svg#icon_copy"></use>
-                        </svg>
-                        <span class="_assistive-text">Copy All</span>
-                    </button>
-                `,
+          <button
+            class="icon-button icon-button--default -with-text -responsive-label | simptip-position-top simptip-movable simptip-smooth"
+            data-tooltip=${i18n.t("copyIssueKeysAndSubjects.tooltip")}
+          >
+            <svg class="icon -medium">
+              <use xlink:href="/images/svg/sprite.symbol.svg#icon_copy"></use>
+            </svg>
+            <span class="_assistive-text">Copy All</span>
+          </button>
+        `,
 				{
 					click: handleClick,
 				},
