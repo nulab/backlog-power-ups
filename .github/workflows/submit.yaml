@@ -101,4 +101,5 @@ jobs:
           CHROME_SKIP_SUBMIT_REVIEW: 'true'
 
       - name: push the new tag
+        if: inputs.environment != 'dry-run'
         run: git push origin ${{ needs.build.outputs.new_tag }}
