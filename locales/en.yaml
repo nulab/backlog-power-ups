@@ -84,7 +84,7 @@ openInDialog:
 hideEmptyColumn:
   name: Hide columns in search results where all values are empty
 projectIssueFilter:
-  name: Select a filter for the current project in the search results
+  name: Display a filter for the current project in the search results
   placeholder: Filter
   loading: Loading...
   projectLabel: Filter for $1
