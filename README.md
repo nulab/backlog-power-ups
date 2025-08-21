@@ -1,4 +1,4 @@
-# <img src="icon128.png" width="45"> Backlog Power Ups
+# <img src="assets/icon.png" width="45"> Backlog Power Ups
 
 > Browser extension - Power up your [Backlog](https://backlog.com) with useful plugins.
 
