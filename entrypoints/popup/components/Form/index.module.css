@@ -69,6 +69,7 @@
 
 .field__label {
 	cursor: pointer;
+    white-space: pre-line;
 }
 
 .field__checkbox {

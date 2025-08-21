@@ -1,6 +1,6 @@
 app:
-  name: Backlog Power Ups
-  description: Power up tools for Backlog
+  name: Backlog Power-Ups - Enhance Your Backlog
+  description: Power up your Backlog with useful plugins
 group:
   general: General
   issue: Issue
@@ -10,81 +10,91 @@ group:
   wiki: Wiki
   file: File
   git: Git / SVN
+
+# Popup
 popup:
   apply_button: Apply
+
+# Plugins
 absoluteDate:
-  name: Show absolute date
+  name: Display absolute time instead of relative time
 autoResolution:
-  name: When Changing status of issue to completed, automatically set the completion reason to fixed
+  name: Automatically set resolution to "Done" when issue status is changed to "Closed"
 boardOneline:
-  name: Add button to show task as oneline view in Board
+  name: Add a button to minimize cards on the board to a single line
 childPage:
-  name: Input parent page name automatically when creating new page
+  name: Create a new wiki page as a subpage of the current one
 copyIssueKeysAndSubjects:
-  name: Copy issue keys and subjects on issue list
-  tooltip: Bulk copy key and subject of issues
+  name: Add a button to copy all issue keys and subjects from the search results
+  tooltip: Copy all issue keys and subjects
 copyWiki:
-  name: Copy wiki page to other project
-  prompt: Please input destination project key
+  name: Add a button to copy a wiki page to another project
+  prompt: Please enter the project key of the destination.
   copy_to: Copy to another project
 favicon:
-  name: Replace the favicon with a space icon or project icon (number of notifications cannot be displayed)
+  name: |-
+    Replace the favicon with the space or project icon
+    (Notification count will not be displayed)
 zenMode:
-  name: Zen Mode (hide other UI) in Document
+  name: Add a "Zen Mode" button (flame icon) to hide the UI except for the document
 extendDesc:
-  name: Extend description of issue on Add/Edit Issue
+  name: Enlarge the description input field on the "Add/Edit Issue" screen
 hideDocumentToolbar:
-  name: Hide toolbar while editing document
+  name: Hide the toolbar that appears while editing
 hr:
-  name: Show horizontal rule with Backlog syntax("---" or "___")
+  name: |-
+    Display a horizontal rule using Backlog notation
+    ("---" or "___")
 jumpIssue:
-  name: Press Ctrl(Cmd)+K to enter the issue key and open to it
-  prompt: Please enter the destination issue key or issue key number
-  alert: Issue key format is invalid
-  missing: Issue not found for the entered issue key
+  name: Press Ctrl(Cmd)+K to open an input field for jumping to an issue key
+  prompt: Please enter the issue key or issue number to navigate to.
+  alert: Invalid issue key format.
+  missing: The issue for the entered key could not be found.
 oldPost:
-  name: Show notification in old Wiki
-  alert: More than 1 year has passed since the last update date.
+  name: Display a notification on articles that haven't been updated in over a year
+  alert: This article was last updated over a year ago.
 plantuml:
-  name: Show PlantUML(Send UML data to plantuml.com)
+  name: |-
+    Render PlantUML diagrams
+    (UML data will be sent to plantuml.com)
 quickSearch:
-  name: Ctrl(Cmd)+Shift+F to search for keywords in the selected text
+  name: Press Ctrl(Cmd)+Shift+F to search for the selected text
 sidebarAutoClose:
-  name: Automatically open and close the sidebar depending on the screen size
+  name: Automatically open or close the sidebar based on screen size
 totalTime:
-  name: Show total estimated and actual hours on search result of issues
-  estimated_hours: Total estimated
-  actual_hours: Total actual
+  name: Display the sum of estimated and actual hours for issues in the search results
+  estimated_hours: Total Estimated Hours
+  actual_hours: Total Actual Hours
 userSwitcher:
-  name: Show user switcher on personal Gantt
+  name: Add a user-switching select box to your personal page
 expandDiffFileLink:
-  name: Expand the link area for the difference file
+  name: Widen the clickable link area for diff files
 searchKeyboard:
-  name: Navigate through keyword search results with Tab and arrow keys
+  name: Navigate keyword search results using the Tab and arrow keys
 ganttFilterParentAndChild:
-  name: Filter rows by parent-child relationship
-  label: Relationship
+  name: Add an option to filter rows by parent-child relationship
+  label: Parent-Child Relationship
   all: All
-  parent: Parent issue
-  child: Child issue
+  parent: Parent Issues Only
+  child: Child Issues Only
 openInDialog:
-  name: Long press a link in a Backlog space to open it in a dialog
-  openInMainFrame: Go to this page
+  name: Long-press a link within the space to open it in a dialog
+  openInMainFrame: Open in this page
   close: Close
 hideEmptyColumn:
-  name: Hide all empty columns
+  name: Hide columns in search results where all values are empty
 projectIssueFilter:
-  name: Select a filter for the project on the issue list
+  name: Display a filter for the current project in the search results
   placeholder: Filter
   loading: Loading...
   projectLabel: Filter for $1
   spaceLabel: Issue search filter
   empty: No filters available
 copyRawFile:
-  name: Add a button to copy the file content
+  name: Add a button to copy the raw content of a file
   label: Copy content
 filePermalink:
-  name: Add a button to move from the branch file URL to the commit hash file URL
+  name: Add a button to get a permalink from a branch file URL to a commit hash URL
   label: Permalink
 copyPullSummary:
   name: Add a button to copy the pull request number and title

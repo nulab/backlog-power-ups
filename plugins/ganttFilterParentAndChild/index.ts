@@ -5,6 +5,8 @@ import styles from "./index.module.css";
 export const ganttFilterParentAndChild = definePowerUpsPlugin({
 	group: "gantt",
 	matches: ["/gantt/**"],
+	defaultEnabled: true,
+	allFrames: true,
 	main({ observeQuerySelector, addEventListener }) {
 		const { element, select } = createSelectField({
 			label: i18n.t("ganttFilterParentAndChild.label"),

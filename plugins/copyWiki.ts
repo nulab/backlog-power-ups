@@ -1,6 +1,7 @@
 export const copyWiki = definePowerUpsPlugin({
 	group: "wiki",
 	defaultEnabled: true,
+	allFrames: true,
 	matches: ["/wiki/**", "/alias/wiki/*"],
 	async main({ observeQuerySelector }) {
 		const SESSION_STORAGE_KEY = "__powerUps_copy-wiki";

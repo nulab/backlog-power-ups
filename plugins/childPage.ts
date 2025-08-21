@@ -1,6 +1,6 @@
 export const childPage = definePowerUpsPlugin({
 	group: "wiki",
-	defaultEnabled: true,
+	allFrames: true,
 	matches: ["/wiki/**", "/alias/wiki/*"],
 	async main({ observeQuerySelector }) {
 		observeQuerySelector('a[href$="/create"]', async (el) => {

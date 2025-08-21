@@ -5,6 +5,7 @@ import styles from "./index.module.css";
 export const userSwitcher = definePowerUpsPlugin({
 	group: "general",
 	defaultEnabled: true,
+	allFrames: true,
 	matches: ["/user/*"],
 	async main({ observeQuerySelector }) {
 		const getUsers = async () => {

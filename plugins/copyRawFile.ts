@@ -1,6 +1,8 @@
 export const copyRawFile = definePowerUpsPlugin({
 	group: "git",
 	matches: ["/git/**/blob/**", "/ViewRepositoryFile.action"],
+	defaultEnabled: true,
+	allFrames: true,
 	main({ observeQuerySelector, asyncQuerySelector }) {
 		const handleClick = async () => {
 			const codeTable = await asyncQuerySelector(".Code-table");
@@ -23,10 +25,10 @@ export const copyRawFile = definePowerUpsPlugin({
 
 			const button = createButton(
 				html`
-                    <button type="button" class="button button--default -h-small">
-                        ${i18n.t("copyRawFile.label")}
-                    </button>
-                `,
+          <button type="button" class="button button--default -h-small">
+            ${i18n.t("copyRawFile.label")}
+          </button>
+        `,
 				{
 					click: handleClick,
 				},

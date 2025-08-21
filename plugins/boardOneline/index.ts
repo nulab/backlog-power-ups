@@ -3,6 +3,7 @@ import styles from "./index.module.css";
 export const boardOneline = definePowerUpsPlugin({
 	group: "board",
 	defaultEnabled: true,
+	allFrames: true,
 	matches: ["/board/*"],
 	async main({ observeQuerySelector }) {
 		const buttonHtml = html`<button class=${styles.button}>⊟</button>`;

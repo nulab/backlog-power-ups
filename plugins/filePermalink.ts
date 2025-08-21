@@ -3,6 +3,8 @@ import pDebounce from "p-debounce";
 export const filePermalink = definePowerUpsPlugin({
 	group: "git",
 	matches: ["/git/**/blob/**"],
+	defaultEnabled: true,
+	allFrames: true,
 	main({ observeQuerySelector, asyncQuerySelector }) {
 		const PREFIX_LENGTH = 5;
 
@@ -42,13 +44,10 @@ export const filePermalink = definePowerUpsPlugin({
 				buttons.insertAdjacentHTML(
 					"beforeend",
 					html`
-                        <a
-                            href=${url.href}
-                            class="button button--default -h-small"
-                        >
-                            <span>${i18n.t("filePermalink.label")}</span>
-                        </a>
-                    ` as string,
+            <a href=${url.href} class="button button--default -h-small">
+              <span>${i18n.t("filePermalink.label")}</span>
+            </a>
+          ` as string,
 				);
 			}
 		}, 100);

@@ -3,6 +3,8 @@ import styles from "./index.module.css";
 export const oldPost = definePowerUpsPlugin({
 	group: "wiki",
 	matches: ["/wiki/**", "/alias/wiki/*"],
+	defaultEnabled: true,
+	allFrames: true,
 	async main({ observeQuerySelector }) {
 		observeQuerySelector(".user-history", (el) => {
 			const text =

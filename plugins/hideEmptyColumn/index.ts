@@ -3,6 +3,7 @@ import pDebounce from "p-debounce";
 export const hideEmptyColumn = definePowerUpsPlugin({
 	group: "issue",
 	matches: ["/find/*", "/FindIssueAllOver.action"],
+	allFrames: true,
 	main({ observeQuerySelector }) {
 		const hideEmptyColumn = pDebounce((table: HTMLTableElement) => {
 			const thElements = nodeMatcher(

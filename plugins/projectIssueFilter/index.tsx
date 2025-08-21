@@ -4,6 +4,8 @@ import styles from "./index.module.css";
 export const projectIssueFilter = definePowerUpsPlugin({
 	group: "issue",
 	matches: ["/find/*", "/FindIssueAllOver.action"],
+	defaultEnabled: true,
+	allFrames: true,
 	main({ observeQuerySelector, addEventListener }) {
 		observeQuerySelector(".condition-actions", (el) => {
 			const currentProjectKey = getBacklogProjectKey();

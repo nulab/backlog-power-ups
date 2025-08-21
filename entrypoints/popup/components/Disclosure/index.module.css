@@ -24,11 +24,11 @@
 		height: 13px;
 		border-top: 2px solid var(--powerups-color-text-weak);
 		border-right: 2px solid var(--powerups-color-text-weak);
-		transform: translateY(4px) rotate(-45deg);
+		transform: translateY(-4px) rotate(135deg);
 	}
 
 	&[aria-expanded="true"]::before {
-		transform: translateY(-4px) rotate(135deg);
+		transform: translateY(4px) rotate(-45deg);
 	}
 
 	&:where(:hover, :focus-within)::before {

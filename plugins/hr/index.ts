@@ -2,7 +2,7 @@ import styles from "./index.module.css";
 
 export const hr = definePowerUpsPlugin({
 	group: "wiki",
-	defaultEnabled: true,
+	allFrames: true,
 	matches: ["/wiki/**", "/alias/wiki/*"],
 	async main({ observeQuerySelector }) {
 		observeQuerySelector(".wiki-content p", (el) => {
