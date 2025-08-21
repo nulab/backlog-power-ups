@@ -4,9 +4,9 @@
 
 ## Install
 
-> [![Chrome Web Store][chrome-web-store-versions-src]][chrome-web-store-url] > [![][chrome-web-store-users-src]][chrome-web-store-url] > [![][chrome-web-store-stars-src]][chrome-web-store-url]  
+> [![Chrome Web Store][chrome-web-store-versions-src]][chrome-web-store-url] [![][chrome-web-store-users-src]][chrome-web-store-url] [![][chrome-web-store-stars-src]][chrome-web-store-url]  
 > also compatible with
-> [<img src="https://cdnjs.cloudflare.com/ajax/libs/browser-logos/75.0.1/chrome/chrome.svg" width="20" alt="Google Chrome">][chrome-web-store-url] > [<img src="https://cdnjs.cloudflare.com/ajax/libs/browser-logos/75.0.1/edge/edge.svg" width="20" alt="Microsoft Edge">][chrome-web-store-url] > [<img src="https://cdnjs.cloudflare.com/ajax/libs/browser-logos/75.0.1/brave/brave.svg" width="20" alt="Brave">][chrome-web-store-url]
+> [<img src="https://cdnjs.cloudflare.com/ajax/libs/browser-logos/75.0.1/chrome/chrome.svg" width="20" alt="Google Chrome">][chrome-web-store-url] [<img src="https://cdnjs.cloudflare.com/ajax/libs/browser-logos/75.0.1/edge/edge.svg" width="20" alt="Microsoft Edge">][chrome-web-store-url] [<img src="https://cdnjs.cloudflare.com/ajax/libs/browser-logos/75.0.1/brave/brave.svg" width="20" alt="Brave">][chrome-web-store-url]
 
 ## Available Plugins
 
