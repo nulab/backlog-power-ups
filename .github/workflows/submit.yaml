@@ -62,7 +62,7 @@ jobs:
 
       - uses: actions/upload-artifact@v4
         with:
-          path: .output
+          path: .output/
 
   submit:
     needs: build
@@ -79,7 +79,7 @@ jobs:
 
       - uses: actions/download-artifact@v5
         with:
-          path: .output
+          path: .output/
 
       - name: configure git
         run: |
