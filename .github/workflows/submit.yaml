@@ -62,7 +62,8 @@ jobs:
 
       - uses: actions/upload-artifact@v4
         with:
-          path: .output/
+          path: .output
+          include-hidden-files: true
 
   submit:
     needs: build
@@ -90,7 +91,7 @@ jobs:
         run: npm version ${{ needs.build.outputs.new_tag }}
 
       - name: submit to web store
-        run: npx -y wxt submit
+        run: npx wxt submit
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           DRY_RUN: ${{ inputs.environment == 'dry-run' }}
