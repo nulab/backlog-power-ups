@@ -91,7 +91,9 @@ jobs:
         run: npm version ${{ needs.build.outputs.new_tag }}
 
       - name: submit to web store
-        run: npx wxt submit
+        run: |
+          npx wxt submit \
+            --chrome-zip .output/*-chrome.zip
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           DRY_RUN: ${{ inputs.environment == 'dry-run' }}
