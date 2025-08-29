@@ -84,7 +84,7 @@ jobs:
 
       - run: |
           sudo apt-get install -y tree
-          tree
+          tree -a
 
       - name: configure git
         run: |
