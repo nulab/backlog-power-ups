@@ -71,9 +71,7 @@ jobs:
     environment:
       name: ${{ inputs.environment }}
     permissions:
-      contents: write
-      issues: write
-      pull-requests: write
+      contents: read
       id-token: write
     steps:
       - uses: actions/checkout@v5
@@ -81,6 +79,14 @@ jobs:
       - uses: actions/download-artifact@v5
         with:
           path: .output/
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: install dependencies
+        run: npm ci
 
       - name: configure git
         run: |
