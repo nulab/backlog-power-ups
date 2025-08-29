@@ -82,6 +82,14 @@ jobs:
         with:
           path: .output/
 
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: install dependencies
+        run: npm ci
+
       - run: |
           sudo apt-get install -y tree
           tree -a
