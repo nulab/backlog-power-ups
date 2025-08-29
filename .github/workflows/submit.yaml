@@ -71,7 +71,7 @@ jobs:
     environment:
       name: ${{ inputs.environment }}
     permissions:
-      contents: read
+      contents: write
       id-token: write
     steps:
       - uses: actions/checkout@v5
@@ -107,7 +107,7 @@ jobs:
           CHROME_CLIENT_ID: ${{ secrets.CHROME_CLIENT_ID }}
           CHROME_CLIENT_SECRET: ${{ secrets.CHROME_CLIENT_SECRET }}
           CHROME_REFRESH_TOKEN: ${{ secrets.CHROME_REFRESH_TOKEN }}
-          CHROME_SKIP_SUBMIT_REVIEW: 'true'
+          CHROME_SKIP_SUBMIT_REVIEW: 'false'
 
       - name: push the new tag
         if: inputs.environment != 'dry-run'
