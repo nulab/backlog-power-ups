@@ -77,12 +77,12 @@ const observer = new MutationObserver((mutations) => {
 		for (const [handler, entry] of handlersMap) {
 			if (!isMatchedPath(entry.matches)) continue;
 
-			for (const node of mutation.addedNodes) {
-				processAddedNode(node, handler, entry);
-			}
-
 			for (const node of mutation.removedNodes) {
 				cleanupRemovedNodes(entry, node);
+			}
+
+			for (const node of mutation.addedNodes) {
+				processAddedNode(node, handler, entry);
 			}
 		}
 	}
