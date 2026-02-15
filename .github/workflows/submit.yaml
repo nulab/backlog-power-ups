@@ -18,6 +18,10 @@ on:
         default: patch
         required: true
 
+concurrency:
+  group: submit-extension
+  cancel-in-progress: false
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -47,7 +51,7 @@ jobs:
       - name: bump version
         id: bump_version
         run: |
-          npm version ${{ steps.get_latest_tag.outputs.latest_tag }} --no-git-tag-version --allow-same-version
+          npm version "${{ steps.get_latest_tag.outputs.latest_tag }}" --no-git-tag-version --allow-same-version
           npm version ${{ github.event.inputs.newversion }} --force
           
           new_tag=$(git describe --tags --abbrev=0)
@@ -62,6 +66,7 @@ jobs:
 
       - uses: actions/upload-artifact@v4
         with:
+          name: extension-build
           path: .output
           include-hidden-files: true
 
@@ -72,13 +77,13 @@ jobs:
       name: ${{ inputs.environment }}
     permissions:
       contents: write
-      id-token: write
     steps:
       - uses: actions/checkout@v5
 
       - uses: actions/download-artifact@v5
         with:
-          path: .output/
+          name: extension-build
+          path: .output
 
       - uses: actions/setup-node@v4
         with:
@@ -94,14 +99,13 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
       - name: update version
-        run: npm version ${{ needs.build.outputs.new_tag }}
+        run: npm version "${{ needs.build.outputs.new_tag }}"
 
       - name: submit to web store
         run: |
           npx wxt submit \
             --chrome-zip .output/*-chrome.zip
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           DRY_RUN: ${{ inputs.environment == 'dry-run' }}
           CHROME_EXTENSION_ID: ${{ vars.CHROME_EXTENSION_ID }}
           CHROME_CLIENT_ID: ${{ secrets.CHROME_CLIENT_ID }}
@@ -111,4 +115,10 @@ jobs:
 
       - name: push the new tag
         if: inputs.environment != 'dry-run'
-        run: git push origin ${{ needs.build.outputs.new_tag }}
+        run: git push origin "${{ needs.build.outputs.new_tag }}"
+
+      - name: create github release
+        if: inputs.environment != 'dry-run'
+        run: gh release create "${{ needs.build.outputs.new_tag }}" --generate-notes
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
