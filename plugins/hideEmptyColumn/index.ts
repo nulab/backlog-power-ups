@@ -15,33 +15,42 @@ export const hideEmptyColumn = definePowerUpsPlugin({
 				nodeMatcher("td", tr, HTMLTableCellElement),
 			);
 
-			for (const el of [...thElements, ...trElements.flat()]) {
-				el.style.removeProperty("display");
+			const isCellEmpty = (cell: HTMLTableCellElement) =>
+				!cell.textContent?.trim() &&
+				cell.querySelector("img, svg, input, canvas, video") === null;
+
+			const emptyColumns = new Set<number>();
+
+			for (let col = 1; col < thElements.length; col += 1) {
+				if (trElements.every((tr) => isCellEmpty(tr[col]))) {
+					emptyColumns.add(col);
+				}
 			}
 
 			for (let col = 1; col < thElements.length; col += 1) {
-				const isEmpty = trElements.every((tr) => !tr[col].textContent);
+				const display = emptyColumns.has(col) ? "none" : "";
 
-				if (isEmpty) {
-					thElements[col].style.display = "none";
-
-					for (const tr of trElements) {
-						tr[col].style.display = "none";
-					}
+				thElements[col].style.display = display;
+				for (const tr of trElements) {
+					tr[col].style.display = display;
 				}
 			}
 		}, 100);
 
-		observeQuerySelector("#issues-table tr", (el) => {
-			const table = el.closest("table");
+		observeQuerySelector("#issues-table", (table) => {
+			if (!(table instanceof HTMLTableElement)) return;
 
-			if (table) {
+			hideEmptyColumn(table);
+
+			const tableObserver = new MutationObserver(() => {
 				hideEmptyColumn(table);
+			});
 
-				return () => {
-					hideEmptyColumn(table);
-				};
-			}
+			tableObserver.observe(table, { childList: true, subtree: true });
+
+			return () => {
+				tableObserver.disconnect();
+			};
 		});
 	},
 });
