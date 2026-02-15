@@ -51,6 +51,7 @@ export const hideEmptyColumn = definePowerUpsPlugin({
 			return () => {
 				tableObserver.disconnect();
 				styleEl.textContent = "";
+				styleEl.remove();
 			};
 		});
 	},
