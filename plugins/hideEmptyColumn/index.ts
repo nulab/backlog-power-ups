@@ -5,6 +5,9 @@ export const hideEmptyColumn = definePowerUpsPlugin({
 	matches: ["/find/*", "/FindIssueAllOver.action"],
 	allFrames: true,
 	main({ observeQuerySelector }) {
+		const styleEl = document.createElement("style");
+		document.head.appendChild(styleEl);
+
 		const hideEmptyColumn = pDebounce((table: HTMLTableElement) => {
 			const thElements = nodeMatcher(
 				"thead > tr > th",
@@ -19,22 +22,18 @@ export const hideEmptyColumn = definePowerUpsPlugin({
 				!cell.textContent?.trim() &&
 				cell.querySelector("img, svg, input, canvas, video") === null;
 
-			const emptyColumns = new Set<number>();
+			const rules: string[] = [];
 
 			for (let col = 1; col < thElements.length; col += 1) {
 				if (trElements.every((tr) => isCellEmpty(tr[col]))) {
-					emptyColumns.add(col);
+					const nth = col + 1;
+					rules.push(
+						`#issues-table tr > :nth-child(${nth}) { display: none; }`,
+					);
 				}
 			}
 
-			for (let col = 1; col < thElements.length; col += 1) {
-				const display = emptyColumns.has(col) ? "none" : "";
-
-				thElements[col].style.display = display;
-				for (const tr of trElements) {
-					tr[col].style.display = display;
-				}
-			}
+			styleEl.textContent = rules.join("\n");
 		}, 100);
 
 		observeQuerySelector("#issues-table", (table) => {
@@ -50,6 +49,7 @@ export const hideEmptyColumn = definePowerUpsPlugin({
 
 			return () => {
 				tableObserver.disconnect();
+				styleEl.textContent = "";
 			};
 		});
 	},
