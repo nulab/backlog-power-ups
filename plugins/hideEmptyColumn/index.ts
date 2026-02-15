@@ -14,11 +14,12 @@ export const hideEmptyColumn = definePowerUpsPlugin({
 				table,
 				HTMLTableCellElement,
 			);
-			const trElements = nodeMatcher("tbody > tr", table).map((tr) =>
-				nodeMatcher("td", tr, HTMLTableCellElement),
-			);
+			const trElements = nodeMatcher("tbody > tr", table)
+				.map((tr) => nodeMatcher("td", tr, HTMLTableCellElement))
+				.filter((tds) => tds.length === thElements.length);
 
-			const isCellEmpty = (cell: HTMLTableCellElement) =>
+			const isCellEmpty = (cell: HTMLTableCellElement | undefined) =>
+				cell != null &&
 				!cell.textContent?.trim() &&
 				cell.querySelector("img, svg, input, canvas, video") === null;
 
