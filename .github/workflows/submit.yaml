@@ -113,9 +113,11 @@ jobs:
           CHROME_REFRESH_TOKEN: ${{ secrets.CHROME_REFRESH_TOKEN }}
           CHROME_SKIP_SUBMIT_REVIEW: 'false'
 
-      - name: push the new tag
+      - name: push version commit and tag
         if: inputs.environment != 'dry-run'
-        run: git push origin "${{ needs.build.outputs.new_tag }}"
+        run: |
+          git push origin HEAD:refs/heads/${{ github.ref_name }}
+          git push origin "${{ needs.build.outputs.new_tag }}"
 
       - name: create github release
         if: inputs.environment != 'dry-run'
