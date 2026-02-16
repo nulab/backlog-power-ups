@@ -24,6 +24,10 @@ boardOneline:
   name: ボードのカードを1行の最小化表示できるボタンを追加する
 childPage:
   name: 新規ページを現在表示しているページの下に作成する
+copyIssueCacooFormat:
+  name: 課題をCacooカードとしてコピーできるボタンを追加する
+  tooltip: Cacooカードとしてコピー
+  success: Cacooカードをクリップボードにコピーしました
 copyIssueKeysAndSubjects:
   name: 検索結果で課題キーと件名を一括コピーできるボタンを追加する
   tooltip: 課題キーと件名を一括コピー

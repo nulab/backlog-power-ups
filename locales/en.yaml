@@ -24,6 +24,10 @@ boardOneline:
   name: Add a button to minimize cards on the board to a single line
 childPage:
   name: Create a new wiki page as a subpage of the current one
+copyIssueCacooFormat:
+  name: Add a button to copy issues as Cacoo cards
+  tooltip: Copy as Cacoo card
+  success: Copied Cacoo card to clipboard
 copyIssueKeysAndSubjects:
   name: Add a button to copy all issue keys and subjects from the search results
   tooltip: Copy all issue keys and subjects
