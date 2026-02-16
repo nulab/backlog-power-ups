@@ -1,0 +1,9 @@
+.ticket__key > .ticket__key-copy:not(:first-of-type) {
+	transform: translateX(calc((100% + 2px) * var(--nth)));
+}
+
+.ticket__key :nth-child(2 of .ticket__key-copy) { --nth: 1; }
+.ticket__key :nth-child(3 of .ticket__key-copy) { --nth: 2; }
+.ticket__key :nth-child(4 of .ticket__key-copy) { --nth: 3; }
+.ticket__key :nth-child(5 of .ticket__key-copy) { --nth: 4; }
+.ticket__key :nth-child(6 of .ticket__key-copy) { --nth: 5; }

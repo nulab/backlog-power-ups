@@ -4,7 +4,6 @@ import {
 	extractIssueData,
 	extractIssueDataFromRow,
 } from "./extract-issue-data";
-import styles from "./index.module.css";
 
 interface BacklogGlobal {
 	Backlog?: {
@@ -31,17 +30,10 @@ export const copyIssueCacooFormat = definePowerUpsPlugin({
 	main({ observeQuerySelector }) {
 		// 課題詳細ページ: #copyKey-help の横にボタンを挿入
 		observeQuerySelector("#copyKey-help", (anchor) => {
-			if (
-				anchor.parentElement?.querySelector("[data-testid='cacoo-copy-button']")
-			) {
-				return;
-			}
-
 			const button = createButton(
 				html`
 					<button
 						type="button"
-						data-testid="cacoo-copy-button"
 						class="icon-button icon-button--default | simptip-position-right simptip-movable simptip-smooth"
 						data-tooltip=${i18n.t("copyIssueCacooFormat.tooltip")}
 					>
@@ -68,11 +60,7 @@ export const copyIssueCacooFormat = definePowerUpsPlugin({
 				},
 			);
 
-			const wrapper = document.createElement("span");
-			wrapper.className = "copy-key-btn ticket__key-copy";
-			wrapper.appendChild(button);
-
-			anchor.insertAdjacentElement("afterend", wrapper);
+			injectIssueKeyButton(anchor, "cacoo-copy", button);
 		});
 
 		// 課題一覧ページ: 各行の課題リンク横にボタンを挿入
@@ -92,8 +80,7 @@ export const copyIssueCacooFormat = definePowerUpsPlugin({
 					html`
 						<button
 							type="button"
-							data-testid="cacoo-list-copy-button"
-							class="${styles.listButton} icon-button icon-button--default | simptip-position-right simptip-movable simptip-smooth"
+							class="icon-button icon-button--default | simptip-position-right simptip-movable simptip-smooth"
 							data-tooltip=${i18n.t("copyIssueCacooFormat.tooltip")}
 						>
 							<svg width="18" height="23" viewBox="-4.5 -6.9 27.9 36.8" fill="none" xmlns="http://www.w3.org/2000/svg" class="${styles.cacooIconSmall}">
