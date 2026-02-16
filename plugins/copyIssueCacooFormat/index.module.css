@@ -1,5 +1,5 @@
-.button {
-	margin-left: 4px;
+:global(.ticket__key :nth-child(2 of .ticket__key-copy)) {
+	transform: translateX(calc(100% + 2px));
 }
 
 .listButton {
