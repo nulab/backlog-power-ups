@@ -5,43 +5,53 @@ export const hideEmptyColumn = definePowerUpsPlugin({
 	matches: ["/find/*", "/FindIssueAllOver.action"],
 	allFrames: true,
 	main({ observeQuerySelector }) {
-		const hideEmptyColumn = pDebounce((table: HTMLTableElement) => {
-			const thElements = nodeMatcher(
-				"thead > tr > th",
-				table,
-				HTMLTableCellElement,
-			);
-			const trElements = nodeMatcher("tbody > tr", table).map((tr) =>
-				nodeMatcher("td", tr, HTMLTableCellElement),
-			);
+		observeQuerySelector("#issues-table", (table) => {
+			if (!(table instanceof HTMLTableElement)) return;
 
-			for (const el of [...thElements, ...trElements.flat()]) {
-				el.style.removeProperty("display");
-			}
+			const styleEl = document.createElement("style");
+			document.head.appendChild(styleEl);
 
-			for (let col = 1; col < thElements.length; col += 1) {
-				const isEmpty = trElements.every((tr) => !tr[col].textContent);
+			const hideEmptyColumn = pDebounce(() => {
+				const thElements = nodeMatcher(
+					"thead > tr > th",
+					table,
+					HTMLTableCellElement,
+				);
+				const trElements = nodeMatcher("tbody > tr", table)
+					.map((tr) => nodeMatcher("td", tr, HTMLTableCellElement))
+					.filter((tds) => tds.length === thElements.length);
 
-				if (isEmpty) {
-					thElements[col].style.display = "none";
+				const isCellEmpty = (cell: HTMLTableCellElement | undefined) =>
+					cell != null &&
+					!cell.textContent?.trim() &&
+					cell.querySelector("img, svg, input, canvas, video") === null;
 
-					for (const tr of trElements) {
-						tr[col].style.display = "none";
+				const rules: string[] = [];
+
+				for (let col = 1; col < thElements.length; col += 1) {
+					if (trElements.every((tr) => isCellEmpty(tr[col]))) {
+						const nth = col + 1;
+						rules.push(
+							`#issues-table tr > :nth-child(${nth}) { display: none; }`,
+						);
 					}
 				}
-			}
-		}, 100);
 
-		observeQuerySelector("#issues-table tr", (el) => {
-			const table = el.closest("table");
+				styleEl.textContent = rules.join("\n");
+			}, 100);
 
-			if (table) {
-				hideEmptyColumn(table);
+			hideEmptyColumn();
 
-				return () => {
-					hideEmptyColumn(table);
-				};
-			}
+			const tableObserver = new MutationObserver(() => {
+				hideEmptyColumn();
+			});
+
+			tableObserver.observe(table, { childList: true, subtree: true });
+
+			return () => {
+				tableObserver.disconnect();
+				styleEl.remove();
+			};
 		});
 	},
 });
