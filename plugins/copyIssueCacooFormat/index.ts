@@ -6,19 +6,8 @@ import {
 } from "./extract-issue-data";
 import styles from "./index.module.css";
 
-interface BacklogGlobal {
-	Backlog?: {
-		StatusBar?: {
-			init(): void;
-			showTextAndHide(text: string): void;
-		};
-	};
-}
-
 function showSuccess(): void {
-	const backlog = (window as unknown as BacklogGlobal).Backlog;
-	backlog?.StatusBar?.init();
-	backlog?.StatusBar?.showTextAndHide(i18n.t("copyIssueCacooFormat.success"));
+	showStatusMessage(i18n.t("copyIssueCacooFormat.success"));
 }
 
 const LIST_BUTTON_ATTR = "data-cacoo-injected";
