@@ -1,6 +1,6 @@
 {
 	"name": "backlog-power-ups",
-	"version": "0.0.26",
+	"version": "1.0.0",
 	"private": true,
 	"type": "module",
 	"scripts": {
