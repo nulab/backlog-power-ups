@@ -6,7 +6,12 @@
 	"scripts": {
 		"build": "wxt build",
 		"dev": "wxt",
+		"format": "biome format --write .",
+		"format:check": "biome format .",
 		"postinstall": "lefthook install && wxt prepare",
+		"lint": "biome lint .",
+		"lint:fix": "biome lint --write .",
+		"typecheck": "tsc --noEmit",
 		"zip": "wxt zip"
 	},
 	"dependencies": {
