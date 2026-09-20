@@ -12,13 +12,15 @@ export const hideEmptyColumn = definePowerUpsPlugin({
 			document.head.appendChild(styleEl);
 
 			const hideEmptyColumn = pDebounce(() => {
-				const thElements = nodeMatcher(
+				const thElements = nodeMatcher<HTMLTableCellElement>(
 					"thead > tr > th",
 					table,
 					HTMLTableCellElement,
 				);
 				const trElements = nodeMatcher("tbody > tr", table)
-					.map((tr) => nodeMatcher("td", tr, HTMLTableCellElement))
+					.map((tr) =>
+						nodeMatcher<HTMLTableCellElement>("td", tr, HTMLTableCellElement),
+					)
 					.filter((tds) => tds.length === thElements.length);
 
 				const isCellEmpty = (cell: HTMLTableCellElement | undefined) =>
