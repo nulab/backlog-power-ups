@@ -16,8 +16,7 @@
 
 		:global(.chart.-child-issue),
 		:global(
-				:where(.chart.-child-issue, .chart.selected.-child-issue)
-				.resize-handle
+				:where(.chart.-child-issue, .chart.selected.-child-issue) .resize-handle
 			) {
 			height: 40px !important;
 		}
