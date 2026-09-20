@@ -20,8 +20,6 @@ absoluteDate:
   name: 相対時間を絶対時間で表示する
 autoResolution:
   name: 状態を完了に変更した時、完了理由を自動的に対応済みにする
-boardOneline:
-  name: ボードのカードを1行の最小化表示できるボタンを追加する
 childPage:
   name: 新規ページを現在表示しているページの下に作成する
 copyIssueKeysAndSubjects:

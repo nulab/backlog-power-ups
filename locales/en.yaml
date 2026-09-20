@@ -20,8 +20,6 @@ absoluteDate:
   name: Display absolute time instead of relative time
 autoResolution:
   name: Automatically set resolution to "Done" when issue status is changed to "Closed"
-boardOneline:
-  name: Add a button to minimize cards on the board to a single line
 childPage:
   name: Create a new wiki page as a subpage of the current one
 copyIssueKeysAndSubjects:

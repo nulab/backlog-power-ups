@@ -30,7 +30,6 @@
 |      [![Issue][issue-src]](plugins/hideEmptyColumn/index.ts)      | Hides columns that have no values in the issue list.                                                                                                                     |     | 🪄  |
 |    [![Issue][issue-src]](plugins/projectIssueFilter/index.ts)     | Adds a dropdown menu to the top right of the issue list to switch project filters.                                                                                       | ☑️  | 👆  |
 |         [![Issue][issue-src]](plugins/totalTime/index.ts)         | Displays the total of _Estimated Hours_ and _Actual Hours_ for the listed issues at the bottom left of the issue list.                                                   | ☑️  | 🪄  |
-|       [![Board][board-src]](plugins/boardOneline/index.ts)        | Adds a button to minimize and display board cards on a single line.                                                                                                      | ☑️  | 👆  |
 | [![Gantt][gantt-src]](plugins/ganttFilterParentAndChild/index.ts) | Adds a dropdown menu to the Gantt chart to filter by parent-child relationships.                                                                                         | ☑️  | 👆  |
 |             [![Wiki][wiki-src]](plugins/childPage.ts)             | Sets the default location for new Wiki pages to be under the currently viewed page.                                                                                      |     | 🪄  |
 |             [![Wiki][wiki-src]](plugins/copyWiki.ts)              | Copies a Wiki page to another project.                                                                                                                                   | ☑️  | 👆  |
@@ -60,7 +59,6 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for this.
 [chrome-web-store-stars-src]: https://img.shields.io/chrome-web-store/stars/oknjgkbkglfeeobjojelkbhfpjkgcndb?style=for-the-badge
 [general-src]: https://img.shields.io/badge/General-007BFF?style=flat-square
 [issue-src]: https://img.shields.io/badge/Issue-28A745?style=flat-square
-[board-src]: https://img.shields.io/badge/Board-17A2B8?style=flat-square
 [gantt-src]: https://img.shields.io/badge/Gantt-9013FE?style=flat-square
 [wiki-src]: https://img.shields.io/badge/Wiki-E85D04?style=flat-square
 [document-src]: https://img.shields.io/badge/Document-4A4A4A?style=flat-square
