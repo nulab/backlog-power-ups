@@ -1,0 +1,75 @@
+.card {
+	position: relative;
+	cursor: pointer;
+	user-select: none;
+}
+
+.selected {
+	outline: 2px solid var(--color-primary, #4488c5);
+	outline-offset: -2px;
+	border-radius: 4px;
+	background-color: color-mix(
+		in srgb,
+		var(--color-primary, #4488c5) 8%,
+		transparent
+	);
+}
+
+.bar {
+	position: fixed;
+	bottom: 24px;
+	left: 50%;
+	transform: translateX(-50%);
+	z-index: 9999;
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	padding: 10px 16px;
+	border-radius: 8px;
+	background-color: #2a2a2a;
+	color: #fff;
+	box-shadow: 0 4px 16px rgb(0 0 0 / 30%);
+	font-size: 13px;
+}
+
+.count {
+	font-weight: bold;
+	white-space: nowrap;
+}
+
+.select {
+	padding: 4px 8px;
+	border: 1px solid #555;
+	border-radius: 4px;
+	background-color: #1a1a1a;
+	color: #fff;
+	font-size: 13px;
+}
+
+.apply {
+	padding: 5px 14px;
+	border: none;
+	border-radius: 4px;
+	background-color: #4488c5;
+	color: #fff;
+	cursor: pointer;
+	font-size: 13px;
+}
+
+.apply:disabled {
+	opacity: 0.5;
+	cursor: default;
+}
+
+.clear {
+	border: none;
+	background: none;
+	color: #bbb;
+	cursor: pointer;
+	font-size: 13px;
+	text-decoration: underline;
+}
+
+.error {
+	color: #ff9a9a;
+}

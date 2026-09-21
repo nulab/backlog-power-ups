@@ -25,6 +25,7 @@
 |       [![General][general-src]](plugins/searchKeyboard.ts)        | Enables keyboard navigation for search results in the global bar.<br>Tab: Switch search target, Up/Down: Select suggestion, Left/Right: Paginate, Enter: Open selection. |     | 🪄  |
 |      [![General][general-src]](plugins/sidebarAutoClose.ts)       | Automatically opens and closes the sidebar based on the screen size.                                                                                                     | ☑️  | 🪄  |
 |     [![General][general-src]](plugins/userSwitcher/index.ts)      | Adds a search bar to the user page to find and switch between users.                                                                                                     | ☑️  | 👆  |
+|     [![Board][board-src]](plugins/boardBulkStatus/index.ts)      | Select multiple cards on the board with `Cmd/Ctrl + click` or `Shift + click`, then change all their statuses at once.                                                   | ☑️  | 👆  |
 |         [![Issue][issue-src]](plugins/autoResolution.ts)          | Automatically sets the _Resolution_ to _Fixed_ when an issue's _Status_ is changed to _Closed_.                                                                          |     | 🪄  |
 |           [![Issue][issue-src]](plugins/extendDesc.ts)            | Increases the default size of the description input field.                                                                                                               |     | 🪄  |
 |      [![Issue][issue-src]](plugins/hideEmptyColumn/index.ts)      | Hides columns that have no values in the issue list.                                                                                                                     |     | 🪄  |
@@ -59,6 +60,7 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for this.
 [chrome-web-store-stars-src]: https://img.shields.io/chrome-web-store/stars/oknjgkbkglfeeobjojelkbhfpjkgcndb?style=for-the-badge
 [general-src]: https://img.shields.io/badge/General-007BFF?style=flat-square
 [issue-src]: https://img.shields.io/badge/Issue-28A745?style=flat-square
+[board-src]: https://img.shields.io/badge/Board-00A3AF?style=flat-square
 [gantt-src]: https://img.shields.io/badge/Gantt-9013FE?style=flat-square
 [wiki-src]: https://img.shields.io/badge/Wiki-E85D04?style=flat-square
 [document-src]: https://img.shields.io/badge/Document-4A4A4A?style=flat-square

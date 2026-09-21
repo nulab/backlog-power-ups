@@ -1,5 +1,6 @@
 export * from "./absoluteDate";
 export * from "./autoResolution";
+export * from "./boardBulkStatus";
 export * from "./childPage";
 export * from "./copyIssueKeysAndSubjects";
 export * from "./copyPullSummary";
