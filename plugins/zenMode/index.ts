@@ -25,7 +25,7 @@ export const zenMode = definePowerUpsPlugin({
 								"icon-button--primary",
 							);
 
-							document.body.classList.toggle(styles.zenMode, isZenMode);
+							document.body.classList.toggle(styles.zenMode!, isZenMode);
 						}
 					},
 				},
@@ -34,7 +34,7 @@ export const zenMode = definePowerUpsPlugin({
 			el.appendChild(button);
 
 			return () => {
-				document.body.classList.remove(styles.zenMode);
+				document.body.classList.remove(styles.zenMode!);
 			};
 		});
 	},

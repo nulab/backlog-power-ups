@@ -19,8 +19,8 @@ export const projectIssueFilter = definePowerUpsPlugin({
         `,
 			});
 
-			el.classList.add(styles.actions);
-			select.classList.add(styles.select);
+			el.classList.add(styles.actions!);
+			select.classList.add(styles.select!);
 			el.appendChild(element);
 
 			const handleFocus = async () => {
