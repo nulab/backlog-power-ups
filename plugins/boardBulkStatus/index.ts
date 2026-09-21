@@ -1,28 +1,21 @@
 import styles from "./index.module.css";
-import { updateIssueStatus } from "./update-status";
+import { buildDropResult, getDraggableId, getOnDragEnd } from "./react-dnd";
 
 /**
  * The board renders with emotion, so every visual class name is hashed
  * (`css-o6r3xa-col`) and unusable as a selector. These are the stable hooks:
  *
- * - `#kanban section[role="group"]` is a status column, `aria-label` is its name.
+ * - `ul[data-statusid]` is a status column, and carries the status id directly.
  * - `li.card` is a card, and is also the react-beautiful-dnd drag handle.
  * - `a.card-label[href="/view/KEY-1"]` carries the issue key.
  */
-const COLUMN_SELECTOR = '#kanban section[role="group"]';
+const COLUMN_SELECTOR = "#kanban ul[data-statusid]";
 const CARD_SELECTOR = "li.card";
 const CARD_LINK_SELECTOR = "a.card-label";
 
-type Column = {
-	element: HTMLElement;
-	name: string;
-	statusId: number;
-};
-
-type SelectedCard = {
-	element: HTMLElement;
-	issueKey: string;
-};
+/** How long to wait for react-beautiful-dnd to settle the drop. */
+const DROP_TIMEOUT_MS = 3000;
+const DROP_POLL_MS = 100;
 
 const getIssueKey = (card: Element): string | null => {
 	const href = card.querySelector(CARD_LINK_SELECTOR)?.getAttribute("href");
@@ -31,103 +24,66 @@ const getIssueKey = (card: Element): string | null => {
 };
 
 /**
- * Status ids are not present anywhere in the board's markup -- `aria-label`
- * only gives the display name, and projects can define custom statuses, so the
- * built-in 1..4 ids cannot be assumed. The id is read off the React fiber the
- * board already keeps on the column element. If React's internals ever move,
- * this returns null and the plugin stays inert rather than guessing an id and
- * moving issues to the wrong status.
+ * Cards are looked up by issue key rather than held as element references:
+ * the board re-renders on every drop, so a reference captured before a drag is
+ * not reliably the element on screen afterwards.
  */
-const getStatusId = (column: Element): number | null => {
-	const fiberKey = Object.keys(column).find((key) =>
-		key.startsWith("__reactFiber$"),
+const findCard = (issueKey: string): HTMLElement | null => {
+	const link = document.querySelector(
+		`#kanban ${CARD_SELECTOR} ${CARD_LINK_SELECTOR}[href$="/view/${issueKey}"]`,
 	);
+	const card = link?.closest(CARD_SELECTOR);
 
-	if (!fiberKey) {
-		return null;
-	}
-
-	const seen = new WeakSet<object>();
-
-	const findStatusId = (value: unknown, depth: number): number | null => {
-		if (depth > 12 || typeof value !== "object" || value === null) {
-			return null;
-		}
-
-		if (seen.has(value)) {
-			return null;
-		}
-
-		seen.add(value);
-
-		for (const [key, child] of Object.entries(value)) {
-			if (
-				key === "status" &&
-				typeof child === "object" &&
-				child !== null &&
-				typeof (child as { id?: unknown }).id === "number"
-			) {
-				return (child as { id: number }).id;
-			}
-
-			const nested = findStatusId(child, depth + 1);
-
-			if (nested !== null) {
-				return nested;
-			}
-		}
-
-		return null;
-	};
-
-	// @ts-expect-error -- indexing the React fiber by its generated key
-	let fiber = column[fiberKey];
-
-	for (let i = 0; i < 12 && fiber; i += 1) {
-		const fromProps = findStatusId(fiber.memoizedProps, 0);
-
-		if (fromProps !== null) {
-			return fromProps;
-		}
-
-		fiber = fiber.return;
-	}
-
-	return null;
+	return card instanceof HTMLElement ? card : null;
 };
 
-const getColumns = (): Column[] =>
-	Array.from(document.querySelectorAll(COLUMN_SELECTOR))
-		.filter((column) => column instanceof HTMLElement)
-		.flatMap((column) => {
-			const name = column.getAttribute("aria-label");
-			const statusId = getStatusId(column);
+const getColumn = (card: Element): HTMLElement | null => {
+	const column = card.closest(COLUMN_SELECTOR);
 
-			if (!name || statusId === null) {
-				return [];
-			}
+	return column instanceof HTMLElement ? column : null;
+};
 
-			return [{ element: column, name, statusId }];
-		});
+const getStatusId = (card: Element): string | null =>
+	getColumn(card)?.dataset.statusid ?? null;
 
-const getCsrfToken = (): string | null =>
-	document.querySelector<HTMLInputElement>(
-		'#csrfTokenForm input[name="csrf-token"]',
-	)?.value ?? null;
+const getCards = (column: Element): HTMLElement[] =>
+	Array.from(column.querySelectorAll(CARD_SELECTOR)).filter(
+		(card) => card instanceof HTMLElement,
+	);
 
 export const boardBulkStatus = definePowerUpsPlugin({
 	group: "board",
 	allFrames: true,
 	matches: ["/board/*"],
-	main({ observeQuerySelector, addEventListener }) {
-		const selection = new Map<string, SelectedCard>();
-		let anchor: HTMLElement | null = null;
-		let bar: HTMLElement | null = null;
+	main({ observeQuerySelector, addEventListener, setTimeout }) {
+		const selection = new Set<string>();
+		let anchorKey: string | null = null;
+		let badge: HTMLElement | null = null;
 
-		const getCardsInColumn = (column: Element): HTMLElement[] =>
-			Array.from(column.querySelectorAll(CARD_SELECTOR)).filter(
-				(card) => card instanceof HTMLElement,
-			);
+		/**
+		 * A drag is followed by a click on the card that was dropped. That click
+		 * must not be read as "plain click, so clear the selection", or the
+		 * selection is gone before the remaining cards have been moved.
+		 */
+		let suppressNextClick = false;
+
+		const renderBadge = () => {
+			if (selection.size === 0) {
+				badge?.remove();
+				badge = null;
+				return;
+			}
+
+			if (!badge) {
+				badge = document.createElement("div");
+				badge.className = styles.badge!;
+				document.body.appendChild(badge);
+			}
+
+			badge.textContent = i18n.t("boardBulkStatus.selected", [
+				String(selection.size),
+			]);
+		};
 
 		const render = () => {
 			for (const card of document.querySelectorAll(CARD_SELECTOR)) {
@@ -139,45 +95,40 @@ export const boardBulkStatus = definePowerUpsPlugin({
 				);
 			}
 
-			renderBar();
+			renderBadge();
 		};
 
 		const clearSelection = () => {
 			selection.clear();
-			anchor = null;
+			anchorKey = null;
 			render();
 		};
 
-		const toggle = (card: HTMLElement) => {
-			const issueKey = getIssueKey(card);
-
-			if (!issueKey) {
-				return;
-			}
-
+		const toggle = (issueKey: string) => {
 			if (selection.has(issueKey)) {
 				selection.delete(issueKey);
 			} else {
-				selection.set(issueKey, { element: card, issueKey });
+				selection.add(issueKey);
 			}
 
-			anchor = card;
+			anchorKey = issueKey;
 		};
 
-		const selectRange = (card: HTMLElement) => {
-			const column = card.closest(COLUMN_SELECTOR);
+		const selectRange = (card: HTMLElement, issueKey: string) => {
+			const column = getColumn(card);
+			const anchorCard = anchorKey ? findCard(anchorKey) : null;
 
-			if (!column || !anchor || !column.contains(anchor)) {
-				toggle(card);
+			if (!column || !anchorCard || !column.contains(anchorCard)) {
+				toggle(issueKey);
 				return;
 			}
 
-			const cards = getCardsInColumn(column);
-			const from = cards.indexOf(anchor);
+			const cards = getCards(column);
+			const from = cards.indexOf(anchorCard);
 			const to = cards.indexOf(card);
 
 			if (from === -1 || to === -1) {
-				toggle(card);
+				toggle(issueKey);
 				return;
 			}
 
@@ -185,10 +136,10 @@ export const boardBulkStatus = definePowerUpsPlugin({
 				Math.min(from, to),
 				Math.max(from, to) + 1,
 			)) {
-				const issueKey = getIssueKey(inRange);
+				const key = getIssueKey(inRange);
 
-				if (issueKey) {
-					selection.set(issueKey, { element: inRange, issueKey });
+				if (key) {
+					selection.add(key);
 				}
 			}
 		};
@@ -200,11 +151,17 @@ export const boardBulkStatus = definePowerUpsPlugin({
 				return;
 			}
 
+			if (suppressNextClick) {
+				suppressNextClick = false;
+				event.preventDefault();
+				event.stopPropagation();
+				return;
+			}
+
 			const card = target.closest(CARD_SELECTOR);
 
 			if (!(card instanceof HTMLElement)) {
-				// A click anywhere else on the page drops the selection.
-				if (selection.size > 0 && !target.closest(`.${styles.bar}`)) {
+				if (selection.size > 0) {
 					clearSelection();
 				}
 
@@ -214,21 +171,31 @@ export const boardBulkStatus = definePowerUpsPlugin({
 			const isRange = event.shiftKey;
 			const isToggle = event.ctrlKey || event.metaKey;
 
-			// A plain click with nothing selected is left alone so the card's
-			// link keeps working. Selection only starts from a modifier.
-			if (!isRange && !isToggle && selection.size === 0) {
+			// A plain click is left alone so the card keeps opening its issue.
+			// Selection only starts from a modifier.
+			if (!isRange && !isToggle) {
+				if (selection.size > 0) {
+					clearSelection();
+				}
+
 				return;
 			}
 
-			// Stop the card link from opening a tab, and stop Backlog's own
-			// handler from treating this as "open the issue".
+			const issueKey = getIssueKey(card);
+
+			if (!issueKey) {
+				return;
+			}
+
+			// Stop the card link opening a tab and stop Backlog treating this as
+			// "open the issue".
 			event.preventDefault();
 			event.stopPropagation();
 
 			if (isRange) {
-				selectRange(card);
+				selectRange(card, issueKey);
 			} else {
-				toggle(card);
+				toggle(issueKey);
 			}
 
 			render();
@@ -240,104 +207,160 @@ export const boardBulkStatus = definePowerUpsPlugin({
 			}
 		};
 
-		const apply = async (statusId: number) => {
-			const csrfToken = getCsrfToken();
+		/**
+		 * Moves `issueKeys` into `toStatusId` by replaying the board's own drag
+		 * handler once per card, so Backlog performs the update itself.
+		 */
+		const moveRest = (
+			issueKeys: string[],
+			draggedKey: string,
+			toStatusId: string,
+		) => {
+			const reference = issueKeys
+				.map((issueKey) => findCard(issueKey))
+				.find((card) => card !== null);
+			const onDragEnd = reference ? getOnDragEnd(reference) : null;
 
-			if (!csrfToken) {
-				throw new Error("csrf token not found");
-			}
-
-			const issueKeys = Array.from(selection.keys());
-
-			// Sequential on purpose: Backlog rejects concurrent writes to the
-			// same project with a version conflict, and a partial failure is
-			// easier to report when the order is known.
-			for (const issueKey of issueKeys) {
-				await updateIssueStatus(issueKey, statusId, csrfToken);
-			}
-		};
-
-		function renderBar() {
-			if (selection.size === 0) {
-				bar?.remove();
-				bar = null;
+			if (!onDragEnd) {
+				logger.debug("boardBulkStatus: onDragEnd not reachable");
 				return;
 			}
 
-			const columns = getColumns();
-
-			if (!bar) {
-				bar = document.createElement("div");
-				bar.className = styles.bar!;
-				document.body.appendChild(bar);
-			}
-
-			bar.textContent = "";
-
-			const count = document.createElement("span");
-			count.className = styles.count!;
-			count.textContent = i18n.t("boardBulkStatus.selected", [
-				String(selection.size),
-			]);
-
-			const select = document.createElement("select");
-			select.className = styles.select!;
-
-			for (const column of columns) {
-				const option = document.createElement("option");
-				option.value = String(column.statusId);
-				option.textContent = column.name;
-				select.appendChild(option);
-			}
-
-			const applyButton = document.createElement("button");
-			applyButton.type = "button";
-			applyButton.className = styles.apply!;
-			applyButton.textContent = i18n.t("boardBulkStatus.apply");
-			applyButton.addEventListener("click", async () => {
-				applyButton.disabled = true;
-
-				try {
-					await apply(Number(select.value));
-					clearSelection();
-					location.reload();
-				} catch (error) {
-					logger.error(error);
-					applyButton.disabled = false;
-
-					const message = document.createElement("span");
-					message.className = styles.error!;
-					message.textContent = i18n.t("boardBulkStatus.failed");
-					bar?.appendChild(message);
+			for (const issueKey of issueKeys) {
+				if (issueKey === draggedKey) {
+					continue;
 				}
-			});
 
-			const clearButton = document.createElement("button");
-			clearButton.type = "button";
-			clearButton.className = styles.clear!;
-			clearButton.textContent = i18n.t("boardBulkStatus.clear");
-			clearButton.addEventListener("click", clearSelection);
+				const card = findCard(issueKey);
+				const column = card && getColumn(card);
+				const statusId = column?.dataset.statusid;
+				const draggableId = card && getDraggableId(card);
 
-			bar.append(count, select, applyButton, clearButton);
-		}
+				if (!card || !column || !statusId || !draggableId) {
+					logger.debug(`boardBulkStatus: skipped ${issueKey}`);
+					continue;
+				}
+
+				if (statusId === toStatusId) {
+					continue;
+				}
+
+				logger.debug(
+					`boardBulkStatus: moving ${issueKey} ${statusId} -> ${toStatusId}`,
+				);
+
+				onDragEnd(
+					buildDropResult(
+						draggableId,
+						{ statusId, index: getCards(column).indexOf(card) },
+						toStatusId,
+					),
+				);
+			}
+		};
+
+		// The drag itself is left entirely to the board. We only note which card
+		// was picked up, and once it has landed somewhere new, bring the rest of
+		// the selection along. The selection is snapshotted here because the
+		// board re-renders during the drop.
+		let dragging: {
+			issueKey: string;
+			fromStatusId: string;
+			snapshot: string[];
+		} | null = null;
+
+		const handleMouseDown = (event: MouseEvent) => {
+			const target = event.target;
+			const card =
+				target instanceof Element ? target.closest(CARD_SELECTOR) : null;
+
+			if (!(card instanceof HTMLElement)) {
+				return;
+			}
+
+			const issueKey = getIssueKey(card);
+			const fromStatusId = getStatusId(card);
+
+			// Only group-drag when the card the user grabbed is part of the
+			// selection; dragging an unselected card behaves normally.
+			dragging =
+				issueKey && fromStatusId && selection.has(issueKey)
+					? { issueKey, fromStatusId, snapshot: Array.from(selection) }
+					: null;
+		};
+
+		const handleMouseUp = () => {
+			if (!dragging) {
+				return;
+			}
+
+			const { issueKey, fromStatusId, snapshot } = dragging;
+			dragging = null;
+			suppressNextClick = true;
+
+			// rbd settles the drop asynchronously and the board then re-renders,
+			// so poll for the dragged card turning up in a different column
+			// rather than guessing a single delay.
+			let waited = 0;
+
+			const poll = () => {
+				const card = findCard(issueKey);
+				const statusId = card && getStatusId(card);
+
+				if (statusId && statusId !== fromStatusId) {
+					moveRest(snapshot, issueKey, statusId);
+					clearSelection();
+					return;
+				}
+
+				waited += DROP_POLL_MS;
+
+				if (waited >= DROP_TIMEOUT_MS) {
+					// Dropped back where it started, or cancelled: keep the
+					// selection so the user can try again.
+					suppressNextClick = false;
+					return;
+				}
+
+				setTimeout(poll, DROP_POLL_MS);
+			};
+
+			setTimeout(poll, DROP_POLL_MS);
+		};
 
 		observeQuerySelector("#kanban", (kanban) => {
 			for (const card of kanban.querySelectorAll(CARD_SELECTOR)) {
 				card.classList.add(styles.card!);
 			}
 
+			// The board replaces cards on every render, so re-apply the selected
+			// styling to whatever is on screen now.
+			const observer = new MutationObserver(() => {
+				for (const card of document.querySelectorAll(CARD_SELECTOR)) {
+					card.classList.add(styles.card!);
+				}
+
+				render();
+			});
+
+			observer.observe(kanban, { childList: true, subtree: true });
+
 			return () => {
+				observer.disconnect();
+
 				for (const card of document.querySelectorAll(`.${styles.card}`)) {
 					card.classList.remove(styles.card!, styles.selected!);
 				}
 
-				bar?.remove();
-				bar = null;
+				badge?.remove();
+				badge = null;
 				selection.clear();
 			};
 		});
 
 		addEventListener(document, "click", handleClick, { capture: true });
+		addEventListener(document, "mousedown", handleMouseDown, { capture: true });
+		addEventListener(document, "mouseup", handleMouseUp, { capture: true });
 		addEventListener(document, "keydown", handleKeydown);
 	},
 });

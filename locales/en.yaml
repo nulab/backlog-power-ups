@@ -98,8 +98,5 @@ copyPullSummary:
   name: Add a button to copy the pull request number and title
   tooltip: Copy the pull request number ($1) and title to the clipboard. Shift-click to copy only the pull request number.
 boardBulkStatus:
-  name: Select multiple cards on the board and change their status at once
+  name: Drag multiple selected cards to another status at once
   selected: $1 selected
-  apply: Change status
-  clear: Clear
-  failed: Some issues could not be updated
