@@ -6,7 +6,7 @@ export const expandDiffFileLink = definePowerUpsPlugin({
 	allFrames: true,
 	main({ observeQuerySelector, addEventListener }) {
 		observeQuerySelector(".updated-list > .updated-list__item", (el) => {
-			el.classList.add(styles.item);
+			el.classList.add(styles.item!);
 
 			const fileLink = el.querySelector(
 				".updated-list__path",

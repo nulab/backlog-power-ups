@@ -22,7 +22,7 @@ export const plantuml = definePowerUpsPlugin({
 
 				el.insertAdjacentHTML(
 					"beforebegin",
-					Array.isArray(plantumlHtml) ? plantumlHtml[0] : plantumlHtml,
+					Array.isArray(plantumlHtml) ? plantumlHtml.join("") : plantumlHtml,
 				);
 				el.remove();
 			}

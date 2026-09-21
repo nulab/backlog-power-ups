@@ -32,7 +32,7 @@ export const createButton = (
 	listeners: { [K in "click"]?: (ev: HTMLElementEventMap[K]) => void } = {},
 ): HTMLButtonElement => {
 	const template = document.createElement("template");
-	template.innerHTML = Array.isArray(html) ? html[0] : html;
+	template.innerHTML = Array.isArray(html) ? html.join("") : html;
 
 	const buttonEl = template.content.querySelector("button");
 

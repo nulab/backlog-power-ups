@@ -34,8 +34,13 @@ export const filePermalink = definePowerUpsPlugin({
 				return;
 			}
 
+			const [firstCommit] = commits;
+			if (!firstCommit) {
+				return;
+			}
+
 			url.pathname = pathNames
-				.toSpliced(PREFIX_LENGTH, pathNames.length - fileNames - 5, commits[0])
+				.toSpliced(PREFIX_LENGTH, pathNames.length - fileNames - 5, firstCommit)
 				.join("/");
 
 			for (const buttons of document.querySelectorAll(
