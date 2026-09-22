@@ -1,5 +1,5 @@
+import { installBridge, requestMove } from "./bridge";
 import styles from "./index.module.css";
-import { buildDropResult, getDraggableId, getOnDragEnd } from "./react-dnd";
 
 /**
  * The board renders with emotion, so every visual class name is hashed
@@ -57,6 +57,8 @@ export const boardBulkStatus = definePowerUpsPlugin({
 	allFrames: true,
 	matches: ["/board/*"],
 	main({ observeQuerySelector, addEventListener, setTimeout }) {
+		installBridge();
+
 		const selection = new Set<string>();
 		/** Issue key -> the status it was in when it was selected. */
 		const baseline = new Map<string, string>();
@@ -168,47 +170,25 @@ export const boardBulkStatus = definePowerUpsPlugin({
 		 * through the same path as a manual drag.
 		 */
 		const moveRest = (draggedKey: string, toStatusId: string) => {
-			const reference = Array.from(selection)
-				.map((issueKey) => findCard(issueKey))
-				.find((card) => card !== null);
-			const onDragEnd = reference ? getOnDragEnd(reference) : null;
+			const issueKeys = Array.from(selection).filter(
+				(issueKey) => issueKey !== draggedKey,
+			);
 
-			if (!onDragEnd) {
-				logger.debug("boardBulkStatus: onDragEnd not reachable");
+			if (issueKeys.length === 0) {
 				return;
 			}
 
-			for (const issueKey of selection) {
-				if (issueKey === draggedKey) {
-					continue;
+			requestMove(issueKeys, toStatusId).then(({ moved, failed }) => {
+				if (moved.length > 0) {
+					logger.debug(
+						`boardBulkStatus: moved ${moved.join(", ")} -> ${toStatusId}`,
+					);
 				}
 
-				const card = findCard(issueKey);
-				const column = card && getColumn(card);
-				const statusId = column?.dataset.statusid;
-				const draggableId = card && getDraggableId(card);
-
-				if (!card || !column || !statusId || !draggableId) {
-					logger.debug(`boardBulkStatus: skipped ${issueKey}`);
-					continue;
+				if (failed.length > 0) {
+					logger.debug(`boardBulkStatus: failed ${failed.join(", ")}`);
 				}
-
-				if (statusId === toStatusId) {
-					continue;
-				}
-
-				logger.debug(
-					`boardBulkStatus: moving ${issueKey} ${statusId} -> ${toStatusId}`,
-				);
-
-				onDragEnd(
-					buildDropResult(
-						draggableId,
-						{ statusId, index: getCards(column).indexOf(card) },
-						toStatusId,
-					),
-				);
-			}
+			});
 		};
 
 		/**
