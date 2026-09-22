@@ -57,7 +57,13 @@ export const boardBulkStatus = definePowerUpsPlugin({
 	allFrames: true,
 	matches: ["/board/*"],
 	main({ observeQuerySelector, addEventListener, setTimeout }) {
-		installBridge();
+		installBridge().then((ready) => {
+			logger.debug(
+				ready
+					? "boardBulkStatus: page-world bridge ready"
+					: "boardBulkStatus: page-world bridge did NOT load (CSP?)",
+			);
+		});
 
 		const selection = new Set<string>();
 		/** Issue key -> the status it was in when it was selected. */
@@ -178,7 +184,15 @@ export const boardBulkStatus = definePowerUpsPlugin({
 				return;
 			}
 
-			requestMove(issueKeys, toStatusId).then(({ moved, failed }) => {
+			logger.debug(
+				`boardBulkStatus: requesting ${issueKeys.join(", ")} -> ${toStatusId}`,
+			);
+
+			requestMove(issueKeys, toStatusId).then(({ moved, failed, error }) => {
+				if (error) {
+					logger.debug(`boardBulkStatus: ${error}`);
+				}
+
 				if (moved.length > 0) {
 					logger.debug(
 						`boardBulkStatus: moved ${moved.join(", ")} -> ${toStatusId}`,
@@ -210,6 +224,8 @@ export const boardBulkStatus = definePowerUpsPlugin({
 				if (!now || !was || now === was) {
 					continue;
 				}
+
+				logger.debug(`boardBulkStatus: detected ${issueKey} ${was} -> ${now}`);
 
 				applying = true;
 
