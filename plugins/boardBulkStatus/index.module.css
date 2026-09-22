@@ -1,0 +1,31 @@
+.card {
+	position: relative;
+	cursor: pointer;
+	user-select: none;
+}
+
+.selected {
+	outline: 2px solid var(--color-primary, #4488c5);
+	outline-offset: -2px;
+	border-radius: 4px;
+	background-color: color-mix(
+		in srgb,
+		var(--color-primary, #4488c5) 8%,
+		transparent
+	);
+}
+
+.badge {
+	position: fixed;
+	bottom: 24px;
+	left: 50%;
+	transform: translateX(-50%);
+	z-index: 9999;
+	padding: 8px 16px;
+	border-radius: 999px;
+	background-color: #2a2a2a;
+	color: #fff;
+	box-shadow: 0 4px 16px rgb(0 0 0 / 30%);
+	font-size: 13px;
+	pointer-events: none;
+}
