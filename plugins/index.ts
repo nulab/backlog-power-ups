@@ -1,6 +1,7 @@
 export * from "./absoluteDate";
 export * from "./autoResolution";
 export * from "./childPage";
+export * from "./copyIssueCacooFormat";
 export * from "./copyIssueKeysAndSubjects";
 export * from "./copyPullSummary";
 export * from "./copyRawFile";
