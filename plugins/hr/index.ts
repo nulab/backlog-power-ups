@@ -12,7 +12,7 @@ export const hr = definePowerUpsPlugin({
 
 			if (el.textContent.trim() === "---" || el.textContent.trim() === "___") {
 				const hrHtml = html`<hr class=${styles.hr} />`;
-				el.innerHTML = Array.isArray(hrHtml) ? hrHtml[0] : hrHtml;
+				el.innerHTML = Array.isArray(hrHtml) ? hrHtml.join("") : hrHtml;
 			}
 		});
 	},

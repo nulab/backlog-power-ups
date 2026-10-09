@@ -50,7 +50,7 @@ export const totalTime = definePowerUpsPlugin({
 		});
 
 		observeQuerySelector("#container", (el) => {
-			if (document.getElementsByClassName(styles.totalTime).length > 0) {
+			if (document.getElementsByClassName(styles.totalTime!).length > 0) {
 				return;
 			}
 
@@ -73,7 +73,7 @@ export const totalTime = definePowerUpsPlugin({
 			);
 
 			return () => {
-				for (const el of document.getElementsByClassName(styles.totalTime)) {
+				for (const el of document.getElementsByClassName(styles.totalTime!)) {
 					el.remove();
 				}
 			};

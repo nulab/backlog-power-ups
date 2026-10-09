@@ -1,8 +1,8 @@
 export const reloadActiveTab = () => {
 	browser.tabs.query({ active: true, currentWindow: true }, ([tab]) => {
-		const url = tab.url && new URL(tab.url);
+		if (!tab?.url || tab.id == null) return;
 
-		if (!url || tab.id == null) return;
+		const url = new URL(tab.url);
 
 		const isBacklog = /\.backlog(\.com|\.jp|tool\.com)$/.test(url.hostname);
 

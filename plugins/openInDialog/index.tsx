@@ -68,7 +68,7 @@ export const openInDialog = definePowerUpsPlugin({
 		}
 
 		if (sessionStorage.getItem("__powerUpsDialog") === "true") {
-			document.body.classList.add(styles.dialogRoot);
+			document.body.classList.add(styles.dialogRoot!);
 		}
 	},
 });

@@ -6,7 +6,7 @@ export const hideDocumentToolbar = definePowerUpsPlugin({
 	allFrames: true,
 	main({ observeQuerySelector }) {
 		observeQuerySelector(".topbar", (el) => {
-			el.classList.add(styles.hideToolbar);
+			el.classList.add(styles.hideToolbar!);
 		});
 	},
 });

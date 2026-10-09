@@ -38,7 +38,7 @@ export const oldPost = definePowerUpsPlugin({
 				.getElementById("mainTitle")
 				?.insertAdjacentHTML(
 					"afterend",
-					Array.isArray(messageHtml) ? messageHtml[0] : messageHtml,
+					Array.isArray(messageHtml) ? messageHtml.join("") : messageHtml,
 				);
 		});
 	},

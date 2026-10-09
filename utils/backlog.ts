@@ -17,7 +17,7 @@ export const getBacklogProjectKey = (): string => {
 		return keyInMenu;
 	}
 
-	return keyInMenu;
+	return "";
 };
 
 export const getWikiTitle = (): string[] => {

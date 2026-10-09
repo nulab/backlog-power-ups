@@ -45,20 +45,25 @@ export const ganttFilterParentAndChild = definePowerUpsPlugin({
 
 			for (const table of document.querySelectorAll(".gantt-table")) {
 				if (table instanceof HTMLElement) {
-					table.classList.toggle(styles.Filtered, value !== "all");
+					table.classList.toggle(styles.Filtered!, value !== "all");
 				}
 
-				const elements = [
-					".gantt-table__left-inner > .gantt-left-cell",
-					":where(.gantt-right-cell, .gantt-right-cell-borderless)",
-					"[id^='ganttIssue-']",
-				].map((selector) =>
-					Array.from(table.querySelectorAll(selector)).filter(
-						(el) => el instanceof HTMLElement,
+				const leftCellElements = Array.from(
+					table.querySelectorAll(".gantt-table__left-inner > .gantt-left-cell"),
+				).filter((el) => el instanceof HTMLElement);
+				const rightCellElements = Array.from(
+					table.querySelectorAll(
+						":where(.gantt-right-cell, .gantt-right-cell-borderless)",
 					),
-				);
-				const [leftCellElements, rightCellElements, ganttIssueElements] =
-					elements;
+				).filter((el) => el instanceof HTMLElement);
+				const ganttIssueElements = Array.from(
+					table.querySelectorAll("[id^='ganttIssue-']"),
+				).filter((el) => el instanceof HTMLElement);
+				const elements = [
+					leftCellElements,
+					rightCellElements,
+					ganttIssueElements,
+				];
 
 				for (const el of elements.flat()) {
 					el.ariaHidden = "false";
@@ -115,10 +120,10 @@ export const ganttFilterParentAndChild = definePowerUpsPlugin({
 		);
 
 		observeQuerySelector(".gantt-table", (el) => {
-			el.classList.add(styles.table);
+			el.classList.add(styles.table!);
 
 			const observer = new MutationObserver(() => {
-				el.classList.toggle(styles.table, true);
+				el.classList.toggle(styles.table!, true);
 			});
 
 			return observer.observe(el, {
