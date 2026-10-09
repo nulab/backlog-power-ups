@@ -13,6 +13,11 @@ export type PowerUpsPluginContext = Pick<
 	"addEventListener" | "setTimeout" | "setInterval"
 > & {
 	pluginStates: PluginStates;
+	/**
+	 * Registers a teardown callback, for resources the helpers above do not
+	 * cover (a plugin-owned MutationObserver, for instance).
+	 */
+	onInvalidated: (handler: () => void) => void;
 	observeQuerySelector: (
 		selector: string,
 		handler: Listener,
@@ -29,6 +34,9 @@ export const createPowerUpsPluginContext = (
 
 	const context: PowerUpsPluginContext = {
 		pluginStates,
+		onInvalidated: (handler) => {
+			invalidatorSet.add(handler);
+		},
 		observeQuerySelector: (selector, handler) => {
 			const isMatched = definition.matches.some((match) =>
 				minimatch(location.pathname, match),

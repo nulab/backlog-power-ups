@@ -22,5 +22,6 @@ export * from "./quickSearch";
 export * from "./searchKeyboard";
 export * from "./sidebarAutoClose";
 export * from "./totalTime";
+export * from "./translateUi";
 export * from "./userSwitcher";
 export * from "./zenMode";

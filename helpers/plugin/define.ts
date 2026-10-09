@@ -11,6 +11,11 @@ export type DefinePowerUpsPluginDefinition = {
 	group: PluginGroupId;
 	allFrames?: boolean;
 	defaultEnabled?: boolean;
+	/**
+	 * Development builds turn every plugin on so they all get exercised. Set
+	 * this for a plugin that would get in the way of working on the others.
+	 */
+	devEnabled?: boolean;
 	matches: string[];
 	excludeMatches?: string[];
 	main: (context: PowerUpsPluginContext) => void | Promise<void>;
