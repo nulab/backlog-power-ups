@@ -126,3 +126,48 @@ Releases are handled via GitHub Actions.
     - Environment: `production`
     - Version: Select one of `patch` / `minor` / `major`
 - The job for submitting the extension to the web stores requires approval from a maintainer.
+
+## Translating Backlog's UI
+
+The `translateUi` plugins translate Backlog's own screen text, which is a
+different thing from `locales/` — that one translates this extension's popup.
+
+Backlog renders its UI from a server-side catalog and does not put the message
+keys in the DOM, so the plugin can only match on the text it finds on screen. A
+dictionary is therefore keyed by message key for editing, and flattened into a
+`rendered text -> translation` map for the runtime.
+
+Only whole labels are replaced, never substrings, so that an issue subject that
+happens to contain a label is left alone. Editable regions (`textarea`, `pre`,
+`code`, `[contenteditable]`) are skipped.
+
+### Adding a language
+
+1. Add `plugins/translateUi/dictionaries/<lang>.json`, mapping message keys from
+   `backlog-web/conf/messages.ja` in the `backlog-scala` repository to their
+   translation.
+2. Regenerate the runtime dictionary. The catalog lives outside this repository,
+   so pass the checkout:
+
+   ```sh
+   npm run build:dictionary -- --scala ../path/to/backlog-scala
+   ```
+
+   The script fails if a key is missing from the catalog, is not a plain label
+   (placeholders, markup and HTML entities never render as written), or if two
+   keys that render the same text disagree on the translation — the DOM cannot
+   tell those apart, so one of them has to go.
+
+   What the script cannot catch is a key whose rendered text is a bare generic
+   word in one of the two catalogs, because the entry then fires far outside the
+   screen the key belongs to. `btn.new` is `新規作成` but `News` in English, so
+   including it would rewrite every genuine "News" label. Leave those out.
+
+Plugins that recognise an element by Backlog's own wording stop matching once a
+translation is active, and the rewrite leaves no trace in the DOM. Such a plugin
+should test the rendered text *and* `getUntranslatedTexts()` from
+`plugins/translateUi/original-text.ts`, the way `plugins/autoResolution.ts`
+does.
+3. Export one more plugin from `plugins/translateUi/index.ts` and add its
+   `name` to `locales/en.yaml` and `locales/ja.yaml`. Each language is its own
+   toggle, because the plugin list is a flat list of booleans.

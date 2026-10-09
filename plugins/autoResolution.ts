@@ -1,3 +1,15 @@
+import { getUntranslatedTexts } from "./translateUi/original-text";
+
+// Backlog labels these in its own wording, so a translateUi plugin may have
+// rewritten them by the time this runs.
+const FIXED_LABELS = ["Fixed", "対応済み"];
+const CLOSE_LABELS = ["完了に設定", 'Set to "Closed"'];
+
+const labelMatches = (text: string | null, labels: string[]) =>
+	[text ?? "", ...getUntranslatedTexts(text)].some((candidate) =>
+		labels.includes(candidate),
+	);
+
 export const autoResolution = definePowerUpsPlugin({
 	group: "issue",
 	allFrames: true,
@@ -32,7 +44,7 @@ export const autoResolution = definePowerUpsPlugin({
 						continue;
 					}
 
-					if (["Fixed", "対応済み"].includes(el.textContent)) {
+					if (labelMatches(el.textContent, FIXED_LABELS)) {
 						el.click();
 						break;
 					}
@@ -65,12 +77,7 @@ export const autoResolution = definePowerUpsPlugin({
 		observeQuerySelector("#changeToNextStatus", (el) => {
 			const handleClick = (e: Event) => {
 				if (e.currentTarget instanceof HTMLButtonElement) {
-					const { textContent } = e.currentTarget;
-
-					if (
-						textContent === "完了に設定" ||
-						textContent === 'Set to "Closed"'
-					) {
+					if (labelMatches(e.currentTarget.textContent, CLOSE_LABELS)) {
 						setResolution();
 					}
 				}

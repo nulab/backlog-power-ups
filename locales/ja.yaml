@@ -97,3 +97,5 @@ filePermalink:
 copyPullSummary:
   name: プルリクエストの番号とタイトルをコピーするボタンを追加する
   tooltip: プルリクエスト番号（$1）とタイトルをクリップボードにコピーします。Shiftキーを押しながらクリックするとプルリクエスト番号のみがコピーされます。
+translateUiVietnamese:
+  name: Backlog の画面上の文言をベトナム語に置き換える
