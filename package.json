@@ -5,7 +5,7 @@
 	"type": "module",
 	"scripts": {
 		"build": "wxt build",
-		"build:dictionary": "node scripts/build-ui-dictionary.mjs",
+		"build:dictionary": "node scripts/build-ui-dictionary.ts",
 		"dev": "wxt",
 		"format": "biome format --write .",
 		"format:check": "biome format .",

@@ -3,7 +3,7 @@
  * expose the message keys in the DOM, so the only thing a content script can
  * match on is the text itself. `dictionary` is therefore a flat
  * `rendered text -> translation` map, built by
- * `scripts/build-ui-dictionary.mjs`.
+ * `scripts/build-ui-dictionary.ts`.
  */
 export type Dictionary = Record<string, string>;
 
